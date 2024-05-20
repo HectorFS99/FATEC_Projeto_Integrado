@@ -17,33 +17,33 @@
 	<body>
 		<main class="vh-100 d-flex justify-content-center align-items-center fixed-top">
 			<form class="row g-3 needs-validation" novalidate>
-				<div class="col-md-4">
-					<label for="validationCustom01" class="form-label">First name</label>
-					<input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-					<div class="valid-feedback">
-						Looks good!
+
+				<!-- Nome, Data Nasc. -->
+				<div class="d-flex justify-content-between">
+					<div class="flex-fill">
+						<label for="txtNome" class="form-label">Nome completo</label>
+						<input type="text" class="form-control" id="txtNome" required>
+						<div id="txtNomeErro" class="invalid-feedback">
+						</div>
 					</div>
-				</div>
-				<div class="col-md-4">
-					<label for="validationCustom02" class="form-label">Last name</label>
-					<input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-					<div class="valid-feedback">
-						Looks good!
-					</div>
-				</div>
-				<div class="col-md-4">
-					<label for="validationCustomUsername" class="form-label">Username</label>
-					<div class="input-group has-validation">
-						<span class="input-group-text" id="inputGroupPrepend">@</span>
-						<input type="text" class="form-control" id="validationCustomUsername"
-							aria-describedby="inputGroupPrepend" required>
-						<div class="invalid-feedback">
-							Please choose a username.
+					<div>
+						<label for="dtNasc" class="form-label">Data de nascimento</label>
+						<input type="date" min="1900-01-01" max="2024-01-01" class="form-control" id="dtNasc" required>
+						<div id="dtNascErro" class="invalid-feedback">
 						</div>
 					</div>
 				</div>
+
+				
+				<div class="col-md-4">
+					<label for="txtCPF" class="form-label">CPF</label>
+					<input type="text" class="form-control" id="txtCPF" required>
+					<div id="txtCPFerro" class="invalid-feedback">
+					</div>
+				</div>
+
 				<div class="col-md-6">
-					<label for="validationCustom03" class="form-label">City</label>
+					<label for="validationCustom03" class="form-label">RG</label>
 					<input type="text" class="form-control" id="validationCustom03" required>
 					<div class="invalid-feedback">
 						Please provide a valid city.
