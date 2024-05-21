@@ -9,17 +9,7 @@
     background: #d93a00;
 }
 
-#btnCadastrar {
-    background: #FF8A00;
-}
-#btnCadastrar:hover {
-    background: #ee7f00;
-}
-#btnCadastrar:active {
-    background: #e17800;
-}
-
-#btnEntrar, #btnCadastrar {
+#btnEntrar {
     border: none;
     color: #FFFFFF;
     padding: 0.75rem;
@@ -27,25 +17,11 @@
     transition: all 0.5s;
 }
 
-/***** Formulário e seus componentes *****/
+/***** Formulário de Autenticação *****/
 #formLogin {
     width: 350px;
     transition: all 0.5s;
 }
-
-#formLogin .form-floating:focus-within {
-    z-index: 2;
-    transition: all 0.5s;
-}
-
-#formLogin label {
-    transition: all 0.25s;
-}
-
-#formLogin input:focus{
-    box-shadow: #dbb597 0px 0px 5px 0px, #dbb597 0px 0px 1px 0px;
-    border: 1px solid #dfc5b2;
-} 
 
 #formLogin input[type="email"] {
     margin-bottom: -1px;

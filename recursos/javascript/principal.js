@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // *** Todas as páginas terão a mesma barra de navegação superior.
     
     document.body.insertAdjacentHTML('afterbegin', 
-        `<header>
+        `<header class="fixed-top">
             <nav class="navbar">
                 <img src="recursos/imagens/logo_fatec_cor.png" width="125">
             </nav>    

@@ -1,9 +1,79 @@
-body {
-    background-color: #F0F2F5;
-}
-
 .navbar {
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
     height: 65px;
     padding-left: 1rem;
+    background: #fbfbfb;
 }
+
+body {
+    background-color: #F0F2F5;
+}
+
+main {
+    height: 100vh;    
+    margin: 5rem 0;
+}
+
+/***** Formulários *****/
+.formulario label {
+    transition: all 0.25s;
+}
+
+.formulario input {
+    transition: all 0.25s;
+}
+
+    .formulario .form-floating:focus-within {
+        z-index: 2;
+        transition: all 0.5s;
+    }
+
+    .formulario input:focus{
+        box-shadow: #dbb597 0px 0px 5px 0px, #dbb597 0px 0px 1px 0px !important;
+        border: 1px solid #dfc5b2 !important;
+    } 
+
+/***** Botões *****/
+.btnCadastrar {
+    background: #FF8A00;
+    border: none;
+    color: #FFFFFF;
+    padding: 0.75rem;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    transition: all 0.5s;
+}
+
+    .btnCadastrar:hover {
+        background: #ee7f00;
+        color: #FFFFFF;
+    }
+
+    .btnCadastrar:active {
+        background: #e17800 !important;
+        color: #FFFFFF !important;
+    }
+
+.btnCancelar {
+    background: #e8eaed;
+    border: none;
+    color: #515151;
+    padding: 0.75rem;
+    transition: all 0.5s;
+}
+
+    .btnCancelar:hover {
+        background: #dfe1e4;
+        color: #515151;
+    }
+
+    .btnCancelar:active {
+        background: #d4d7db !important;
+        color: #515151 !important;
+    }
+
+/***** Tooltip (Balões de aviso) *****/
+.tooltip-customizada {
+    background: #e17800;
+    color: white;
+    font-weight: 600;
+  }

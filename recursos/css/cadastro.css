@@ -1,0 +1,7 @@
+#formCadastro {
+    width: 60vw;
+}
+
+#divNumEnd, #divComplemEnd, #divCEP, #divEstado {
+    width: 15%;
+}
