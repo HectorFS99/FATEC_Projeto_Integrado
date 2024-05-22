@@ -9,9 +9,11 @@ body {
     background-color: #F0F2F5;
 }
 
-main {
-    height: 100vh;    
-    margin: 5rem 0;
+.container {
+    margin-top: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /***** Formulários *****/
