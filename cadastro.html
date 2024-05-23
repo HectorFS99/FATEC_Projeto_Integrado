@@ -22,9 +22,10 @@
 				<h3 class="m-1 mt-5 mb-3">Cadastre-se</h1>
 					<!-- Nome, Nasc., CPF e RG -->
 					<div class="form-floating m-1">
-						<input id="txtNome" type="text" class="form-control" placeholder="Nome completo" required>
+						<input onfocusout="validarCampo('txtNome', 'txtNomeErro');" id="txtNome" type="text" class="form-control" placeholder="Nome completo" required>
 						<label for="txtNome">Nome completo</label>
 						<div id="txtNomeErro" class="invalid-feedback">
+							teste
 						</div>
 					</div>
 					<div class="d-flex flex-wrap">
