@@ -73,6 +73,10 @@ body {
         color: #515151 !important;
     }
 
+    .btnCadastrar[disabled] {
+        background-color: #cccccc; /* Cinza */
+        cursor: not-allowed;
+    }
 /***** Tooltip (Balões de aviso) *****/
 .tooltip-customizada {
     background: #e17800;
