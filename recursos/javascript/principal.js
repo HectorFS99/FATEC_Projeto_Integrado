@@ -10,6 +10,22 @@ document.addEventListener("DOMContentLoaded", function() {
     );
 });
 
+/** Máscaras para campos **/
+function aplicarMascaraCPF(campo) {
+    campo.value = campo.value.replace(/[^0-9.-]/g, ''); // Remove letras e mantém apenas números, ponto (.) e hífen (-).
+    $(`#${campo.id}`).mask("000.000.000-00");
+}
+
+function aplicarMascaraRG(campo) {
+    campo.value = campo.value.replace(/[^A-Z0-9.-]/g, ''); // Remove caracteres que não são letras maiúsculas nem números.
+    $(`#${campo.id}`).mask("00.000.000-0");
+}
+
+function aplicarMascaraTelefone(campo) {
+    $(`#${campo.id}`).mask("(00) 00000-0000");
+}
+
+/** Validação geral **/
 function validarCampo(id_campo, id_feedback) {
     var campo = document.getElementById(id_campo);
     var div_feedback = document.getElementById(id_feedback);
@@ -51,50 +67,21 @@ function validarCampo(id_campo, id_feedback) {
                 limparFeedback(div_feedback);
             }
             break;
+        case 'txtRG':
+            if (!validarRG(campo.value)) {
+                exibirFeedback(campo, div_feedback, 'Informe um RG válido.')
+            } else {
+                limparFeedback(div_feedback);
+            }
+            break;
     }
 
     return;
 }
 
-function exibirFeedback(campo, div_feedback, mensagem) {
-    div_feedback.style.display = 'block';
-    div_feedback.innerHTML = `<strong>${mensagem}</strong>`;
-
-    //campo.focus();
-}
-
-function limparFeedback(div_feedback) {
-    div_feedback.innerHTML = '';
-    div_feedback.style.display = 'none';
-}
-
-/***** Validações gerais *****/
+/** Validações específicas **/
 function validarCaracteresEspeciais(texto) {
     return /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(texto);
-}
-
-/** CPF **/
-function aplicarMascaraCPF(campo) {
-    var cpf = campo.value.replace(/[^0-9.-]/g, ''); // Remove letras e mantém apenas números, ponto (.) e hífen (-).
-    var cpfFormatado = '';
-
-    campo.value = cpf;
-
-    /* Aplica a máscara conforme o usuário for digitando no campo, acrescentando o ponto (.) e o hífen (-),
-       de acordo com a quantidade de caracteres. */
-    if (cpf.length >= 3) {
-        cpfFormatado += cpf.substring(0, 3) + '.';
-    }
-    if (cpf.length >= 6) {
-        cpfFormatado += cpf.substring(3, 6) + '.';
-    }
-    if (cpf.length >= 9) {
-        cpfFormatado += cpf.substring(6, 9) + '-';
-    }
-    if (cpf.length >= 11) {
-        cpfFormatado += cpf.substring(9, 11);
-        campo.value = cpfFormatado;
-    }
 }
 
 function validarCPF(cpf) {
@@ -138,4 +125,32 @@ function validarCPF(cpf) {
     }
 
     return true;
+}
+
+function validarRG(rg) {
+    rg = rg.replace(/[.-]/g, ''); // Remove os pontos (.) e o hífen (-).
+
+    if (rg === "000000000") {
+        return false;
+    }
+
+    if (rg.length < 8 || /^(.)\1+$/.test(rg)) { // Verifica se o RG tem menos de 8 dígitos (considerando RGs sem DV) e se não é uma sequência repetida qualquer.
+        return false; 
+    }
+
+    return true;
+}
+
+
+/** Feedback **/
+function exibirFeedback(campo, div_feedback, mensagem) {
+    div_feedback.style.display = 'block';
+    div_feedback.innerHTML = `<strong>${mensagem}</strong>`;
+
+    //campo.focus();
+}
+
+function limparFeedback(div_feedback) {
+    div_feedback.innerHTML = '';
+    div_feedback.style.display = 'none';
 }
