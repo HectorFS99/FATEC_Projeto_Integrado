@@ -10,6 +10,50 @@ document.addEventListener("DOMContentLoaded", function() {
     );
 });
 
+/***** SweetAlert2. *****/
+// Popups
+const popupSwal = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-lg btn-light custom-button-popup',
+        cancelButton: 'btn btn-lg btn-danger custom-button-popup',
+        popup: 'custom-popup'
+    },
+    buttonsStyling: false
+});
+ 
+// Toasts
+const toastSwal = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    iconColor: 'white',
+    customClass: {
+        popup: 'colored-toast',
+    },
+    showConfirmButton: false,
+    timer: 7000,
+    timerProgressBar: true,
+});
+ 
+// Caso 'popup' seja passado como 'true', será exibido um POPUP. Caso 'false', será exibido um TOAST.
+function notificar(popup, titulo, mensagem, icone, caminho) {
+    if (popup) {
+        popupSwal.fire({ 
+            title: `${titulo}`
+            , text: `${mensagem}`
+            , icon: `${icone}` 
+        }).then(() => { 
+            if (caminho) { window.location.href = `${caminho}`; }            
+        }) 
+    } else {
+        toastSwal.fire({
+            title: `${titulo}`
+            , text: `${mensagem}`
+            , icon: `${icone}` 
+        });
+    }
+}
+/*****/
+
 /** Máscaras para campos **/
 function aplicarMascaraCPF(campo) {
     campo.value = campo.value.replace(/[^0-9.-]/g, ''); // Remove letras e mantém apenas números, ponto (.) e hífen (-).
@@ -30,50 +74,49 @@ function validarCampo(id_campo, id_feedback) {
     var campo = document.getElementById(id_campo);
     var div_feedback = document.getElementById(id_feedback);
 
-    switch (id_campo) {
-        case 'txtNome':
-            if (campo.value.length < 2) {
-                exibirFeedback(campo, div_feedback, 'Nome inválido. Informe-o corretamente.')
-            } else if (validarCaracteresEspeciais(campo.value)) {
-                exibirFeedback(campo, div_feedback, 'Não são permitidos caracteres especiais. Informe um nome válido.');
-                campo.value = '';
-            } else {
-                limparFeedback(div_feedback);
-            }
+    if (campo.value.length > 0) {
+        switch (id_campo) {
+            case 'txtNome':
+                if (campo.value.length < 2) {
+                    exibirFeedback(campo, div_feedback, 'Nome inválido. Informe-o corretamente.')
+                } else if (validarCaracteresEspeciais(campo.value)) {
+                    exibirFeedback(campo, div_feedback, 'Não são permitidos caracteres especiais. Informe um nome válido.');
+                    campo.value = '';
+                } else {
+                    limparFeedback(div_feedback);
+                }
 
-            break;
-        case 'dtNasc':
-            var dtNasc = new Date(campo.value)
-                , mesNasc = dtNasc.getMonth() + 1 // Dado que os meses aqui são índices, começando por 0, acrescentei +1
-                , dtAtual = new Date()
-                , mesAtual = dtAtual.getMonth() + 1
-                , idade = dtAtual.getFullYear() - dtNasc.getFullYear();
-            
-            if (mesAtual < mesNasc || (mesAtual === mesNasc && dtAtual.getDate() < dtNasc.getDate())) { 
-                idade--; 
-            }
+                break;
+            case 'dtNasc':
+                var dtNasc = new Date(campo.value)
+                    , mesNasc = dtNasc.getMonth() + 1 // Dado que os meses aqui são índices, começando por 0, acrescentei +1
+                    , dtAtual = new Date()
+                    , mesAtual = dtAtual.getMonth() + 1
+                    , idade = dtAtual.getFullYear() - dtNasc.getFullYear();
+                
+                if (mesAtual < mesNasc || (mesAtual === mesNasc && dtAtual.getDate() < dtNasc.getDate())) { idade--; }
+                idade < 18 ? exibirFeedback(campo, div_feedback, 'É necessário ser maior de idade para realizar o cadastro.') : limparFeedback(div_feedback);
 
-            if (idade < 18) {                
-                exibirFeedback(campo, div_feedback, 'É necessário ser maior de idade para realizar o cadastro.')
-            } else {
-                limparFeedback(div_feedback);
-            }
-
-            break;
-        case 'txtCPF':
-            if (!validarCPF(campo.value)) {
-                exibirFeedback(campo, div_feedback, 'Informe um CPF válido.')
-            } else {
-                limparFeedback(div_feedback);
-            }
-            break;
-        case 'txtRG':
-            if (!validarRG(campo.value)) {
-                exibirFeedback(campo, div_feedback, 'Informe um RG válido.')
-            } else {
-                limparFeedback(div_feedback);
-            }
-            break;
+                break;
+            case 'txtCPF':
+                !validarCPF(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um CPF válido.') : limparFeedback(div_feedback);
+                break;
+            case 'txtRG':
+                !validarRG(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um RG válido.') : limparFeedback(div_feedback);
+                break;
+            case 'txtEmail':
+                !validarEmail(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um e-mail válido.') : limparFeedback(div_feedback);
+                break;
+            case 'txtConfirmarEmail':
+                document.getElementById(id_campo).value !== document.getElementById('txtEmail').value ? exibirFeedback(campo, div_feedback, 'Este e-mail não coincide com o informado.') : limparFeedback(div_feedback);
+                break;
+            case 'txtSenha':
+                !/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{10,}$/.test(campo.value) ? exibirFeedback(campo, div_feedback, 'Esta senha não atende aos critérios de segurança.') : limparFeedback(div_feedback);
+                break;
+            case 'txtConfirmarSenha':
+                document.getElementById(id_campo).value !== document.getElementById('txtSenha').value ? exibirFeedback(campo, div_feedback, 'Esta senha não coincide com a informada.') : limparFeedback(div_feedback);
+                break;
+        }
     }
 
     return;
@@ -141,6 +184,9 @@ function validarRG(rg) {
     return true;
 }
 
+function validarEmail(email) {
+    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/.test(email);
+}
 
 /** Feedback **/
 function exibirFeedback(campo, div_feedback, mensagem) {
@@ -153,4 +199,23 @@ function exibirFeedback(campo, div_feedback, mensagem) {
 function limparFeedback(div_feedback) {
     div_feedback.innerHTML = '';
     div_feedback.style.display = 'none';
+}
+
+function visualizarSenha(id_campo) {
+    var campo_senha = document.getElementById(id_campo);
+    var botao_visualizar = document.querySelector('.olho-senha');
+
+    if (campo_senha.type === 'password') {
+        campo_senha.type = 'text';
+        botao_visualizar.classList.replace('fa-eye-slash', 'fa-eye');
+    } else {
+        campo_senha.type = 'password';
+        botao_visualizar.classList.replace('fa-eye', 'fa-eye-slash');
+    }    
+}
+
+function cadastrar(e) {
+    e.preventDefault();
+
+    notificar(true, 'Tudo ok!', 'Eviaremos um link de confirmação para o e-mail informado dentro de alguns minutos.', 'success', '')
 }

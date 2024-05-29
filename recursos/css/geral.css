@@ -77,9 +77,60 @@ body {
         background-color: #cccccc; /* Cinza */
         cursor: not-allowed;
     }
+
 /***** Tooltip (Balões de aviso) *****/
 .tooltip-customizada {
     background: #e17800;
     color: white;
     font-weight: 600;
-  }
+}
+
+.olho-senha {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: grey;
+}
+
+/******** Sweet Alert 2 (Popups) ********/
+.custom-popup {
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+}
+ 
+.custom-error-popup {
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    width: 50vw;
+}
+ 
+.custom-button-popup {
+    width: 10rem;
+    margin: 0.5rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+}
+ 
+body.swal2-shown > [aria-hidden="true"] {
+    filter: blur(25px);    
+    transition: 0.5s all;
+}
+ 
+.colored-toast {
+    color: white;
+    border-radius: 0.5rem;
+}
+ 
+    .colored-toast.swal2-icon-success {
+        background-color: #198754 !important;
+    }
+ 
+    .colored-toast.swal2-icon-error {
+        background-color: #DC3545 !important;
+    }
+ 
+    .colored-toast.swal2-icon-warning {
+        background-color: #f77e1b !important;
+    }
