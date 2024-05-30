@@ -214,8 +214,27 @@ function visualizarSenha(id_campo) {
     }    
 }
 
+function impedirColagem(e) { // Impede que o usuário cole conteúdos em um determinado campo. EXEMPLO: Campo de confirmação de e-mail e senha.
+    e.preventDefault();
+    var clipboardData = e.clipboardData || window.clipboardData;
+    clipboardData.setData('text', '');
+}
+
 function cadastrar(e) {
     e.preventDefault();
 
-    notificar(true, 'Tudo ok!', 'Eviaremos um link de confirmação para o e-mail informado dentro de alguns minutos.', 'success', '')
+    // Aqui, as divs que contêm a classe "invalid-feedback", serão obtidas pra verificar se tem algum conteúdo dentro delas.
+    // Se for o caso, o cadastro não será feito e o usuário será notificado.
+
+    var div_feedbacks_invalidos = document.getElementsByClassName('invalid-feedback');
+
+    for (let i = 0; i < div_feedbacks_invalidos.length; i++) {
+        var feedback = div_feedbacks_invalidos[i].innerHTML.trim();
+        if (feedback) {
+            notificar(false, 'Os dados informados não são válidos. Por favor, verifique os campos destacados.', '', 'error', '');
+            return;
+        }
+    }
+     
+    notificar(true, 'Tudo ok!', 'Eviaremos um link de confirmação para o e-mail informado dentro de alguns instantes.', 'success', 'confirmacao-cadastro.html');
 }

@@ -23,17 +23,18 @@ body {
 
 .formulario input {
     transition: all 0.25s;
+    font-size: 0.9rem;
 }
 
-    .formulario .form-floating:focus-within {
-        z-index: 2;
-        transition: all 0.5s;
-    }
+.formulario .form-floating:focus-within {
+    z-index: 2;
+    transition: all 0.5s;
+}
 
-    .formulario input:focus{
-        box-shadow: #dbb597 0px 0px 5px 0px, #dbb597 0px 0px 1px 0px !important;
-        border: 1px solid #dfc5b2 !important;
-    } 
+.formulario input:focus {
+    box-shadow: #dbb597 0px 0px 5px 0px, #dbb597 0px 0px 1px 0px !important;
+    border: 1px solid #dfc5b2 !important;
+}
 
 /***** Botões *****/
 .btnCadastrar {
@@ -45,15 +46,15 @@ body {
     transition: all 0.5s;
 }
 
-    .btnCadastrar:hover {
-        background: #ee7f00;
-        color: #FFFFFF;
-    }
+.btnCadastrar:hover {
+    background: #ee7f00;
+    color: #FFFFFF;
+}
 
-    .btnCadastrar:active {
-        background: #e17800 !important;
-        color: #FFFFFF !important;
-    }
+.btnCadastrar:active {
+    background: #e17800 !important;
+    color: #FFFFFF !important;
+}
 
 .btnCancelar {
     background: #e8eaed;
@@ -63,20 +64,21 @@ body {
     transition: all 0.5s;
 }
 
-    .btnCancelar:hover {
-        background: #dfe1e4;
-        color: #515151;
-    }
+.btnCancelar:hover {
+    background: #dfe1e4;
+    color: #515151;
+}
 
-    .btnCancelar:active {
-        background: #d4d7db !important;
-        color: #515151 !important;
-    }
+.btnCancelar:active {
+    background: #d4d7db !important;
+    color: #515151 !important;
+}
 
-    .btnCadastrar[disabled] {
-        background-color: #cccccc; /* Cinza */
-        cursor: not-allowed;
-    }
+.btnCadastrar[disabled] {
+    background-color: #cccccc;
+    /* Cinza */
+    cursor: not-allowed;
+}
 
 /***** Tooltip (Balões de aviso) *****/
 .tooltip-customizada {
@@ -99,38 +101,92 @@ body {
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
 }
- 
+
 .custom-error-popup {
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
     width: 50vw;
 }
- 
+
 .custom-button-popup {
     width: 10rem;
     margin: 0.5rem;
     font-weight: 700;
     border-radius: 0.5rem;
 }
- 
-body.swal2-shown > [aria-hidden="true"] {
-    filter: blur(25px);    
+
+body.swal2-shown>[aria-hidden="true"] {
+    filter: blur(25px);
     transition: 0.5s all;
 }
- 
+
 .colored-toast {
     color: white;
     border-radius: 0.5rem;
 }
- 
-    .colored-toast.swal2-icon-success {
-        background-color: #198754 !important;
+
+.colored-toast.swal2-icon-success {
+    background-color: #198754 !important;
+}
+
+.colored-toast.swal2-icon-error {
+    background-color: #DC3545 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+    background-color: #f77e1b !important;
+}
+
+/* Spinner de carregamento */
+.loader {
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 15px auto;
+    position: relative;
+    color: #FFF;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.loader::after,
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 0;
+    background-color: #ffc58f;
+    border-radius: 50%;
+    animation: scale50 1s infinite ease-in-out;
+}
+
+.loader::before {
+    top: auto;
+    bottom: 0;
+    background-color: #FF3D00;
+    animation-delay: 0.5s;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
     }
- 
-    .colored-toast.swal2-icon-error {
-        background-color: #DC3545 !important;
+
+    100% {
+        transform: rotate(360deg);
     }
- 
-    .colored-toast.swal2-icon-warning {
-        background-color: #f77e1b !important;
+}
+
+@keyframes scale50 {
+
+    0%,
+    100% {
+        transform: scale(0);
     }
+
+    50% {
+        transform: scale(1);
+    }
+}
