@@ -17,5 +17,5 @@ function mudarConteudo() {
 
     var btn = document.getElementById('btn');
     btn.innerHTML = 'Continuar'
-    btn.attributes.href = 'pagina-inicial.html';
+    btn.setAttribute('href', 'pagina-inicial.html');
 }

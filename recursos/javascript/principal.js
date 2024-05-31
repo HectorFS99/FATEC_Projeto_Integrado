@@ -1,15 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Monta a tag <header> em todas as páginas, a fim de evitar repetição de código em cada uma delas.
-    // *** Todas as páginas terão a mesma barra de navegação superior.    
-    document.body.insertAdjacentHTML('afterbegin', 
-        `<header class="fixed-top">
-            <nav class="navbar">
-                <img src="recursos/imagens/logo_fatec_cor.png" width="125">
-            </nav>
-        </header>`
-    );
-});
-
 /***** SweetAlert2. *****/
 // Popups
 const popupSwal = Swal.mixin({
@@ -238,3 +226,34 @@ function cadastrar(e) {
      
     notificar(true, 'Tudo ok!', 'Eviaremos um link de confirmação para o e-mail informado dentro de alguns instantes.', 'success', 'confirmacao-cadastro.html');
 }
+
+/***** Carrossel *****/
+let indice_atual = 0;
+
+function mostrarSlide(indice) {
+    const slides = document.querySelectorAll('.carrossel-item');
+    const totalSlides = slides.length;
+
+    if (indice >= totalSlides) {
+        indice_atual = 0;
+    } else if (indice < 0) {
+        indice_atual = totalSlides - 1;
+    } else {
+        indice_atual = indice;
+    }
+
+    const container = document.querySelector('.carrossel-container');
+    container.style.transform = `translateX(-${indice_atual * 100}%)`;
+}
+
+function slideAnterior() {
+    mostrarSlide(indice_atual - 1);
+}
+
+function proximoSlide() {
+    mostrarSlide(indice_atual + 1);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    mostrarSlide(indice_atual);
+});

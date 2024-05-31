@@ -1,5 +1,5 @@
 .titulo-confirmacao {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
     background: linear-gradient(to right, #ffa686, #fd875c, #FF4600);
     -webkit-background-clip: text;
@@ -14,30 +14,6 @@
     padding: 1.5rem;
     text-align: center;
     font-weight: 400;
-}
-
-.btn-gradiente {
-    background: linear-gradient(to right, #ff5f25, #ff4400, #cb2c00);
-    color: white;
-    font-weight: 500;
-    font-size: 1.25rem;
-    padding: 0.75rem;
-    width: 300px;
-    border-radius: 0.75rem;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-    transition: all 0.5s;
-}
-
-.btn-gradiente:hover {
-    background: linear-gradient(to right, #cd4c1d, #c23400, #8c1e00);
-    color: white;
-}
-
-.btn-gradiente:active {
-    background: linear-gradient(to right, #ff5f25, #ff4400, #d42e00);
-    color: white;
-    transform: scale(0.95);
 }
 
 #icone-confirmacao {

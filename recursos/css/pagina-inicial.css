@@ -1,0 +1,30 @@
+.menu-categoria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+.img-categoria {
+    width: 150px;
+    padding-bottom: .75rem;
+}
+
+.btn-categoria {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    transition: all 0.5s;
+    font-weight: 700;
+    margin: .5rem;
+}
+
+.btn-categoria:hover {
+    transform: scale(1.25);
+}
+
+.btn-categoria:active {
+    transform: scale(.75);
+}
