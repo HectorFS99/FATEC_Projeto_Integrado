@@ -230,8 +230,8 @@ function cadastrar(e) {
 /***** Carrossel *****/
 let indice_atual = 0;
 
-function mostrarSlide(indice) {
-    const slides = document.querySelectorAll('.carrossel-item');
+function mostrarSlide(indice, id_componente) {
+    const slides = document.querySelectorAll(`${id_componente} .carrossel-item`);
     const totalSlides = slides.length;
 
     if (indice >= totalSlides) {
@@ -242,18 +242,14 @@ function mostrarSlide(indice) {
         indice_atual = indice;
     }
 
-    const container = document.querySelector('.carrossel-container');
+    const container = document.querySelector(`${id_componente} .carrossel-container`);
     container.style.transform = `translateX(-${indice_atual * 100}%)`;
 }
 
-function slideAnterior() {
-    mostrarSlide(indice_atual - 1);
+function slideAnterior(id_componente) {
+    mostrarSlide(indice_atual - 1, id_componente);
 }
 
-function proximoSlide() {
-    mostrarSlide(indice_atual + 1);
+function proximoSlide(id_componente) {
+    mostrarSlide(indice_atual + 1, id_componente);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    mostrarSlide(indice_atual);
-});

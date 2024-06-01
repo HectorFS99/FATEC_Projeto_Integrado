@@ -274,3 +274,8 @@ body.swal2-shown>[aria-hidden="true"] {
     padding: 3.5rem 3.5rem;
     text-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.75);
 }
+
+#div-formas_pagamento > img {
+    width: 100px;
+    height: auto;
+}
