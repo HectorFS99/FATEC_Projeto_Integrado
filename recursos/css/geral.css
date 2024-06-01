@@ -275,7 +275,33 @@ body.swal2-shown>[aria-hidden="true"] {
     text-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.75);
 }
 
-#div-formas_pagamento > img {
-    width: 100px;
+.formas_pagamento, .app_futuremob {
+    display: flex;
+    flex-direction: column;
+}
+
+.formas_pagamento > h4, .app_futuremob > h4 {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.logos_footer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.logos_footer > img {
     height: auto;
+    margin: 1rem !important;
+}
+
+.bandeiras_pagamento > img {
+    width: 75px;
+}
+
+.disponivel_app > img {
+    width: 200px;
+    margin: 1rem !important;
+    cursor: pointer;
 }
