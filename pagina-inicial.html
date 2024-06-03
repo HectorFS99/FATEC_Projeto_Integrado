@@ -1,255 +1,358 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Future Mob</title>
 
-	<title>Future Mob</title>
+		<!-- ***** ESTILIZAÇÃO ***** -->
+		<link rel="stylesheet" href="recursos/css/reset.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+		<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet" />
 
-	<!-- ***** ESTILIZAÇÃO ***** -->
-	<link rel="stylesheet" href="recursos/css/reset.css" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="recursos/css/geral.css" />
+		<link rel="stylesheet" href="recursos/css/pagina-inicial.css" />
+		<link rel="stylesheet" href="recursos/css/header.css" />
+		<link rel="stylesheet" href="recursos/css/footer.css" />
+		<!-- ***** ESTILIZAÇÃO ***** -->
 
-	<link rel="stylesheet" href="recursos/css/geral.css" />
-	<link rel="stylesheet" href="recursos/css/pagina-inicial.css" />
-	<!-- ***** ESTILIZAÇÃO ***** -->
+		<!-- ***** PROGRAMAÇÃO ***** -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
 
-	<!-- ***** PROGRAMAÇÃO ***** -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
-
-	<script src="recursos/javascript/principal.js"></script>
-	<script src="recursos/javascript/pagina-inicial.js"></script>
-	<!-- ***** PROGRAMAÇÃO ***** -->
-</head>
-
-<body>
-	<header>
-		<nav class="navbar">
-			<img src="recursos/imagens/logos/logo_fatec_cor.png" width="125" />
-		</nav>
-	</header>
-	<main>
-		<div id="carrossel-pagina_inicial" class="carrossel">
-			<div class="carrossel-container">
-				<div class="carrossel-item active" style="
-              background-image: url('recursos/imagens/produtos/cozinha-armario_azul_laranja.jpg');
-            ">
-					<div class="carrossel-conteudo">
-						<h1>Cozinha FutureMob</h1>
-						<p class="opacity-75">
-							Nossa exclusiva tecnologia OpenPush dispensa o uso de puxadores
-							em nossos armários.
-						</p>
-						<div>
-							<a class="btn btn-lg btn-gradiente" href="#">Venha conferir!</a>
+		<script src="recursos/javascript/principal.js"></script>
+		<script src="recursos/javascript/pagina-inicial.js"></script>
+		<!-- ***** PROGRAMAÇÃO ***** -->
+	</head>
+	<body>
+		<header id="header"></header>
+		<main>
+			<div id="carrossel-pagina_inicial" class="carrossel">
+				<div class="carrossel-container">
+					<div class="carrossel-item active"
+						style="background-image: url('recursos/imagens/produtos/cozinha-armario_azul_laranja.jpg');">
+						<div class="carrossel-conteudo">
+							<h1>Cozinha FutureMob</h1>
+							<p class="opacity-75">
+								Nossa exclusiva tecnologia OpenPush dispensa o uso de puxadores
+								em nossos armários.
+							</p>
+							<div>
+								<a class="btn btn-lg btn-gradiente" href="#">Venha conferir!</a>
+							</div>
+						</div>
+					</div>
+					<div class="carrossel-item"
+						style="background-image: url('recursos/imagens/produtos/sala-poltrona_metalica.jpg');">
+						<div class="carrossel-conteudo">
+							<h1>Poltrona</h1>
+							<p class="opacity-75">
+								A exclusiva poltrona com estrutura em aço inoxidável.
+							</p>
+							<div>
+								<a class="btn btn-lg btn-gradiente" href="#">Venha conferir!</a>
+							</div>
+						</div>
+					</div>
+					<div class="carrossel-item"
+						style="background-image: url('recursos/imagens/produtos/sala-sofa_vermelho_torcido.jpg');">
+						<div class="carrossel-conteudo">
+							<h1>Um sofá ou uma obra de arte? Os dois!</h1>
+							<p class="opacity-75">
+								O sofá que reune elegância e conforto, em um só produto.
+							</p>
+							<div>
+								<a class="btn btn-lg btn-gradiente" href="#">Venha conferir!</a>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="carrossel-item" style="
-              background-image: url('recursos/imagens/produtos/sala-poltrona_metalica.jpg');
-            ">
-					<div class="carrossel-conteudo">
-						<h1>Poltrona</h1>
-						<p class="opacity-75">
-							A exclusiva poltrona com estrutura em aço inoxidável.
-						</p>
-						<div>
-							<a class="btn btn-lg btn-gradiente" href="#">Venha conferir!</a>
-						</div>
+				<button class="carrossel-btn_anterior" onclick="slideAnterior('#carrossel-pagina_inicial');">
+					❮
+				</button>
+				<button class="carrossel-btn_proximo" onclick="proximoSlide('#carrossel-pagina_inicial');">
+					❯
+				</button>
+			</div>
+			<section class="conteudo-pagina_inicial">
+				<nav class="menu-categoria">
+					<a class="btn-vertical" href="#">
+						<img class="img-categoria" src="recursos/imagens/icones/saladeestar.svg"
+							alt="categoria-sala_estar" />
+						<span>Sala de Estar</span>
+					</a>
+					<a class="btn-vertical" href="#">
+						<img class="img-categoria" src="recursos/imagens/icones/escritorio.svg"
+							alt="categoria-escritorio" />
+						<span>Escritório</span>
+					</a>
+					<a class="btn-vertical" href="#">
+						<img class="img-categoria" src="recursos/imagens/icones/quarto.svg" alt="categoria-quarto" />
+						<span>Quarto</span>
+					</a>
+					<a class="btn-vertical" href="#">
+						<img class="img-categoria" src="recursos/imagens/icones/cozinha.svg" alt="categoria-cozinha" />
+						<span>Cozinha</span>
+					</a>
+					<a class="btn-vertical" href="#">
+						<img class="img-categoria" src="recursos/imagens/icones/saladejantar.svg"
+							alt="categoria-sala_jantar" />
+						<span>Sala de Jantar</span>
+					</a>
+					<a class="btn-vertical" href="#">
+						<img class="img-categoria" src="recursos/imagens/icones/areaexterna.svg"
+							alt="categoria-area_externa" />
+						<span>Área Externa</span>
+					</a>
+				</nav>
+				<div class="ofertas-relampago">
+					<h3 class="produtos_titulo"><i class="fa-solid fa-bolt"></i> Ofertas relâmpago!</h3>
+					<div class="produtos_cards">
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Luminária Rosa, com detalhes em Ouro Rosé
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 1.999,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 139,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Luminária Rosa, com detalhes em Ouro Rosé
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 1.999,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 139,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Luminária Rosa, com detalhes em Ouro Rosé
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 1.999,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 139,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Luminária Rosa, com detalhes em Ouro Rosé
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 1.999,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 139,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Luminária Rosa, com detalhes em Ouro Rosé
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 1.999,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 139,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Luminária Rosa, com detalhes em Ouro Rosé
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 1.999,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 139,90 s/ juros
+								</p>
+							</div>
+						</a>
 					</div>
 				</div>
-				<div class="carrossel-item" style="
-              background-image: url('recursos/imagens/produtos/sala-sofa_vermelho_torcido.jpg');
-            ">
-					<div class="carrossel-conteudo">
-						<h1>Um sofá ou uma obra de arte? Os dois!</h1>
-						<p class="opacity-75">
-							O sofá que reune elegância e conforto, em um só produto.
-						</p>
-						<div>
-							<a class="btn btn-lg btn-gradiente" href="#">Venha conferir!</a>
-						</div>
+				<div class="novidades">
+					<div class="d-flex justify-content-between align-items-center">
+						<h3 class="produtos_titulo"><i class="fa-solid fa-face-grin-stars"></i> Novidades!</h3>
+						<a href="#" class="btn btn-verMaisProdutos">Ver produtos <i class="fa-solid fa-arrow-right"
+								style="margin-left: .25rem;"></i></a>
+					</div>
+					<div class="produtos_cards">
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Cama com molas ensacadas, em couro e veludo
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 2.599,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 2.199,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 259,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Cama com molas ensacadas, em couro e veludo
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 2.599,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 2.199,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 259,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Cama com molas ensacadas, em couro e veludo
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 2.599,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 2.199,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 259,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Cama com molas ensacadas, em couro e veludo
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 2.599,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 2.199,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 259,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Cama com molas ensacadas, em couro e veludo
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 2.599,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 2.199,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 259,90 s/ juros
+								</p>
+							</div>
+						</a>
+						<a href="#" class="card-produto">
+							<img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" class="card-produto_img"
+								alt="..." />
+							<div class="card-produto_conteudo">
+								<p class="card-produto_titulo">
+									Cama com molas ensacadas, em couro e veludo
+								</p>
+								<p>
+									<s class="text-muted">De: R$ 2.599,00</s><br>
+									<b>Por: <span style="font-size: 1.5rem;">R$ 2.199,00</span></b>
+								</p>
+								<p class="text-success">
+									<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+								</p>
+								<p>
+									ou em até 10x de 259,90 s/ juros
+								</p>
+							</div>
+						</a>
 					</div>
 				</div>
-			</div>
-			<button class="carrossel-btn_anterior" onclick="slideAnterior('#carrossel-pagina_inicial');">
-				❮
-			</button>
-			<button class="carrossel-btn_proximo" onclick="proximoSlide('#carrossel-pagina_inicial');">
-				❯
-			</button>
-		</div>
-		<section class="conteudo-pagina_inicial">
-			<nav class="menu-categoria">
-				<a class="btn-categoria" href="#">
-					<img class="img-categoria" src="recursos/imagens/icones/saladeestar.svg" alt="" />
-					<span>Sala de Estar</span>
-				</a>
-				<a class="btn-categoria" href="#">
-					<img class="img-categoria" src="recursos/imagens/icones/escritorio.svg" alt="" />
-					<span>Escritório</span>
-				</a>
-				<a class="btn-categoria" href="#">
-					<img class="img-categoria" src="recursos/imagens/icones/quarto.svg" alt="" />
-					<span>Quarto</span>
-				</a>
-				<a class="btn-categoria" href="#">
-					<img class="img-categoria" src="recursos/imagens/icones/cozinha.svg" alt="" />
-					<span>Cozinha</span>
-				</a>
-				<a class="btn-categoria" href="#">
-					<img class="img-categoria" src="recursos/imagens/icones/saladejantar.svg" alt="" />
-					<span>Sala de Jantar</span>
-				</a>
-				<a class="btn-categoria" href="#">
-					<img class="img-categoria" src="recursos/imagens/icones/areaexterna.svg" alt="" />
-					<span>Área Externa</span>
-				</a>
-			</nav>
-			<div class="ofertas-relampago">
-				<h3 class="ofertas-relampago_titulo"><i class="fa-solid fa-bolt"></i> Ofertas relâmpago!</h3>
-				<div class="ofertas-relampago_cards">
-					<a href="#" class="card-produto">
-						<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img" alt="..." />
-						<div class="card-produto_conteudo">
-							<p class="card-produto_titulo">
-								Luminária Rosa, com detalhes em Ouro Rosé
-							</p>
-							<p>
-								<s class="text-muted">De: R$ 1.999,00</s><br>
-								<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
-							</p>
-							<p class="text-success">
-								<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
-							</p>
-							<p>
-								ou em até 10x de 139,90 s/ juros
-							</p>
-						</div>
-					</a>
-					<a href="#" class="card-produto">
-						<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img" alt="..." />
-						<div class="card-produto_conteudo">
-							<p class="card-produto_titulo">
-								Luminária Rosa, com detalhes em Ouro Rosé
-							</p>
-							<p>
-								<s class="text-muted">De: R$ 1.999,00</s><br>
-								<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
-							</p>
-							<p class="text-success">
-								<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
-							</p>
-							<p>
-								ou em até 10x de 139,90 s/ juros
-							</p>
-						</div>
-					</a>
-					<a href="#" class="card-produto">
-						<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img" alt="..." />
-						<div class="card-produto_conteudo">
-							<p class="card-produto_titulo">
-								Luminária Rosa, com detalhes em Ouro Rosé
-							</p>
-							<p>
-								<s class="text-muted">De: R$ 1.999,00</s><br>
-								<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
-							</p>
-							<p class="text-success">
-								<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
-							</p>
-							<p>
-								ou em até 10x de 139,90 s/ juros
-							</p>
-						</div>
-					</a>
-					<a href="#" class="card-produto">
-						<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img" alt="..." />
-						<div class="card-produto_conteudo">
-							<p class="card-produto_titulo">
-								Luminária Rosa, com detalhes em Ouro Rosé
-							</p>
-							<p>
-								<s class="text-muted">De: R$ 1.999,00</s><br>
-								<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
-							</p>
-							<p class="text-success">
-								<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
-							</p>
-							<p>
-								ou em até 10x de 139,90 s/ juros
-							</p>
-						</div>
-					</a>
-					<a href="#" class="card-produto">
-						<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img" alt="..." />
-						<div class="card-produto_conteudo">
-							<p class="card-produto_titulo">
-								Luminária Rosa, com detalhes em Ouro Rosé
-							</p>
-							<p>
-								<s class="text-muted">De: R$ 1.999,00</s><br>
-								<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
-							</p>
-							<p class="text-success">
-								<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
-							</p>
-							<p>
-								ou em até 10x de 139,90 s/ juros
-							</p>
-						</div>
-					</a>
-					<a href="#" class="card-produto">
-						<img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" class="card-produto_img" alt="..." />
-						<div class="card-produto_conteudo">
-							<p class="card-produto_titulo">
-								Luminária Rosa, com detalhes em Ouro Rosé
-							</p>
-							<p>
-								<s class="text-muted">De: R$ 1.999,00</s><br>
-								<b>Por: <span style="font-size: 1.5rem;">R$ 1.299,00</span></b>
-							</p>
-							<p class="text-success">
-								<b>à vista com pix, ou em 1x no Cartão de Crédito</b>
-							</p>
-							<p>
-								ou em até 10x de 139,90 s/ juros
-							</p>
-						</div>
-					</a>
-				</div>
-			</div>			
-		</section>
-	</main>
-	<footer>
-		<div class="d-flex justify-content-around flex-wrap">
-			<div class="formas_pagamento">
-				<h4>Formas de Pagamento</h4>
-				<div class="logos_footer bandeiras_pagamento">
-					<img src="recursos/imagens/logos/bandeiras_pagamento/visa.svg" alt="visa"/>
-					<img src="recursos/imagens/logos/bandeiras_pagamento/mastercard.svg" alt="mastercard" />
-					<img src="recursos/imagens/logos/bandeiras_pagamento/boleto.svg" alt="boleto"/>
-					<img src="recursos/imagens/logos/bandeiras_pagamento/american-express.svg" alt="american-express" />
-					<img src="recursos/imagens/logos/bandeiras_pagamento/hipercard.svg" alt="hipercard" />
-					<img src="recursos/imagens/logos/bandeiras_pagamento/paypal.svg" alt="paypal" />
-					<img src="recursos/imagens/logos/bandeiras_pagamento/pix.svg" alt="pix" />
-				</div>
-			</div>
-			<div class="app_futuremob">
-				<h4>Baixe o nosso aplicativo!</h4>
-				<div class="logos-footer disponivel_app">
-					<img src="recursos/imagens/icones/disponivel-google-play.svg" alt="disponivel-google-play">
-					<img src="recursos/imagens/icones/disponivel-app-store.svg" alt="disponivel-na-app-store">
-				</div>
-			</div>
-		</div>
-	</footer>
-</body>
-
+			</section>
+		</main>
+		<footer id="footer"></footer>
+	</body>
 </html>

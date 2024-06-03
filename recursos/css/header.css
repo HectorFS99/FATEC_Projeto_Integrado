@@ -1,0 +1,19 @@
+.navbar {
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+}
+
+.navbar > img {
+    width: 50px;
+}
+
+.botoes_barra_superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

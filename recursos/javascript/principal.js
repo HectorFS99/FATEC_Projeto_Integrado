@@ -1,3 +1,63 @@
+// Monta o header e o footer em todas as páginas que contêm a tag header e footer.
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('header').innerHTML = `        
+    <nav class="navbar">
+        <form class="formulario">
+            <div class="input-group">
+                <select id="cboCategoria" class="form-select">
+                    <option selected>Todos</option>
+                    <option value="1">Sala de Estar</option>
+                    <option value="2">Escritório</option>
+                    <option value="3">Quarto</option>
+                    <option value="3">Cozinha</option>
+                    <option value="3">Sala de Jantar</option>
+                    <option value="3">Área Externa</option>
+                </select>
+                <input id="txtPesquisar" type="text" class="form-control" placeholder="Encontrar sofás, mesas...">
+                <button id="btnPesquisar" type="submit" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>					
+            </div>
+        </form>
+        <img src="recursos/imagens/logos/logo-futureMob.jpg" width="125"/>
+        <div class="botoes_barra_superior">
+            <a href="#" class="btn-vertical">
+                <i class="fa-solid fa-user"></i>
+                <span>Minha Conta</span>
+            </a>
+            <a href="#" class="btn-vertical" style="margin: 0 1.5rem">
+                <i class="fa-solid fa-heart"></i>
+                <span>Meus Favoritos</span>
+            </a>
+            <a id="btnCarrinho" href="#" class="btn btn-laranja">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="contador-carrinho" style="margin-left: 1rem;">0</span>
+            </a>
+        </div>
+    </nav>`;
+
+    document.getElementById('footer').innerHTML = `
+    <div class="d-flex justify-content-around flex-wrap">
+        <div class="formas_pagamento">
+            <h4>Formas de Pagamento</h4>
+            <div class="logos_footer bandeiras_pagamento">
+                <img src="recursos/imagens/logos/bandeiras_pagamento/visa.svg" alt="visa" />
+                <img src="recursos/imagens/logos/bandeiras_pagamento/mastercard.svg" alt="mastercard" />
+                <img src="recursos/imagens/logos/bandeiras_pagamento/boleto.svg" alt="boleto" />
+                <img src="recursos/imagens/logos/bandeiras_pagamento/american-express.svg" alt="american-express" />
+                <img src="recursos/imagens/logos/bandeiras_pagamento/hipercard.svg" alt="hipercard" />
+                <img src="recursos/imagens/logos/bandeiras_pagamento/paypal.svg" alt="paypal" />
+                <img src="recursos/imagens/logos/bandeiras_pagamento/pix.svg" alt="pix" />
+            </div>
+        </div>
+        <div class="app_futuremob">
+            <h4>Baixe o nosso aplicativo!</h4>
+            <div class="logos-footer disponivel_app">
+                <img src="recursos/imagens/icones/disponivel-google-play.svg" alt="disponivel-google-play">
+                <img src="recursos/imagens/icones/disponivel-app-store.svg" alt="disponivel-na-app-store">
+            </div>
+        </div>
+    </div>`;
+});
+
 /***** SweetAlert2. *****/
 // Popups
 const popupSwal = Swal.mixin({
@@ -42,75 +102,18 @@ function notificar(popup, titulo, mensagem, icone, caminho) {
 }
 /*****/
 
-/** Máscaras para campos **/
+/***** Máscaras para campos (pode ser usada em outras telas) *****/
 function aplicarMascaraCPF(campo) {
     campo.value = campo.value.replace(/[^0-9.-]/g, ''); // Remove letras e mantém apenas números, ponto (.) e hífen (-).
     $(`#${campo.id}`).mask("000.000.000-00");
 }
 
-function aplicarMascaraRG(campo) {
-    campo.value = campo.value.replace(/[^A-Z0-9.-]/g, ''); // Remove caracteres que não são letras maiúsculas nem números.
-    $(`#${campo.id}`).mask("00.000.000-0");
-}
-
 function aplicarMascaraTelefone(campo) {
     $(`#${campo.id}`).mask("(00) 00000-0000");
 }
+/*****/
 
-/** Validação geral **/
-function validarCampo(id_campo, id_feedback) {
-    var campo = document.getElementById(id_campo);
-    var div_feedback = document.getElementById(id_feedback);
-
-    if (campo.value.length > 0) {
-        switch (id_campo) {
-            case 'txtNome':
-                if (campo.value.length < 2) {
-                    exibirFeedback(campo, div_feedback, 'Nome inválido. Informe-o corretamente.')
-                } else if (validarCaracteresEspeciais(campo.value)) {
-                    exibirFeedback(campo, div_feedback, 'Não são permitidos caracteres especiais. Informe um nome válido.');
-                    campo.value = '';
-                } else {
-                    limparFeedback(div_feedback);
-                }
-
-                break;
-            case 'dtNasc':
-                var dtNasc = new Date(campo.value)
-                    , mesNasc = dtNasc.getMonth() + 1 // Dado que os meses aqui são índices, começando por 0, acrescentei +1
-                    , dtAtual = new Date()
-                    , mesAtual = dtAtual.getMonth() + 1
-                    , idade = dtAtual.getFullYear() - dtNasc.getFullYear();
-                
-                if (mesAtual < mesNasc || (mesAtual === mesNasc && dtAtual.getDate() < dtNasc.getDate())) { idade--; }
-                idade < 18 ? exibirFeedback(campo, div_feedback, 'É necessário ser maior de idade para realizar o cadastro.') : limparFeedback(div_feedback);
-
-                break;
-            case 'txtCPF':
-                !validarCPF(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um CPF válido.') : limparFeedback(div_feedback);
-                break;
-            case 'txtRG':
-                !validarRG(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um RG válido.') : limparFeedback(div_feedback);
-                break;
-            case 'txtEmail':
-                !validarEmail(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um e-mail válido.') : limparFeedback(div_feedback);
-                break;
-            case 'txtConfirmarEmail':
-                document.getElementById(id_campo).value !== document.getElementById('txtEmail').value ? exibirFeedback(campo, div_feedback, 'Este e-mail não coincide com o informado.') : limparFeedback(div_feedback);
-                break;
-            case 'txtSenha':
-                !/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{10,}$/.test(campo.value) ? exibirFeedback(campo, div_feedback, 'Esta senha não atende aos critérios de segurança.') : limparFeedback(div_feedback);
-                break;
-            case 'txtConfirmarSenha':
-                document.getElementById(id_campo).value !== document.getElementById('txtSenha').value ? exibirFeedback(campo, div_feedback, 'Esta senha não coincide com a informada.') : limparFeedback(div_feedback);
-                break;
-        }
-    }
-
-    return;
-}
-
-/** Validações específicas **/
+/***** Validações *****/
 function validarCaracteresEspeciais(texto) {
     return /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(texto);
 }
@@ -158,25 +161,12 @@ function validarCPF(cpf) {
     return true;
 }
 
-function validarRG(rg) {
-    rg = rg.replace(/[.-]/g, ''); // Remove os pontos (.) e o hífen (-).
-
-    if (rg === "000000000") {
-        return false;
-    }
-
-    if (rg.length < 8 || /^(.)\1+$/.test(rg)) { // Verifica se o RG tem menos de 8 dígitos (considerando RGs sem DV) e se não é uma sequência repetida qualquer.
-        return false; 
-    }
-
-    return true;
-}
-
 function validarEmail(email) {
     return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/.test(email);
 }
+/*****/
 
-/** Feedback **/
+/***** Feedback *****/
 function exibirFeedback(campo, div_feedback, mensagem) {
     div_feedback.style.display = 'block';
     div_feedback.innerHTML = `<strong>${mensagem}</strong>`;
@@ -188,6 +178,7 @@ function limparFeedback(div_feedback) {
     div_feedback.innerHTML = '';
     div_feedback.style.display = 'none';
 }
+/*****/
 
 function visualizarSenha(id_campo) {
     var campo_senha = document.getElementById(id_campo);
@@ -206,25 +197,6 @@ function impedirColagem(e) { // Impede que o usuário cole conteúdos em um dete
     e.preventDefault();
     var clipboardData = e.clipboardData || window.clipboardData;
     clipboardData.setData('text', '');
-}
-
-function cadastrar(e) {
-    e.preventDefault();
-
-    // Aqui, as divs que contêm a classe "invalid-feedback", serão obtidas pra verificar se tem algum conteúdo dentro delas.
-    // Se for o caso, o cadastro não será feito e o usuário será notificado.
-
-    var div_feedbacks_invalidos = document.getElementsByClassName('invalid-feedback');
-
-    for (let i = 0; i < div_feedbacks_invalidos.length; i++) {
-        var feedback = div_feedbacks_invalidos[i].innerHTML.trim();
-        if (feedback) {
-            notificar(false, 'Os dados informados não são válidos. Por favor, verifique os campos destacados.', '', 'error', '');
-            return;
-        }
-    }
-     
-    notificar(true, 'Tudo ok!', 'Eviaremos um link de confirmação para o e-mail informado dentro de alguns instantes.', 'success', 'confirmacao-cadastro.html');
 }
 
 /***** Carrossel *****/
@@ -253,3 +225,4 @@ function slideAnterior(id_componente) {
 function proximoSlide(id_componente) {
     mostrarSlide(indice_atual + 1, id_componente);
 }
+/*****/

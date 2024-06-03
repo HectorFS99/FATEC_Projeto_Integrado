@@ -1,0 +1,32 @@
+.logos_footer {
+    display: flex !important;
+    justify-content: space-around !important;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.logos_footer > img {
+    height: auto;
+    margin: 1rem !important;
+}
+
+.bandeiras_pagamento > img {
+    width: 75px;
+}
+
+.disponivel_app > img {
+    width: 200px;
+    margin: 1rem !important;
+    cursor: pointer;
+}
+
+.formas_pagamento, .app_futuremob {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formas_pagamento > h4, .app_futuremob > h4 {
+    text-align: center;
+    margin-top: 1rem;
+}

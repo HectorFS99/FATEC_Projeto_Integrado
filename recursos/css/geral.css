@@ -1,16 +1,9 @@
-.navbar {
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-    height: 65px;
-    padding-left: 1rem;
-    background: #fbfbfb;
-}
-
 body {
     background-color: #F0F2F5;
 }
 
 .container {
-    margin-top: 65px;
+    margin-top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,12 +24,41 @@ body {
     transition: all 0.5s;
 }
 
-.formulario input:focus {
+input:focus, select:focus {
     box-shadow: #dbb597 0px 0px 5px 0px, #dbb597 0px 0px 1px 0px !important;
     border: 1px solid #dfc5b2 !important;
 }
 
+#cboCategoria {
+    width: 150px;
+}
+
+#txtPesquisar {
+    width: 250px;
+    transition: all 0.25s;
+}
+
 /***** Botões *****/
+.btn-vertical {
+    color: black;
+    font-weight: 700;
+    margin: .5rem;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    text-decoration: none;
+    transition: all .25s;
+}
+
+.btn-vertical:hover {
+    transform: scale(1.15);
+    color: #ff4400;
+}
+
+.btn-vertical:active {
+    transform: scale(.95);
+}
+
 .btnCadastrar {
     background: #FF8A00;
     border: none;
@@ -101,6 +123,19 @@ body {
     background: linear-gradient(to right, #ff5f25, #ff4400, #d42e00);
     color: white;
     transform: scale(0.95);
+}
+
+.btn-laranja {
+    background:  #ff4400;
+    border: 1px solid #ff4400;
+    color: white;
+    transition: all 0.25s;
+}
+
+.btn-laranja:hover {
+    background:  #c13300;
+    border: 1px solid   #c13300;
+    color: white;
 }
 
 /***** Tooltip (Balões de aviso) *****/
@@ -238,9 +273,9 @@ body.swal2-shown>[aria-hidden="true"] {
     height: 100%;
     box-sizing: border-box;
     width: auto;
-    background-size: cover; /* Ajusta a imagem para cobrir o contêiner */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita a repetição da imagem */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .carrossel-btn_anterior, .carrossel-btn_proximo {
@@ -272,103 +307,6 @@ body.swal2-shown>[aria-hidden="true"] {
     background: linear-gradient(to top, #000000, #00000000);
     padding: 3.5rem 3.5rem;
     text-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.75);
-}
-
-.formas_pagamento, .app_futuremob {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.formas_pagamento > h4, .app_futuremob > h4 {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-/***** Footer *****/
-.logos_footer {
-    display: flex !important;
-    justify-content: space-around !important;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.logos_footer > img {
-    height: auto;
-    margin: 1rem !important;
-}
-
-.bandeiras_pagamento > img {
-    width: 75px;
-}
-
-.disponivel_app > img {
-    width: 200px;
-    margin: 1rem !important;
-    cursor: pointer;
-}
-
-.conteudo-pagina_inicial {
-    max-width: 1300px;
-    margin: auto;
-}
-
-/***** Ofertas Relâmpago *****/
-.ofertas-relampago {
-    background: linear-gradient(to right, #3c00ff, #ff632b, #ff3700);
-    border-radius: 1rem;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    margin: 1rem 1rem;
-}
-
-.ofertas-relampago_titulo {
-    padding: 1rem 0 1rem 1.5rem;
-    margin: 0;
-    color: white;
-    text-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.75);
-}
-
-.ofertas-relampago_cards {
-    overflow-x: auto;
-    display: flex;
-    justify-content: space-around;
-    margin: 0 1rem;
-}
-
-.card-produto {
-    display: flex;
-    flex-direction: column;
-    min-width: 300px;
-    width: 300px;
-    background: white;
-    border-radius: .75rem;
-    margin: 0 .5rem 1rem .5rem;
-    text-decoration: none;
-    transition: all .25s;
-}
-
-.card-produto:hover {
-    transform: scale(.95);
-}
-
-.card-produto_img {
-    width: 100%;
-    height: 300px;
-    border-radius: .5rem ;
-    object-fit: cover;
-}
-
-.card-produto_conteudo {
-    padding: 1rem;
-}
-
-.card-produto_conteudo > p {
-    font-size: 1rem;
-    padding-bottom: 0;
-}
-
-.card-produto_titulo {
-    font-weight: 600;
 }
 
 /*****  Barra de Rolagem *****/

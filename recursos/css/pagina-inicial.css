@@ -10,21 +10,87 @@
     padding-bottom: .75rem;
 }
 
-.btn-categoria {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center;
+.conteudo-pagina_inicial {
+    max-width: 1300px;
+    margin: auto;
+}
+
+/***** Ofertas Relâmpago *****/
+.ofertas-relampago, .novidades {
+    border-radius: 1rem;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    margin: 1rem 1rem;
+}
+
+.ofertas-relampago {
+    background: linear-gradient(to right, #3c00ff, #ff632b, #ff3700);
+}
+
+.novidades {
+    background: linear-gradient(to right, #ff3700, #ff632b, #ffb700);
+}
+
+.produtos_titulo {
+    padding: 1rem 0 1rem 1.5rem;
+    margin: 0;
+    color: white;
+    text-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.75);
+}
+
+.produtos_cards {
+    overflow-x: auto;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 1rem;
+}
+
+.card-produto {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    width: 300px;
+    background: white;
+    border-radius: .75rem;
+    margin: 0 .5rem 1rem .5rem;
     text-decoration: none;
-    color: black;
-    transition: all 0.5s;
-    font-weight: 700;
-    margin: .5rem;
+    transition: all .25s;
 }
 
-.btn-categoria:hover {
-    transform: scale(1.25);
+.card-produto:hover {
+    transform: scale(.95);
 }
 
-.btn-categoria:active {
-    transform: scale(.75);
+.card-produto_img {
+    width: 100%;
+    height: 300px;
+    border-radius: .5rem ;
+    object-fit: cover;
+}
+
+.card-produto_conteudo {
+    padding: 1rem;
+}
+
+.card-produto_conteudo > p {
+    font-size: 1rem;
+    padding-bottom: 0;
+}
+
+.card-produto_titulo {
+    font-weight: 600;
+}
+
+.btn-verMaisProdutos {
+    margin-right: 1rem;
+    font-weight: 600;
+    color: white;
+    border-radius: .5rem;
+    background: #ff3700;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    transition: all 0.25s;
+}
+
+.btn-verMaisProdutos:hover {
+    color: white;
+    background: #cb2c00;
 }
