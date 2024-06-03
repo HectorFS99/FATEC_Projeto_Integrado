@@ -1,0 +1,60 @@
+.detalhes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 3rem auto 0 auto;
+    max-width: 1300px;
+}
+
+.detalhes-midias {
+    display: flex;    
+    max-width: 600px;
+}
+
+.detalhes-midias_outras_fotos {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+}
+
+.detalhes-midias_outras_fotos > img {
+    max-width: 75px;
+    height: auto;
+    margin-bottom: .5rem;
+    border-radius: .25rem;
+    border: 1px solid lightgray;
+    transition: all .25s;
+}
+
+.detalhes-midias_outras_fotos > img:hover {
+    cursor: pointer;
+    transform: scale(1.10);
+}
+
+.produto_img {
+    width: 100%;
+    height: auto;
+    border-radius: .5rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    cursor: zoom-in;
+}
+
+.detalhes-conteudo {
+    max-width: 600px;
+    margin: 1rem;
+}
+
+.detalhes-conteudo_botoes {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.detalhes-conteudo_botoes > a {
+    margin: .25rem 0;
+}
+
+.detalhes-conteudo_frete {
+    margin-top: 1rem;
+}

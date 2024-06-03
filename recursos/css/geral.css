@@ -9,6 +9,10 @@ body {
     align-items: center;
 }
 
+main {
+    margin-bottom: 3rem;
+}
+
 /***** Formulários *****/
 .formulario label {
     transition: all 0.25s;

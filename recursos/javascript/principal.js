@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </nav>`;
 
     document.getElementById('footer').innerHTML = `
+    <hr/>
     <div class="d-flex justify-content-around flex-wrap">
         <div class="formas_pagamento">
             <h4>Formas de Pagamento</h4>
