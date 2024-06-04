@@ -17,13 +17,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 <button id="btnPesquisar" type="submit" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>					
             </div>
         </form>
-        <img src="recursos/imagens/logos/logo-futureMob.jpg" width="125"/>
+        <a href="pagina-inicial.html" style="width: 125px"><img src="recursos/imagens/logos/logo-futureMob.jpg" width="75"/></a>
         <div class="botoes_barra_superior">
             <a href="#" class="btn-vertical">
                 <i class="fa-solid fa-user"></i>
                 <span>Minha Conta</span>
             </a>
-            <a href="#" class="btn-vertical" style="margin: 0 1.5rem">
+            <a href="favoritos.html" class="btn-vertical" style="margin: 0 1.5rem">
                 <i class="fa-solid fa-heart"></i>
                 <span>Meus Favoritos</span>
             </a>
