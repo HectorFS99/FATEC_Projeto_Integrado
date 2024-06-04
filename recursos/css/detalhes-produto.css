@@ -3,25 +3,25 @@
     justify-content: space-around;
     flex-wrap: wrap;
     margin: 3rem auto 0 auto;
-    max-width: 1300px;
+    max-width: 1400px;
 }
 
 .detalhes-midias {
-    display: flex;    
-    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 1rem;
 }
 
 .detalhes-midias_outras_fotos {
-    width: 100px;
     display: flex;
-    flex-direction: column;
-    margin-right: 1rem;
+    margin-top: 1rem;
 }
 
 .detalhes-midias_outras_fotos > img {
     max-width: 75px;
     height: auto;
-    margin-bottom: .5rem;
+    margin-right: .5rem;
     border-radius: .25rem;
     border: 1px solid lightgray;
     transition: all .25s;
@@ -33,15 +33,20 @@
 }
 
 .produto_img {
+    max-width: 675px;
+    max-height: 625px;
     width: 100%;
     height: auto;
     border-radius: .5rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     cursor: zoom-in;
+    object-fit: cover;
+
 }
 
 .detalhes-conteudo {
     max-width: 600px;
+    width: 100%;
     margin: 1rem;
 }
 
@@ -57,4 +62,24 @@
 
 .detalhes-conteudo_frete {
     margin-top: 1rem;
+}
+
+.detalhes-conteudo_frete_input {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    max-width: 400px;
+}
+
+.link-correios {
+    margin-left: 1rem;
+    width: 300px;
+}
+
+.tabela_frete {
+    border: 1px solid lightgray;
+    margin-top: .5rem;
+    border-radius: .5rem;
+    display: none;
 }
