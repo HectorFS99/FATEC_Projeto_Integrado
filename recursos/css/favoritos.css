@@ -1,3 +1,27 @@
+main {
+    max-width: 1300px;
+    margin: auto;
+}
+
+p {
+    margin: 0
+}
+
+.cabecalho-favoritos {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 1rem;
+}
+
+.cabecalho-favoritos > h3 {
+    margin: 0;
+}
+
+.cabecalho-favoritos > h3 > i {
+    color: #ff4400;
+    margin-right: .5rem;
+}
+
 #visualizacaoCards {
     display: flex;
     flex-wrap: wrap;
@@ -5,25 +29,52 @@
 }
 
 .card-favorito {
-    display: flex;
     flex-direction: column;
     max-width: 300px;
     width: 100%;
-    padding: 1rem;
-    margin: 1rem;
+    margin: 0 .5rem 1rem .5rem;
+    padding: .75rem;
+}
+
+.card-favorito, .item-favorito {
+    display: flex;
     border-radius: 1rem;
     background: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.card-favorito img {
+.card-link_detalhes, .card-link_detalhes > img {
     width: 100%;
-    height: 250px;
+    height: 250px !important;    
+}
+
+.img-favorito {
     border-radius: .5rem;
     object-fit: cover;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.card-favorito img:hover {
-    cursor: pointer
+.item-favorito {
+    margin: 1rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: .75rem;
+}
+
+.item-favorito_conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item-favorito_conteudo > a, .item-favorito_conteudo > a > .img-favorito {
+    width: 200px;
+    height: 200px;
+}
+
+.item-favorito_opcoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: .5rem;
 }

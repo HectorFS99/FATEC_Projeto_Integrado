@@ -328,3 +328,8 @@ body.swal2-shown>[aria-hidden="true"] {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #a3a3a3ca;
 }
+
+/* Estrelas das avaliações */
+.avaliacao-estrelas {
+    color:#ff4400;
+}
