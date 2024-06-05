@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+    <!-- ***** ESTILIZAÇÃO ***** -->
+    <link rel="stylesheet" href="recursos/css/reset.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="recursos/css/geral.css" />
+    <link rel="stylesheet" href="recursos/css/header.css" />
+    <link rel="stylesheet" href="recursos/css/carrinho.css" />
+    <link rel="stylesheet" href="recursos/css/footer.css" />
+    <!-- ***** ESTILIZAÇÃO ***** -->
+    <!-- ***** PROGRAMAÇÃO ***** -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+    <script src="recursos/javascript/principal.js"></script>
+    <!-- ***** PROGRAMAÇÃO ***** -->
+</head>
+
+<body>
+    <header>
+        <nav class="custom-navbar">
+            <a href="pagina-inicial.html"><i class="fa-solid fa-arrow-left"></i></a>
+            <span>FUTUREMOB</span>
+        </nav>
+    </header>
+    <main>
+        <div class="carrinho-col-1">
+            <div class="carrinho-endereco">
+                <h5><i class="fa-solid fa-truck-ramp-box"></i> Endereço de entrega</h5>
+                <div class="frete">
+                    <h6>Calcular frete e prazo</h6>
+                    <div class="frete-input">
+                        <div class="input-group" style="max-width: 250px;">
+                            <input id="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
+                            <button id="btnCalcularFrete" type="submit" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios">Não sei o meu CEP</a>
+                    </div>
+                    <table id="resultado-frete" class="table tabela-frete">
+                        <tbody>
+                            <tr>
+                                <td class="text-center"><i class="fa-solid fa-location-dot"></i></td>
+                                <td colspan="3"><span id="resultado-frete_endereco">Rua Tal, Bairro tal, 123</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><i class="fa-solid fa-truck"></i></td>
+                                <td id="resultado-frete_entrega">Entrega Normal</td>
+                                <td><b>Até 3 dias úteis</b></td>
+                                <td><b>R$ 15,90</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="carrinho-item">
+                <div class="carrinho-item_grupo">
+                    <img class="carrinho-item_img" src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg">
+                    <h5 class="p-2">Cama com molas ensacadas, em couro e veludo</h5>
+                </div>
+                <div class="carrinho-item_grupo grupo-qtd">
+                    <div class="grupo-qtd_input">
+                        <p class="mb-1"><b>Quantidade</b></p>
+                        <div class="input-group">
+                            <button class="btn btn-laranja btn-sm"><i class="fa-solid fa-minus"></i></button>
+                            <input class="form-control" type="number" value="1" disabled>
+                            <button class="btn  btn-laranja btn-sm"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="grupo-qtd_valor">Valor unitário: <h5 class="text-success"><b>R$ 2.199,99</b></h5></div>
+                </div>
+                <div class="carrinho-item_grupo">
+                    <div>
+                        <h5><i class="fa-brands fa-pix"></i> R$ 2.199,99</h5>
+                        <small>Pix</small>
+                    </div>
+                    <div>
+                        <h5><i class="fa-solid fa-credit-card"></i> R$ 2199,99</h5>
+                        <small>em 1x no Cartão de Crédito</small>
+                    </div>
+                </div>
+                <div class="carrinho-item_grupo">
+                    <h6>Opções de Frete</h6>
+                    <div>
+                        <div class="form-check">
+                            <i class="fa-solid fa-truck"></i>
+                            <input class="form-check-input" type="radio" name="tipoEntrega" id="rdb-entrega-comum" checked>
+                            <label class="form-check-label"> Entrega Comum</label>
+                        </div>
+                        <small>R$ 19,99</small>
+                    </div>
+                    <div>
+                        <div class="form-check">
+                            <i class="fa-solid fa-truck-fast"></i>
+                            <input class="form-check-input" type="radio" name="tipoEntrega" id="rdb-entrega-rapida">
+                            <label class="form-check-label"> Entrega Rápida</label>
+                        </div>
+                        <small>R$ 29,99</small>
+                    </div>
+                    <small>O Prazo de entrega é válido a partir da data de confirmação do pagamento.</small>
+                </div>
+                <div class="carrinho-item_grupo">
+                    <div class="form-check">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault"> Contratar serviço de montagem</label>
+                    </div>
+                    <small>R$ 39,99</small>
+                </div>
+            </div>
+        </div>
+        <div class="carrinho-col-2">
+            <div class="carrinho-valores">
+            </div>
+            <a href="#" class="btn btn-lg btn-success w-100"><b>Avançar</b></a>
+        </div>
+    </main>
+    <footer id="footer"></footer>
+</body>
+
+</html>

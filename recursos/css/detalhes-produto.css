@@ -63,30 +63,6 @@
     margin: .25rem 0;
 }
 
-.detalhes-conteudo_frete {
-    margin-top: 1rem;
-}
-
-.detalhes-conteudo_frete_input {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    max-width: 400px;
-}
-
-.link-correios {
-    margin-left: 1rem;
-    width: 300px;
-}
-
-.tabela_frete {
-    border: 1px solid lightgray;
-    margin-top: .5rem;
-    border-radius: .5rem;
-    display: none;
-}
-
 .detalhes-dimensoes, .detalhes-descricao {
     border: 1px solid #ff44003e;
     background: rgb(246, 246, 246);

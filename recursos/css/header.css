@@ -17,3 +17,12 @@
     justify-content: space-between;
     align-items: center;
 }
+
+#cboCategoria {
+    width: 150px;
+}
+
+#txtPesquisar {
+    width: 250px;
+    transition: all 0.25s;
+}

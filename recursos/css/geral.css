@@ -33,15 +33,6 @@ input:focus, select:focus {
     border: 1px solid #dfc5b2 !important;
 }
 
-#cboCategoria {
-    width: 150px;
-}
-
-#txtPesquisar {
-    width: 250px;
-    transition: all 0.25s;
-}
-
 /***** Botões *****/
 .btn-vertical {
     color: black;
@@ -329,7 +320,32 @@ body.swal2-shown>[aria-hidden="true"] {
     background-color: #a3a3a3ca;
 }
 
-/* Estrelas das avaliações */
+/***** Estrelas das avaliações *****/
 .avaliacao-estrelas {
     color:#ff4400;
+}
+
+/***** Componente frete *****/
+.frete {
+    margin-top: 1rem;
+}
+
+.frete-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    max-width: 400px;
+}
+
+.link-correios {
+    margin-left: 1rem;
+    width: 300px;
+}
+
+.tabela-frete {
+    border: 1px solid lightgray;
+    margin-top: .5rem;
+    border-radius: .5rem;
+    display: none;
 }
