@@ -79,19 +79,19 @@
                     </div>
                     <div class="grupo-qtd_valor">Valor unitário: <h5 class="text-success"><b>R$ 2.199,99</b></h5></div>
                 </div>
-                <div class="carrinho-item_grupo">
-                    <div>
-                        <h5><i class="fa-brands fa-pix"></i> R$ 2.199,99</h5>
+                <div class="carrinho-item_grupo flex-column">
+                    <div class="grupo-pix">
+                        <h5><i class="fa-brands fa-pix"></i><b class="mx-3">R$ 2.199,99</b></h5>
                         <small>Pix</small>
                     </div>
-                    <div>
-                        <h5><i class="fa-solid fa-credit-card"></i> R$ 2199,99</h5>
+                    <div class="grupo-cartao">
+                        <h5><i class="fa-solid fa-credit-card"></i> <b class="mx-2">R$ 2199,99</b></h5>
                         <small>em 1x no Cartão de Crédito</small>
                     </div>
                 </div>
-                <div class="carrinho-item_grupo">
+                <div class="carrinho-item_grupo grupo-entrega flex-column">
                     <h6>Opções de Frete</h6>
-                    <div>
+                    <div class="entrega-comum">
                         <div class="form-check">
                             <i class="fa-solid fa-truck"></i>
                             <input class="form-check-input" type="radio" name="tipoEntrega" id="rdb-entrega-comum" checked>
@@ -99,7 +99,7 @@
                         </div>
                         <small>R$ 19,99</small>
                     </div>
-                    <div>
+                    <div class="entrega-rapida">
                         <div class="form-check">
                             <i class="fa-solid fa-truck-fast"></i>
                             <input class="form-check-input" type="radio" name="tipoEntrega" id="rdb-entrega-rapida">
@@ -127,5 +127,4 @@
     </main>
     <footer id="footer"></footer>
 </body>
-
 </html>

@@ -88,3 +88,28 @@ main {
 .grupo-qtd_valor {
     padding-right: 1rem;
 }
+
+.grupo-pix, .grupo-cartao, .entrega-comum, .entrega-rapida {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+}
+
+.grupo-pix {
+    border-bottom: 1px solid lightgrey;
+}
+
+.grupo-pix > h5 > i {
+    color: #30B6A8;
+}
+
+.grupo-cartao > h5 > i {
+    color: #000a7c;
+}
+
+.grupo-entrega {
+    flex-direction: column;
+    padding: 1rem;
+}
