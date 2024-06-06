@@ -70,7 +70,7 @@
                 </div>
                 <div class="carrinho-item_grupo grupo-qtd">
                     <div class="grupo-qtd_input">
-                        <p class="mb-1"><b>Quantidade</b></p>
+                        <h5 class="mb-2">Quantidade</h5>
                         <div class="input-group">
                             <button class="btn btn-laranja btn-sm"><i class="fa-solid fa-minus"></i></button>
                             <input class="form-control" type="number" value="1" disabled>
@@ -90,30 +90,33 @@
                     </div>
                 </div>
                 <div class="carrinho-item_grupo grupo-entrega flex-column">
-                    <h6>Opções de Frete</h6>
+                    <h5 class="mb-3">Opções de Frete</h5>
                     <div class="entrega-comum">
-                        <div class="form-check">
-                            <i class="fa-solid fa-truck"></i>
+                        <div class="form-check">        
                             <input class="form-check-input" type="radio" name="tipoEntrega" id="rdb-entrega-comum" checked>
-                            <label class="form-check-label"> Entrega Comum</label>
+                            <div class="d-flex flex-column">
+                                <label class="form-check-label"><i class="fa-solid fa-truck"></i> Entrega Comum</label>
+                                <small class="text-muted">em até 5 dias úteis</small>                                
+                            </div>
                         </div>
                         <small>R$ 19,99</small>
                     </div>
                     <div class="entrega-rapida">
                         <div class="form-check">
-                            <i class="fa-solid fa-truck-fast"></i>
                             <input class="form-check-input" type="radio" name="tipoEntrega" id="rdb-entrega-rapida">
-                            <label class="form-check-label"> Entrega Rápida</label>
+                            <div class="d-flex flex-column">
+                                <label class="form-check-label"><i class="fa-solid fa-truck-fast"></i> Entrega Rápida</label>
+                                <small class="text-muted">em até 2 dias úteis</small>                                
+                            </div>
                         </div>
                         <small>R$ 29,99</small>
                     </div>
-                    <small>O Prazo de entrega é válido a partir da data de confirmação do pagamento.</small>
+                    <small class="text-muted">O Prazo de entrega é válido a partir da data de confirmação do pagamento.</small>
                 </div>
-                <div class="carrinho-item_grupo">
-                    <div class="form-check">
-                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                <div class="carrinho-item_grupo grupo-montagem">
+                    <div class="form-check">  
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault"> Contratar serviço de montagem</label>
+                        <label class="form-check-label" for="flexCheckDefault"><i class="fa-solid fa-screwdriver-wrench"></i><b> Contratar serviço de montagem?</b></label>
                     </div>
                     <small>R$ 39,99</small>
                 </div>
@@ -121,6 +124,23 @@
         </div>
         <div class="carrinho-col-2">
             <div class="carrinho-valores">
+                <h5>Resumo do pedido:</h5>
+                <div>
+                    <span></span>
+                    <h6></h6>
+                </div>
+                <div>
+                    <span></span>
+                    <h6></h6>
+                </div>
+                <div>
+                    <span></span>
+                    <h6></h6>
+                </div>
+                <div>
+                    <span></span>
+                    <h6></h6>
+                </div>
             </div>
             <a href="#" class="btn btn-lg btn-success w-100"><b>Avançar</b></a>
         </div>
