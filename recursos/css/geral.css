@@ -13,6 +13,49 @@ main {
     margin-bottom: 3rem;
 }
 
+/***** Tag "main" customizada *****/
+.custom-main {
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+/***** Tag "nav" customizada *****/
+.custom-navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: .5rem;
+}
+
+.custom-navbar > span {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #ff4400;
+    margin-bottom: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    padding-top: .35rem;
+}
+
+.custom-navbar > a {
+    color: #ff4400;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 10px;
+    padding: 0 .5rem;
+    transition: all .25s;
+}
+
+.custom-navbar > a:hover {
+    background: #ff4400;
+    color: white;
+    border-radius: .5rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 /***** Formulários *****/
 .formulario label {
     transition: all 0.25s;

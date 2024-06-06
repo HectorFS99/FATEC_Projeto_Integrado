@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="recursos/css/geral.css" />
     <link rel="stylesheet" href="recursos/css/header.css" />
-    <link rel="stylesheet" href="recursos/css/carrinho.css" />
+    <link rel="stylesheet" href="recursos/css/carrinho_pagamento.css" />
     <link rel="stylesheet" href="recursos/css/footer.css" />
     <!-- ***** ESTILIZAÇÃO ***** -->
     <!-- ***** PROGRAMAÇÃO ***** -->
@@ -33,119 +33,92 @@
             <span>FUTUREMOB</span>
         </nav>
     </header>
-    <main>
-        <div class="carrinho-col-1">
-            <div class="carrinho-endereco">
-                <h5 class="titulo"><i class="fa-solid fa-truck-ramp-box"></i> Endereço de entrega</h5>
-                <div class="frete">
-                    <h6>Calcular frete e prazo</h6>
-                    <div class="frete-input">
-                        <div class="input-group" style="max-width: 250px;">
-                            <input id="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
-                            <button id="btnCalcularFrete" type="submit" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <main class="custom-main mb-4">
+        <div class="coluna-1">
+            <div class="row-produto_container">
+                <div class="row-produto_info">
+                    <a href="detalhes-produto.html" class="row-produto_info_img"><img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg"/></a>
+                    <div class="mb-2">
+                        <h5 class="mb-1">Luminária Rosa, com detalhes em Ouro Rosé</h5>
+                        <div class="avaliacao-estrelas mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <b>(4.9)</b>
                         </div>
-                        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios">Não sei o meu CEP</a>
-                    </div>
-                    <table id="resultado-frete" class="table tabela-frete">
-                        <tbody>
-                            <tr>
-                                <td class="text-center"><i class="fa-solid fa-location-dot"></i></td>
-                                <td colspan="3"><span id="resultado-frete_endereco">Rua Tal, Bairro tal, 123</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><i class="fa-solid fa-truck"></i></td>
-                                <td id="resultado-frete_entrega">Entrega Normal</td>
-                                <td><b>Até 3 dias úteis</b></td>
-                                <td><b>R$ 15,90</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <p>
+                            <s class="text-muted">De: R$ 1.999,00</s><br>
+                            <b>Por: <span>R$ 1.299,00</span></b>
+                        </p>
+                        <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
+                        <p>ou em até 10x de 139,90 s/ juros</p>                                                          
+                    </div>                          
                 </div>
-            </div>
-            <div class="carrinho-item">
-                <div class="carrinho-item_grupo">
-                    <img class="carrinho-item_img" src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg">
-                    <h5 class="p-2">Cama com molas ensacadas, em couro e veludo</h5>
-                </div>
-                <div class="carrinho-item_grupo grupo-qtd">
-                    <div class="grupo-qtd_input">
-                        <h5 class="mb-2">Quantidade</h5>
+                <div class="row-produto_opcoes">
+                    <div class="mt-3" style="max-width: 225px;">
                         <div class="input-group">
-                            <button class="btn btn-laranja btn-sm"><i class="fa-solid fa-minus"></i></button>
+                            <span class="input-group-text" id="basic-addon3"><b>Quantidade</b></span>
+
+                            <button class="btn btn-dark btn-sm"><i class="fa-solid fa-minus"></i></button>
                             <input class="form-control" type="number" value="1" disabled>
-                            <button class="btn  btn-laranja btn-sm"><i class="fa-solid fa-plus"></i></button>
+                            <button class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i></button>
                         </div>
+                    </div>                    
+                    <div class="mt-1">
+                        <button class="btn btn-favorito"><i class="fa-solid fa-heart"></i> Favoritar</button>
+                        <button class="btn btn-compartilhar"><i class="fa-solid fa-share-from-square"></i> Compartilhar</button>                            
+                        <a href="#" class="btn btn-danger border-0"><i class="fa-solid fa-trash-can"></i></a>
                     </div>
-                    <div class="grupo-qtd_valor">Valor unitário: <h5 class="text-success"><b>R$ 2.199,99</b></h5></div>
-                </div>
-                <div class="carrinho-item_grupo flex-column">
-                    <div class="grupo-pix">
-                        <h5><i class="fa-brands fa-pix"></i><b class="mx-3">R$ 2.199,99</b></h5>
-                        <small>Pix</small>
-                    </div>
-                    <div class="grupo-cartao">
-                        <h5><i class="fa-solid fa-credit-card"></i> <b class="mx-2">R$ 2199,99</b></h5>
-                        <small>em 1x no Cartão de Crédito</small>
-                    </div>
-                </div>
-                <div class="carrinho-item_grupo grupo-entrega flex-column">
-                    <h5 class="mb-3">Opções de Frete</h5>
-                    <div class="entrega-comum">
-                        <div class="form-check">        
-                            <input class="form-check-input" type="radio" name="tipoEntrega" id="rdb-entrega-comum" checked>
-                            <div class="d-flex flex-column">
-                                <label class="form-check-label"><i class="fa-solid fa-truck"></i> Entrega Comum</label>
-                                <small class="text-muted">em até 5 dias úteis</small>                                
-                            </div>
+                </div>                    
+            </div>            
+            <div class="row-produto_container">
+                <div class="row-produto_info">
+                    <a href="detalhes-produto.html" class="row-produto_info_img"><img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg"/></a>
+                    <div class="mb-2">
+                        <h5 class="mb-1">Luminária Rosa, com detalhes em Ouro Rosé</h5>
+                        <div class="avaliacao-estrelas mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <b>(4.9)</b>
                         </div>
-                        <small>R$ 19,99</small>
-                    </div>
-                    <div class="entrega-rapida">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tipoEntrega" id="rdb-entrega-rapida">
-                            <div class="d-flex flex-column">
-                                <label class="form-check-label"><i class="fa-solid fa-truck-fast"></i> Entrega Rápida</label>
-                                <small class="text-muted">em até 2 dias úteis</small>                                
-                            </div>
+                        <p>
+                            <s class="text-muted">De: R$ 1.999,00</s><br>
+                            <b>Por: <span>R$ 1.299,00</span></b>
+                        </p>
+                        <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
+                        <p>ou em até 10x de 139,90 s/ juros</p>                                                          
+                    </div>                          
+                </div>
+                <div class="row-produto_opcoes">
+                    <div class="mt-3" style="max-width: 225px;">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><b>Quantidade</b></span>
+
+                            <button class="btn btn-dark btn-sm"><i class="fa-solid fa-minus"></i></button>
+                            <input class="form-control" type="number" value="1" disabled>
+                            <button class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i></button>
                         </div>
-                        <small>R$ 29,99</small>
+                    </div>                    
+                    <div class="mt-1">
+                        <button class="btn btn-favorito"><i class="fa-solid fa-heart"></i> Favoritar</button>
+                        <button class="btn btn-compartilhar"><i class="fa-solid fa-share-from-square"></i> Compartilhar</button>                            
+                        <a href="#" class="btn btn-danger border-0"><i class="fa-solid fa-trash-can"></i></a>
                     </div>
-                    <small class="text-muted">O Prazo de entrega é válido a partir da data de confirmação do pagamento.</small>
-                </div>
-                <div class="carrinho-item_grupo grupo-montagem">
-                    <div class="form-check">  
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault"><i class="fa-solid fa-screwdriver-wrench"></i><b> Contratar serviço de montagem?</b></label>
-                    </div>
-                    <small>R$ 39,99</small>
-                </div>
+                </div>                    
             </div>
         </div>
-        <div class="carrinho-col-2">
-            <div class="carrinho-valores">
-                <h5 class="titulo titulo-valores"><i class="fa-solid fa-file-invoice-dollar"></i> Resumo do pedido:</h5>
-                <div class="carrinho-valor">
-                    <span>Subtotal (1 item):</span>
-                    <span><b>R$ 2.199,99</b></span>
+        <div class="coluna-2">
+            <div class="row-valor_container">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5>Subtotal (2 itens):</h5>
+                    <h4 class="text-success"><b>R$ 2.599,98</b></h4>
                 </div>
-                <div class="carrinho-valor">
-                    <span>Total de frete:</span>
-                    <span>R$ 0,00</span>
-                </div>
-                <div class="carrinho-valor">
-                    <span>Total de montagem:</span>
-                    <span>R$ 0,00</span>
-                </div>
-                <div  class="carrinho-valor">
-                    <span class="text-success"><b>Total de descontos:</b></span>
-                    <span class="text-success"><b>R$ 0,00</b></span>
-                </div>                
-                <div  class="carrinho-valor total">
-                    <h5><b>Total a pagar:</b></h5>
-                    <h5 class="text-success"><b>R$ 2.199,99</b></h5>
-                </div>
-                <a href="pagamento.html" class="btn btn-lg btn-avancar">Continuar</a>
+                <a href="pagamento.html" class="btn btn-success w-100"><b>Comprar</b></a>
             </div>
         </div>
     </main>
