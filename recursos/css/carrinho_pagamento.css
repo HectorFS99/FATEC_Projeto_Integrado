@@ -4,13 +4,13 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 }
 
 .coluna-1 {
-    max-width: 800px;
+    max-width: 750px;
     width: 100%;    
 }
 
 .coluna-2 {
     height: auto;
-    max-width: 400px;
+    max-width: 450px;
     width: 100%;    
 }
 
