@@ -15,7 +15,7 @@ main {
 
 /***** Tag "main" customizada *****/
 .custom-main {
-    max-width: 1400px;
+    max-width: 1300px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -391,4 +391,14 @@ body.swal2-shown>[aria-hidden="true"] {
     margin-top: .5rem;
     border-radius: .5rem;
     display: none;
+}
+
+.fa-pix {
+    color: #32BCAD;
+    margin: 0 .5rem 0 .75rem;
+}
+
+.fa-credit-card {
+    color: #244091;
+    margin: 0 .5rem 0 .75rem;
 }

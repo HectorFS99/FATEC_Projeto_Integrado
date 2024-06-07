@@ -23,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
     <script src="recursos/javascript/principal.js"></script>
+    <script src="recursos/javascript/pagamento.js"></script>
     <!-- ***** PROGRAMAÇÃO ***** -->
 </head>
 
@@ -44,7 +45,7 @@
                     <i class="fa-solid fa-location-dot"></i>
                     <div>
                         <h6>Casa do José</h6>
-                        <p>Rua Josefina Silva, 251, Mauá</p>                        
+                        <p>Rua Josefina Silva, 251, Mauá</p>
                     </div>
                 </div>
                 <div class="row-endereco_cep">
@@ -75,7 +76,56 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row-forma-pagamento">
+                <section class="border-bottom w-100">
+                    <div onclick="document.getElementById('forma-pagamento_pix').click();" class="btn-accordion-pagamento">
+                        <div>
+                            <input onclick="exibirAccordion('pix_info');" id="forma-pagamento_pix" type="radio" name="forma-pagamento"/>
+                            <i class="fa-brands fa-pix"></i>Pix 
+                        </div>
+                        <small>aprovação imediata!</small>
+                    </div>
+                    <div id="pix_info" class="container-accordion" style="display: none;">
+                        <div class="conteudo-accordion">
+                            <div class="total-pagar_pix">
+                                <h5 class="mb-2">Total a Pagar:</h5>
+                                <h5 id="txtTotalPagarPix" class="text-success"><b>R$ 2599,98</b></h5>
+                            </div>
+                            <div class="pix-instrucoes">
+                                <h5 class="mb-3">Veja como é fácil pagar com <strong style="color: #32BCAD;">pix</strong>!</h5>
+                                <ul>
+                                    <li class="pix-passo">
+                                        <i class="bi bi-1-circle"></i>
+                                        <p>Para realizar o pagamento com Pix, clique em <strong style="color: #32BCAD;">"Finalizar pedido com Pix"</strong>.</p>
+                                    </li>
+                                    <li class="pix-passo_pontos"></li>
+                                    <li class="pix-passo"><i class="bi bi-2-circle"></i><p>Você será redirecionado para uma nova tela com as informações de pagamento.</p></li>
+                                    <li class="pix-passo_pontos"></li>
+                                    <li class="pix-passo"><i class="bi bi-3-circle"></i><p>Escaneie o QR code ou copie o código para efetuar o pagamento.</p></li>
+                                </ul>
+                                <h5 class="mt-3">Pronto! Viu só como é <strong style="color: #32BCAD;">fácil</strong>?</h5>
+                            </div>
+                            <div class="div-finalizar_pix">
+                                <img src="recursos/imagens/logos/bandeiras_pagamento/pix.svg" width="200px">
+                                <a href="pagamento-pix.html" class="btn btn-lg btn-pix"><i class="fa-brands fa-pix"></i>Finalizar pedido com Pix</a>
+                            </div>
+                        </div>
+                    </div>                    
+                </section>
+                <section class="w-100">
+                    <div onclick="document.getElementById('forma-pagamento_credito').click();" class="btn-accordion-pagamento">
+                        <div>
+                            <input onclick="exibirAccordion('credito_info');" id="forma-pagamento_credito" type="radio" name="forma-pagamento"/>
+                            <i class="fa-solid fa-credit-card"></i>Cartão de Crédito                            
+                        </div>
+                    </div>
+                    <div id="credito_info" class="container-accordion" style="display: none;">
+                        <div class="conteudo-accordion">
+                            <p>Cartão de crédito</p>
+                        </div>
+                    </div>    
+                </section>
+            </div>
         </div>
         <div class="coluna-2">
             <div class="row-produto_container">
@@ -146,7 +196,6 @@
                     <h5>Subtotal (2 itens):</h5>
                     <h4 class="text-success"><b>R$ 2.599,98</b></h4>
                 </div>
-                <a href="pagamento.html" class="btn btn-success w-100"><b>Comprar</b></a>
             </div>
         </div>
     </main>

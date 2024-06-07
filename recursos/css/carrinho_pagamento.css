@@ -4,34 +4,57 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 }
 
 .coluna-1 {
-    max-width: 750px;
+    max-width: 700px;
     width: 100%;    
 }
 
 .coluna-2 {
     height: auto;
-    max-width: 650px;
+    max-width: 600px;
     width: 100%;    
 }
 
-.row-produto_container { padding: 1rem; }
-
-.row-produto_container, .row-valor_container, .row-endereco {
+.row-produto_container, .row-valor_container, .row-endereco, .row-forma-pagamento {
     background: white;
     border-radius: .5rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin: 1rem .5rem .5rem .5rem
 }
 
-.row-valor_info {
+/***** Row ENDEREÇO *****/
+.row-endereco_atual {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    padding: 1rem;
 }
 
+.row-endereco_atual > i {
+    font-size: 2rem;
+    color: #ff4400;
+    padding-right: .5rem;
+}
+
+.row-endereco_cep {
+    border-top: 1px solid lightgray;
+    padding: 1rem;
+}
+
+.row-endereco_titulo {
+    display: flex;
+    justify-content: space-between;
+    background: #ff4400;
+    padding: 1rem;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    color: white;
+    font-weight: 600;
+}
+
+/***** Row PRODUTO *****/
 .row-produto_container {
     display: flex;
     flex-direction: column;
+    padding: 1rem; 
 }
 
 .row-produto_info, .row-produto_opcoes {
@@ -54,6 +77,93 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     border-top: 1px solid lightgray;
 }
 
+/***** Row VALORES *****/
+.row-valor_titulo {
+    padding: 1rem;
+}
+
+.row-valor_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/***** Row FORMA PAGAMENTO *****/
+.row-forma-pagamento {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.btn-accordion-pagamento {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.btn-accordion-pagamento > small {
+    color: grey;
+    font-size: .9rem;
+    font-weight: 500;
+    margin: 0 .5rem; 
+}
+
+.conteudo-accordion {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.total-pagar_pix {
+    margin: 0 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
+
+.pix-instrucoes {
+    padding: 1rem;
+}
+
+.pix-instrucoes > ul {
+    margin: 0;
+    padding: 0;
+}
+
+.pix-passo {
+    display: flex;
+    align-items: center;    
+}
+
+.pix-passo i {
+    color: #32BCAD;
+    font-size: 2rem;
+}
+
+.pix-passo p {
+    margin: 0 .5rem;
+}
+
+.pix-passo_pontos {
+    width: 100%;
+    height: 35px;
+    border-left: 2px dashed #32BCAD;
+    margin-left: 1rem;
+}
+
+.div-finalizar_pix {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/***** BOTÕES *****/
 .btn-favorito, .btn-compartilhar {
     font-weight: 600;
     color: rgb(255, 255, 255);
@@ -86,40 +196,36 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     background: #f19100 !important;
 }
 
-.row-endereco_titulo {
-    display: flex;
-    justify-content: space-between;
-    background: #ff4400;
-    padding: 1rem;
-    border-top-left-radius: .5rem;
-    border-top-right-radius: .5rem;
-    color: white;
-    font-weight: 600;
-}
-
 .btn-trocar {
     text-decoration: none;
     color: white;
 }
 
-.row-endereco_atual {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-
+.btn-pix {
+    padding: .5rem 1.25rem .5rem 1rem;
+    border: none;
+    background: #32bcac22;
+    color: #32bcac;
+    font-weight: 600;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    transition: all .25s;
+    margin: 1rem 0;
 }
 
-.row-endereco_atual > i {
-    font-size: 2rem;
-    color: #ff4400;
-    padding-right: .5rem;
+.btn-pix:hover {
+    background: #32bcac;
+    color: #ffffff;
 }
 
-.row-endereco_cep {
-    border-top: 1px solid lightgray;
-    padding: 1rem;
+.btn-pix:hover i {
+    color: #ffffff;
 }
 
-.row-valor_titulo {
-    padding: 1rem;
+.btn-pix:active {
+    background: #25998b !important;
+    color: #ffffff !important;
+}
+
+.btn-pix > i {
+    margin: 0 .65rem 0 0;
 }
