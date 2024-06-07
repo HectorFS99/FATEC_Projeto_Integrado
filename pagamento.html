@@ -121,7 +121,48 @@
                     </div>
                     <div id="credito_info" class="container-accordion" style="display: none;">
                         <div class="conteudo-accordion">
-                            <p>Cartão de crédito</p>
+                            <form class="formulario">
+                                <div class="form-floating mt-0">
+                                    <input oninput="aplicarMascaraNumeroCartao(this);" id="txtNumeroCartao" type="text" maxlength="19" class="form-control" placeholder="Número do Cartão" required>
+                                    <label for="txtNumeroCartao">Número do Cartão <small style="color: rgb(184, 184, 184);">(0000 0000 0000 0000)</small></label>
+                                    <div id="txtNumeroCartaoErro" class="invalid-feedback">
+                                    </div>
+                                </div>
+                                <div class="form-floating">
+                                    <input onfocusout="validarCampo('txtNomeTitularCartao', 'txtNomeTitularCartaoErro');" id="txtNomeTitularCartao" type="text" class="form-control" placeholder="Nome do Titular" required>
+                                    <label for="txtNomeTitularCartao">Nome do Titular</label>
+                                    <div id="txtNomeTitularCartaoErro" class="invalid-feedback">
+                                    </div>
+                                </div>
+                                <div class="form-floating">
+                                    <input onfocusout="validarCampo('txtValidadeCartao', 'txtValidadeCartaoErro');" oninput="aplicarMascaraValidadeCartao(this);" id="txtValidadeCartao" type="text" maxlength="7" class="form-control" placeholder="Validade (MM/AAAA)" required>
+                                    <label for="txtValidadeCartao">Validade <small style="color: rgb(184, 184, 184);">(MM/AAAA)</small></label>
+                                    <div id="txtValidadeCartaoErro" class="invalid-feedback">
+                                    </div>
+                                </div>
+                                <div class="form-floating">
+                                    <input oninput="aplicarMascaraCodigoSeguranca(this);" id="txtCodigoSegurancaCartao" type="text" maxlength="4" class="form-control" placeholder="Código de Segurança" required>
+                                    <label for="txtCodigoSegurancaCartao">Código de Segurança</label>
+                                    <div id="txtCodigoSegurancaCartaoErro" class="invalid-feedback">
+                                    </div>
+                                </div>
+                                <div class="form-floating">
+                                    <select class="form-select">
+                                    <option value="1" selected>1x de R$ 2.599,98</option>
+                                    <option value="2">2x de R$ 1.299,99</option>
+                                    <option value="3">3x de R$ 866,66</option>
+                                    <option value="4">4x de R$ 649,99</option>
+                                    <option value="5">5x de R$ 519,99</option>
+                                    <option value="6">6x de R$ 433,33</option>
+                                    <option value="7">7x de R$ 371,42</option>
+                                    <option value="8">8x de R$ 324,99</option>
+                                    <option value="9">9x de R$ 288,88</option>
+                                    <option value="10">10x de R$ 259,99</option>
+                                    </select>
+                                    <label for="floatingSelect">Quantidade de parcelas</label>
+                                </div>
+                                <a href="login.html" class="btn btn-lg btn-primary align-self-end"><strong>Finalizar pedido com cartão de crédito</strong></a>
+                            </form>
                         </div>
                     </div>    
                 </section>
