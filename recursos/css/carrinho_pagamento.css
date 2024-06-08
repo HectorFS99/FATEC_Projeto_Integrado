@@ -32,6 +32,11 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     border: 1px solid rgba(211, 211, 211, 0.431);
 }
 
+.acc-entrega .conteudo-accordion {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(211, 211, 211, 0.334);
+}
+
 .acc-entrega .fa-solid {
     width: 25px;
     margin: 0 .5rem 0 .5rem;

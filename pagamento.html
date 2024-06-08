@@ -77,11 +77,13 @@
                                     <div onclick="document.getElementById('opcao-entrega_agendada').click();" class="btn-accordion">
                                         <div>
                                             <input onclick="exibirAccordion('entrega_agendada', 'secao-opcoes_entrega');" id="opcao-entrega_agendada" type="radio" name="forma-pagamento"/>
-                                            <i class="fa-solid fa-calendar-days"></i>Entrega Agendada 
+                                            <i class="fa-solid fa-calendar-days"></i>Entrega Agendada
                                         </div>
                                     </div>
                                     <div id="entrega_agendada" class="container-accordion" style="display: none;">
                                         <div class="conteudo-accordion">
+                                            <label class="mb-1">Selecione uma data abaixo:</label>
+                                            <input onchange="" id="dtEntregaAgendada" type="date" class="form-control">
                                         </div>
                                     </div>                    
                                 </section>
@@ -94,6 +96,14 @@
                                     </div>
                                     <div id="entrega_retirar" class="container-accordion" style="display: none;">
                                         <div class="conteudo-accordion">
+                                            <div class="form-check">
+                                                <input id="rdbLojaAlphaville" class="form-check-input" type="radio" name="flexRadioDefault">
+                                                <label class="form-check-label" for="rdbLojaAlphaville">Loja Alphaville - Av. Yojiro Takaoka, 2001</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input id="rdbLojaSaoCaetano" class="form-check-input" type="radio" name="flexRadioDefault">
+                                                <label class="form-check-label" for="rdbLojaSaoCaetano">Loja São Caetano - ParkShopping São Caetano - Loja 3, 3º Andar</label>
+                                            </div>
                                         </div>
                                     </div>                    
                                 </section>
