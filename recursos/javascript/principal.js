@@ -47,10 +47,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="logos_footer bandeiras_pagamento">
                     <img src="recursos/imagens/logos/bandeiras_pagamento/visa.svg" alt="visa" />
                     <img src="recursos/imagens/logos/bandeiras_pagamento/mastercard.svg" alt="mastercard" />
-                    <img src="recursos/imagens/logos/bandeiras_pagamento/boleto.svg" alt="boleto" />
                     <img src="recursos/imagens/logos/bandeiras_pagamento/american-express.svg" alt="american-express" />
                     <img src="recursos/imagens/logos/bandeiras_pagamento/hipercard.svg" alt="hipercard" />
-                    <img src="recursos/imagens/logos/bandeiras_pagamento/paypal.svg" alt="paypal" />
                     <img src="recursos/imagens/logos/bandeiras_pagamento/pix.svg" alt="pix" />
                 </div>
             </div>

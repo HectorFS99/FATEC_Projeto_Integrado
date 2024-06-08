@@ -80,12 +80,21 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 /***** Row VALORES *****/
 .row-valor_titulo {
     padding: 1rem;
+    background: linear-gradient(to right, #ff4400, #ffaa00);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    color: white;
 }
 
 .row-valor_info {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.resumo-pedido {
+    padding: 1rem;
+    border-top: 1px solid #DFE1E6;
 }
 
 /***** Row FORMA PAGAMENTO *****/
@@ -115,6 +124,15 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 
 .conteudo-accordion {
     padding: 0 1rem 1rem 1rem;
+}
+
+.div-finalizar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 /***** PIX - CONTEÚDO ACCORDION *****/
@@ -155,18 +173,17 @@ p, h1, h2, h3, h4, h5, h6, span, small {
         margin-left: 1rem;
     }
 
-.div-finalizar_pix {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
 /***** CARTÃO DE CRÉDITO - CONTEÚDO ACCORDION *****/
 .formulario > .form-floating {
     margin: 1rem 0;
+}
+
+.bandeiras_pagamento {
+    width: 165px !important;
+}
+
+.bandeiras_pagamento > img {
+    width: 50px !important;
 }
 
 /***** BOTÕES *****/
@@ -184,7 +201,6 @@ p, h1, h2, h3, h4, h5, h6, span, small {
         border: none;
         transform: scale(0.95);
     }
-
     .btn-favorito:hover { 
         background: #ff7b00; 
         color: white;
@@ -207,30 +223,43 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     color: white;
 }
 
-.btn-pix {
+.btn-finalizar {
     padding: .5rem 1.25rem .5rem 1rem;
     border: none;
-    background: #32bcac22;
-    color: #32bcac;
     font-weight: 600;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     transition: all .25s;
-    margin: 1rem 0;
+    margin: 1rem 0;    
+}
+    .btn-finalizar > i {
+        margin: 0 .65rem 0 0;
+    }
+    .btn-finalizar:hover i {
+        color: #ffffff;
+    }   
+
+.btn-pix {
+    background: #32bcac22;
+    color: #32bcac;    
 }
     .btn-pix:hover {
         background: #32bcac;
         color: #ffffff;
     }
-
-    .btn-pix:hover i {
-        color: #ffffff;
-    }
-
     .btn-pix:active {
         background: #25998b !important;
         color: #ffffff !important;
     }
 
-    .btn-pix > i {
-        margin: 0 .65rem 0 0;
+.btn-cartao {
+    background: #243f911e;
+    color: #244091;    
+}
+    .btn-cartao:hover {
+        background: #244091;
+        color: #ffffff;
+    }
+    .btn-cartao:active {
+        background: #1a337e !important;
+        color: #ffffff !important;
     }

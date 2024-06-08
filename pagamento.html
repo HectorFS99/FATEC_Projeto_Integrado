@@ -105,9 +105,9 @@
                                 </ul>
                                 <h5 class="mt-3">Pronto! Viu só como é <strong style="color: #32BCAD;">fácil</strong>?</h5>
                             </div>
-                            <div class="div-finalizar_pix">
-                                <img src="recursos/imagens/logos/bandeiras_pagamento/pix.svg" width="200px">
-                                <a href="pagamento-pix.html" class="btn btn-lg btn-pix"><i class="fa-brands fa-pix"></i>Finalizar pedido com Pix</a>
+                            <div class="div-finalizar">
+                                <img src="recursos/imagens/logos/bandeiras_pagamento/pix.svg" width="175px">
+                                <a href="pagamento-pix.html" class="btn btn-lg btn-finalizar btn-pix"><i class="fa-brands fa-pix"></i>Finalizar pedido com Pix</a>
                             </div>
                         </div>
                     </div>                    
@@ -161,7 +161,15 @@
                                     </select>
                                     <label for="floatingSelect">Quantidade de parcelas</label>
                                 </div>
-                                <a href="login.html" class="btn btn-lg btn-primary align-self-end"><strong>Finalizar pedido com cartão de crédito</strong></a>
+                                <div class="div-finalizar">
+                                    <div class="logos_footer bandeiras_pagamento">
+                                        <img src="recursos/imagens/logos/bandeiras_pagamento/visa.svg" alt="visa" />
+                                        <img src="recursos/imagens/logos/bandeiras_pagamento/mastercard.svg" alt="mastercard" />
+                                        <img src="recursos/imagens/logos/bandeiras_pagamento/american-express.svg" alt="american-express" />
+                                        <img src="recursos/imagens/logos/bandeiras_pagamento/hipercard.svg" alt="hipercard" />
+                                    </div>
+                                    <button type="submit" class="btn btn-lg btn-finalizar btn-cartao"><i class="fa-solid fa-credit-card"></i>Finalizar pedido com cartão de crédito</a>
+                                </div>
                             </form>
                         </div>
                     </div>    
@@ -169,75 +177,76 @@
             </div>
         </div>
         <div class="coluna-2">
-            <div class="row-produto_container">
-                <div class="row-produto_info">
-                    <a href="detalhes-produto.html" class="row-produto_info_img"><img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" /></a>
-                    <div class="mb-2">
-                        <h5 class="mb-1">Luminária Rosa, com detalhes em Ouro Rosé</h5>
-                        <div class="avaliacao-estrelas mb-2">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <b>(4.9)</b>
-                        </div>
-                        <p>
-                            <s class="text-muted">De: R$ 1.999,00</s><br>
-                            <b>Por: <span>R$ 1.299,00</span></b>
-                        </p>
-                        <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
-                        <p>ou em até 10x de 139,90 s/ juros</p>
-                    </div>
-                </div>
-                <div class="row-produto_opcoes">
-                    <span class="text-muted mt-2">1 item</span>
-                </div>
-            </div>
-            <div class="row-produto_container">
-                <div class="row-produto_info">
-                    <a href="detalhes-produto.html" class="row-produto_info_img"><img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" /></a>
-                    <div class="mb-2">
-                        <h5 class="mb-1">Luminária Rosa, com detalhes em Ouro Rosé</h5>
-                        <div class="avaliacao-estrelas mb-2">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <b>(4.9)</b>
-                        </div>
-                        <p>
-                            <s class="text-muted">De: R$ 1.999,00</s><br>
-                            <b>Por: <span>R$ 1.299,00</span></b>
-                        </p>
-                        <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
-                        <p>ou em até 10x de 139,90 s/ juros</p>
-                    </div>
-                </div>
-                <div class="row-produto_opcoes">
-                    <span class="text-muted mt-2">1 item</span>
-                </div>
-            </div>
             <div class="row-valor_container">
                 <h5 class="row-valor_titulo"><i class="fa-solid fa-bag-shopping"></i> Resumo do Pedido</h5>
-                <div class="row-valor_info">
-                    <h5>Subtotal (2 itens):</h5>
-                    <h4 class="text-success"><b>R$ 2.599,98</b></h4>
+                <div class="row-valor_info resumo-pedido">
+                    <p>Subtotal (2 itens):</p>
+                    <p>R$ 2.599,98</p>
                 </div>
-                <div class="row-valor_info">
-                    <h5>Subtotal (2 itens):</h5>
-                    <h4 class="text-success"><b>R$ 2.599,98</b></h4>
+                <div class="row-valor_info resumo-pedido">
+                    <p>Total de frete:</p>
+                    <p>R$ 9,99</p>
                 </div>
-                <div class="row-valor_info">
-                    <h5>Subtotal (2 itens):</h5>
-                    <h4 class="text-success"><b>R$ 2.599,98</b></h4>
+                <div class="row-valor_info resumo-pedido">
+                    <p class="text-success"><b>Total de descontos:</b></p>
+                    <p class="text-success"><b>R$ 0,00</b></p>
                 </div>
-                <div class="row-valor_info">
-                    <h5>Subtotal (2 itens):</h5>
-                    <h4 class="text-success"><b>R$ 2.599,98</b></h4>
+                <div class="row-valor_info resumo-pedido">
+                    <h4>Total a pagar:</h4>
+                    <h4 class="text-success">R$ 2.609,97</h4>
+                </div>                    
+            </div>            
+            <div class="row-produto_container">
+                <div class="row-produto_info">
+                    <a href="detalhes-produto.html" class="row-produto_info_img"><img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" /></a>
+                    <div class="mb-2">
+                        <h5 class="mb-1">Luminária Rosa, com detalhes em Ouro Rosé</h5>
+                        <div class="avaliacao-estrelas mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <b>(4.9)</b>
+                        </div>
+                        <p>
+                            <s class="text-muted">De: R$ 1.999,00</s><br>
+                            <b>Por: <span>R$ 1.299,00</span></b>
+                        </p>
+                        <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
+                        <p>ou em até 10x de 139,90 s/ juros</p>
+                    </div>
+                </div>
+                <div class="row-produto_opcoes">
+                    <span class="text-muted mt-2">1 item</span>
                 </div>
             </div>
+            <div class="row-produto_container">
+                <div class="row-produto_info">
+                    <a href="detalhes-produto.html" class="row-produto_info_img"><img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" /></a>
+                    <div class="mb-2">
+                        <h5 class="mb-1">Luminária Rosa, com detalhes em Ouro Rosé</h5>
+                        <div class="avaliacao-estrelas mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <b>(4.9)</b>
+                        </div>
+                        <p>
+                            <s class="text-muted">De: R$ 1.999,00</s><br>
+                            <b>Por: <span>R$ 1.299,00</span></b>
+                        </p>
+                        <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
+                        <p>ou em até 10x de 139,90 s/ juros</p>
+                    </div>
+                </div>
+                <div class="row-produto_opcoes">
+                    <span class="text-muted mt-2">1 item</span>
+                </div>
+            </div>
+
         </div>
     </main>
 </body>
