@@ -58,29 +58,55 @@
                             </div>
                             <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios">Não sei o meu CEP</a>
                         </div>
-                        <table id="resultado-frete" class="table tabela-frete">
-                            <tbody>
-                                <tr>
-                                    <td class="text-center"><i class="fa-solid fa-location-dot"></i></td>
-                                    <td colspan="3"><span id="resultado-frete_endereco">Rua Tal, Bairro tal, 123</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center"><i class="fa-solid fa-truck"></i></td>
-                                    <td id="resultado-frete_entrega">Entrega Normal</td>
-                                    <td><b>Até 3 dias úteis</b></td>
-                                    <td><b>R$ 15,90</b></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div id="resultado-frete">
+                            <p id="resultado-frete_endereco">Rua Tal, Bairro tal, 123</p>
+                            <div class="componente-accordion acc-entrega" id="secao-opcoes_entrega">
+                                <section class="border-bottom w-100">
+                                    <div onclick="document.getElementById('opcao-entrega_normal').click();" class="btn-accordion">
+                                        <div>
+                                            <input onclick="exibirAccordion('entrega_normal', 'secao-opcoes_entrega');" id="opcao-entrega_normal" type="radio" name="forma-pagamento"/>
+                                            <i class="fa-solid fa-truck"></i>Entrega Normal 
+                                        </div>
+                                    </div>
+                                    <div id="entrega_normal" class="container-accordion" style="display: none; width: 0; height: 0;">
+                                        <div class="conteudo-accordion">
+                                        </div>
+                                    </div>                    
+                                </section>
+                                <section class="border-bottom w-100">
+                                    <div onclick="document.getElementById('opcao-entrega_agendada').click();" class="btn-accordion">
+                                        <div>
+                                            <input onclick="exibirAccordion('entrega_agendada', 'secao-opcoes_entrega');" id="opcao-entrega_agendada" type="radio" name="forma-pagamento"/>
+                                            <i class="fa-solid fa-calendar-days"></i>Entrega Agendada 
+                                        </div>
+                                    </div>
+                                    <div id="entrega_agendada" class="container-accordion" style="display: none;">
+                                        <div class="conteudo-accordion">
+                                        </div>
+                                    </div>                    
+                                </section>
+                                <section class="w-100">
+                                    <div onclick="document.getElementById('opcao-entrega_retirar').click();" class="btn-accordion">
+                                        <div>
+                                            <input onclick="exibirAccordion('entrega_retirar', 'secao-opcoes_entrega');" id="opcao-entrega_retirar" type="radio" name="forma-pagamento"/>
+                                            <i class="fa-solid fa-shop"></i>Retirar na Loja
+                                        </div>
+                                    </div>
+                                    <div id="entrega_retirar" class="container-accordion" style="display: none;">
+                                        <div class="conteudo-accordion">
+                                        </div>
+                                    </div>                    
+                                </section>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row-forma-pagamento">
+            <div class="componente-accordion acc-pagamento" id="secao-formas_pagamento">
                 <section class="border-bottom w-100">
-                    <div onclick="document.getElementById('forma-pagamento_pix').click();" class="btn-accordion-pagamento">
+                    <div onclick="document.getElementById('forma-pagamento_pix').click();" class="btn-accordion">
                         <div>
-                            <input onclick="exibirAccordion('pix_info');" id="forma-pagamento_pix" type="radio" name="forma-pagamento"/>
+                            <input onclick="exibirAccordion('pix_info', 'secao-formas_pagamento');" id="forma-pagamento_pix" type="radio" name="forma-pagamento"/>
                             <i class="fa-brands fa-pix"></i>Pix 
                         </div>
                         <small>aprovação imediata!</small>
@@ -113,9 +139,9 @@
                     </div>                    
                 </section>
                 <section class="w-100">
-                    <div onclick="document.getElementById('forma-pagamento_credito').click();" class="btn-accordion-pagamento">
+                    <div onclick="document.getElementById('forma-pagamento_credito').click();" class="btn-accordion">
                         <div>
-                            <input onclick="exibirAccordion('credito_info');" id="forma-pagamento_credito" type="radio" name="forma-pagamento"/>
+                            <input onclick="exibirAccordion('credito_info', 'secao-formas_pagamento');" id="forma-pagamento_credito" type="radio" name="forma-pagamento"/>
                             <i class="fa-solid fa-credit-card"></i>Cartão de Crédito                            
                         </div>
                     </div>
@@ -246,7 +272,6 @@
                     <span class="text-muted mt-2">1 item</span>
                 </div>
             </div>
-
         </div>
     </main>
 </body>
