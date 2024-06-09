@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var footer = document.getElementById('footer');
     if (footer) {
         footer.innerHTML = `
-        <hr/>
+        <hr />
         <div class="d-flex justify-content-around flex-wrap">
             <div class="formas_pagamento">
                 <h4>Formas de Pagamento</h4>
@@ -58,6 +58,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     <img src="recursos/imagens/icones/disponivel-google-play.svg" alt="disponivel-google-play">
                     <img src="recursos/imagens/icones/disponivel-app-store.svg" alt="disponivel-na-app-store">
                 </div>
+            </div>
+            <div class="div-sobre">
+                <span>FUTUREMOB</span>
+                <a class="btn btn-sobre" href="sobre.html">Clique e conheça!</a>
             </div>
         </div>`;
     }    

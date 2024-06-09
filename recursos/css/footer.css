@@ -30,3 +30,38 @@
     text-align: center;
     margin-top: 1rem;
 }
+
+.div-sobre {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    color: #ff4400;
+    margin: 2rem 0;
+}
+
+.div-sobre > span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.btn-sobre {
+    font-size: 1.25rem;
+    border-radius: .5rem;
+    background: #ff44001c;
+    color: #ff4400;
+    font-weight: 600;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: none;
+    transition: all .25s;
+}
+    .btn-sobre:hover {
+        background: #ff4400;
+        color: #ffffff;
+    }    
+    .btn-sobre:active {
+        background: #c43400 !important;
+        color: #ffffff !important;
+    }
