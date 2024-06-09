@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="recursos/css/geral.css" />
     <link rel="stylesheet" href="recursos/css/header.css" />
     <link rel="stylesheet" href="recursos/css/perfil-usuario.css" />
+    <link rel="stylesheet" href="recursos/css/avaliacao-estrelas.css" />
     <link rel="stylesheet" href="recursos/css/footer.css" />
     <!-- ***** ESTILIZAÇÃO ***** -->
     <!-- ***** PROGRAMAÇÃO ***** -->
@@ -23,6 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
     <script src="recursos/javascript/principal.js"></script>
+    <script src="recursos/javascript/pedidos.js"></script>
     <!-- ***** PROGRAMAÇÃO ***** -->
 </head>
 
@@ -59,33 +61,40 @@
         <section class="section-tela" id="section-meus-pedidos">
             <div class="container-pedidos">
                 <div class="container-ped">
-                    <div class="container-ped_info">
+                    <div class="container-ped_conteudo">
                         <div>
-                            <img src="">
+                            <a href="#" class="container-ped_info_img">
+                                <img src="recursos/imagens/produtos/sala-poltrona_cinza3.jpeg">
+                            </a>
                             <h6></h6>
                         </div>
-                        <p>Quantidade: <b>1</b></p>
-                        <p>Valor: <b>R$ 1.299,00</b></p>                    
+                        <small>Quantidade: <b>1</b></small>
+                        <small>Valor: <b>R$ 1.299,00</b></small>                    
                     </div>
-                    <ul class="container-ped_status">
-                        <li class="ped-status_etapa"></li>
-                        <li class="ped-status_linha"></li>
-                        <li class="ped-status_etapa"></li>
-                        <li class="ped-status_linha"></li>
-                        <li class="ped-status_etapa"></li>
-                        <li class="ped-status_linha"></li>
-                        <li class="ped-status_etapa"></li>
-                        <li class="ped-status_linha"></li>
-                        <li class="ped-status_etapa"></li>
-                        <li class="ped-status_linha"></li>
-                        <li class="ped-status_etapa"></li>
-                    </ul>
-                    <div class="cont-pedido_resumo">
-                        <h6>Resumo da compra</h6>
+                    <div class="container-ped_conteudo align-items-center flex-fill">
+                        <ul class="d-flex">
+                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-receipt"></i></li>
+                            <li class="ped-status_linha ped_st_entregue_linha"></li>
+                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-file-invoice-dollar"></i></li>
+                            <li class="ped-status_linha ped_st_entregue_linha"></li>
+                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-dolly"></i></li>
+                            <li class="ped-status_linha ped_st_entregue_linha"></li>
+                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-truck-fast"></i></li>
+                            <li class="ped-status_linha ped_st_entregue_linha"></li>
+                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-house-circle-check"></i></li>
+                        </ul>
+                        <small>Status: <b class="text-success">Pedido entregue - 13/06/2023 13:49</b></small>
+                        <small>Entrega realizada em: <b>13/06/2023</b></small>
+                    </div>
+                    <div class="container-ped_conteudo border-0 justify-content-between">
+                        <h5>Resumo da compra</h5>
                         <p>Pedido: <b>123456789</b></p>
                         <p>Data do pedido <b>08/06/2024</b></p>
-                        <p>Valor total: <b>R$ 313,98</b></p>
-                        <a href="detalhes-pedido.html" class="btn btn-outline-primary">Ver detalhes</a>
+                        <p>Valor total: <b>R$ 313,98</b></p>                            
+                        <div class="w-100">
+                            <a href="detalhes-pedido.html" class="btn btn-detalhes_ped">Ver detalhes</a>
+                            <button type="button" id="btnAvaliar" onclick="avaliar();" class="btn btn-avaliar_ped"><i class="fa-solid fa-star"></i> Avaliar</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-p, span, small, h1, h2, h3, h4, h5 {
+p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     margin: 0;
     padding: 0;
 }
@@ -10,9 +10,8 @@ p, span, small, h1, h2, h3, h4, h5 {
 }
 
 .section-tela {
-    background: white;
     width: 100%;
-    margin: 0 .5rem;
+    margin: .5rem;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
@@ -38,3 +37,101 @@ p, span, small, h1, h2, h3, h4, h5 {
     font-size: 1.5rem;
     margin: .5rem;
 }
+
+.container-pedidos {
+    background: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: .5rem;
+    padding: 1rem;
+}
+
+.container-ped {
+    display: flex;
+    border: 1px solid rgba(211, 211, 211, 0.5);
+    border-radius: .5rem;
+}
+
+.container-ped_conteudo {
+    border-right: 1px solid rgba(211, 211, 211, 0.495);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+}
+
+.container-ped_info_img > img {
+    width: 200px;
+    border-radius: .5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.ped_st_entregue_etapa i {
+    border: 2px solid #10BA78;
+    color:#10BA78;
+}
+
+.ped_st_entregue_linha {
+    border-top: 3px dashed #10BA78;
+}
+
+.ped-status_etapa > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;     
+    width: 70px;
+    height: 70px;
+    font-size: 1.5rem;
+}
+
+.ped-status_linha {
+    margin-top: 33px;
+    width: 70px;
+}
+
+.btn-detalhes_ped, .btn-avaliar_ped {
+    text-align: center;
+    width: 100%;
+    border-radius: .5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.20);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    transition: all .25s;
+    border: none;
+}
+
+.btn-detalhes_ped {
+    background: #ff4400;
+    margin-bottom: .25rem;
+}
+    .btn-detalhes_ped:hover {
+        background: #db3a00;
+        color: white;
+    }
+    .btn-detalhes_ped:active {
+        background: #ce3700 !important;
+        color: white !important;
+        border: none;
+    }
+
+.btn-avaliar_ped {
+    background: #ffb700;   
+}
+    .btn-avaliar_ped:hover {
+        background: #e1a100;   
+        color: white;
+    }
+    .btn-avaliar_ped:active {
+        background: #d79a00 !important;
+        color: white !important;
+        border: none;
+    }
+
+    .btn-avaliar_ped.disabled {
+        opacity: 0.5 !important;
+        color: white !important;
+        background: #d79a00 !important;
+    }
