@@ -9,7 +9,7 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 }
 
 .col-1_pagamento {
-    max-width: 850px !important;
+    max-width: 700px !important;
 }
 
 .coluna-2 {
@@ -19,7 +19,7 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 }
 
 .col-2_pagamento {
-    max-width: 450px !important;
+    max-width: 500px !important;
 }
 
 .info-container {
@@ -247,7 +247,8 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 
 .pix-pagamento_conteudo {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
     padding: 1rem;
     border-top: 1px solid rgba(211, 211, 211, 0.462);
     background: rgba(240, 240, 240, 0.443);
@@ -256,7 +257,7 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 }
 
 .pix-pagamento_col {
-    max-width: 33%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -280,7 +281,8 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 .qrcode {
     border-radius: .5rem;
     border: 1px solid rgba(211, 211, 211, 0.588);
-    margin: 1rem 0
+    margin: 1rem 0;
+    width: 250px;
 }
     .qrcode img {
         border-radius: .5rem;
