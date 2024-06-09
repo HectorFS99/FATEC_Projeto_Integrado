@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     <button id="btnPesquisar" type="submit" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>					
                 </div>
             </form>
-            <a href="pagina-inicial.html" style="width: 75px;"><img src="recursos/imagens/logos/logo-futureMob.jpg" width="75"/></a>
+            <a href="pagina-inicial.html" style="width: 60px;"><img src="recursos/imagens/logos/logo-futureMob.jpg" width="60"/></a>
             <div class="botoes_barra_superior">
-                <a href="#" class="btn-vertical">
+                <a href="perfil-usuario.html" class="btn-vertical">
                     <i class="fa-solid fa-user"></i>
                     <span>Minha Conta</span>
                 </a>
@@ -299,3 +299,41 @@ function proximoSlide(id_componente) {
     mostrarSlide(indice_atual + 1, id_componente);
 }
 /*****/
+
+/***** Valores *****/
+function calcularSubtotal(name_lbl_valor, name_lbl_qtd, id_lbl_subTotal) {
+    var listaProdutosPreco = document.querySelectorAll(`[name="${name_lbl_valor}"]`);
+    var listaProdutosQtd = document.querySelectorAll(`[name="${name_lbl_qtd}"]`);
+
+    var subTotal = 0;
+    for (let i = 0; i < listaProdutosPreco.length; i++) {
+        var subTotalTexto = listaProdutosPreco[i].textContent.trim();        
+        var qtd = parseInt(listaProdutosQtd[i].textContent.trim());
+
+        subTotal += parseFloat((subTotalTexto.replace(/\./g, '').replace(',', '.')) * qtd);
+    }
+
+    document.getElementById(id_lbl_subTotal).innerHTML = `${formatarValor(subTotal)}`;
+
+    return subTotal;
+}
+
+function formatarValor(valor) {
+    return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(valor);
+}
+
+function adicionarQtd(id_componente_qtd, name_lbl_valor, name_lbl_qtd, id_lbl_subTotal) {
+    var qtd = parseInt(document.getElementById(id_componente_qtd).innerHTML) + 1;
+    document.getElementById(id_componente_qtd).innerHTML = qtd;
+
+    calcularSubtotal(name_lbl_valor, name_lbl_qtd, id_lbl_subTotal);
+}
+
+function subtrairQtd(id_componente_qtd, name_lbl_valor, name_lbl_qtd, id_lbl_subTotal) {
+    var componente = document.getElementById(id_componente_qtd);
+    var qtd = parseInt(componente.innerHTML);
+
+    qtd > 1 ? componente.innerHTML = qtd - 1 : componente.innerHTML = componente.innerHTML;
+
+    calcularSubtotal(name_lbl_valor, name_lbl_qtd, id_lbl_subTotal);
+}

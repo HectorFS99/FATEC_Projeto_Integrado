@@ -1,0 +1,40 @@
+p, span, small, h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+}
+
+.main-usuario {
+    max-width: 1300px;
+    display: flex;
+    margin: auto;
+}
+
+.section-tela {
+    background: white;
+    width: 100%;
+    margin: 0 .5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.menu-lateral {
+    display: flex;
+    flex-direction: column;
+    max-width: 100px;
+    width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-bottom-right-radius: .5rem;
+}
+
+.menu-lateral_opcao {
+    height: 100px;
+    border-radius: 0;
+    background-color: white;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.58);
+}
+
+.menu-lateral_opcao i {
+    font-size: 1.5rem;
+    margin: .5rem;
+}

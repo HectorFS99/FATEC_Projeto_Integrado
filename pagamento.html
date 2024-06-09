@@ -125,7 +125,7 @@
                         <div class="conteudo-accordion">
                             <div class="total-pagar_pix">
                                 <h5 class="mb-2">Total a Pagar:</h5>
-                                <h5 id="txtTotalPagarPix" class="text-success"><b>R$ 2599,98</b></h5>
+                                <h5 class="text-success"><b>R$ <span name="lblValorTotalPedido"></span></b></h5>
                             </div>
                             <div class="pix-instrucoes">
                                 <h5 class="mb-3">Veja como é fácil pagar com <strong style="color: #32BCAD;">pix</strong>!</h5>
@@ -183,17 +183,7 @@
                                     </div>
                                 </div>
                                 <div class="form-floating">
-                                    <select class="form-select">
-                                    <option value="1" selected>1x de R$ 2.599,98</option>
-                                    <option value="2">2x de R$ 1.299,99</option>
-                                    <option value="3">3x de R$ 866,66</option>
-                                    <option value="4">4x de R$ 649,99</option>
-                                    <option value="5">5x de R$ 519,99</option>
-                                    <option value="6">6x de R$ 433,33</option>
-                                    <option value="7">7x de R$ 371,42</option>
-                                    <option value="8">8x de R$ 324,99</option>
-                                    <option value="9">9x de R$ 288,88</option>
-                                    <option value="10">10x de R$ 259,99</option>
+                                    <select id="cboParcelas" class="form-select">
                                     </select>
                                     <label for="floatingSelect">Quantidade de parcelas</label>
                                 </div>
@@ -217,19 +207,19 @@
                 <h5 class="div-valor_titulo"><i class="fa-solid fa-bag-shopping"></i> Resumo do Pedido</h5>
                 <div class="div-valor_info resumo-pedido">
                     <p>Subtotal (2 itens):</p>
-                    <p>R$ 2.599,98</p>
+                    <p>R$ <span id="lblValorSubTotalPedido"></span></p>
                 </div>
                 <div class="div-valor_info resumo-pedido">
                     <p>Total de frete:</p>
-                    <p>R$ 9,99</p>
+                    <p>R$ <span id="lblValorFrete">9,99</span></p>
                 </div>
                 <div class="div-valor_info resumo-pedido">
                     <p class="text-success"><b>Total de descontos:</b></p>
-                    <p class="text-success"><b>R$ 0,00</b></p>
+                    <p class="text-success"><b>R$ <span id="lblValorDesconto">0,00</span></b></p>
                 </div>
                 <div class="div-valor_info resumo-pedido">
                     <h4>Total a pagar:</h4>
-                    <h4 class="text-success">R$ 2.609,97</h4>
+                    <h4 class="text-success">R$ <span name="lblValorTotalPedido"></span></h4>
                 </div>                    
             </div>            
             <div class="info-container p-3">
@@ -247,21 +237,21 @@
                         </div>
                         <p>
                             <s class="text-muted">De: R$ 1.999,00</s><br>
-                            <b>Por: <span>R$ 1.299,00</span></b>
+                            <b>Por: R$ <span name="lblValorProduto">1.299,00</span></b>
                         </p>
                         <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
                         <p>ou em até 10x de 139,90 s/ juros</p>
                     </div>
                 </div>
                 <div class="div-produto_opcoes">
-                    <span class="text-muted mt-2">1 item</span>
+                    <span class="text-muted mt-2"><span name="lblQtdProduto">2</span> item(ns)</span>
                 </div>
             </div>
             <div class="info-container p-3">
                 <div class="div-produto_info">
-                    <a href="detalhes-produto.html" class="div-produto_info_img"><img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" /></a>
+                    <a href="detalhes-produto.html" class="div-produto_info_img"><img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" /></a>
                     <div class="mb-2">
-                        <h5 class="mb-1">Luminária Rosa, com detalhes em Ouro Rosé</h5>
+                        <h5 class="mb-1">Cama com molas ensacadas, em couro e <br>veludo</h5>
                         <div class="avaliacao-estrelas mb-2">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -271,15 +261,15 @@
                             <b>(4.9)</b>
                         </div>
                         <p>
-                            <s class="text-muted">De: R$ 1.999,00</s><br>
-                            <b>Por: <span>R$ 1.299,00</span></b>
+                            <s class="text-muted">De: R$ 2.599,00</s><br>
+                            <b>Por: R$ <span name="lblValorProduto">2.199,00</span></b>
                         </p>
                         <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
-                        <p>ou em até 10x de 139,90 s/ juros</p>
+                        <p>ou em até 10x de 259,90 s/ juros</p>
                     </div>
                 </div>
                 <div class="div-produto_opcoes">
-                    <span class="text-muted mt-2">1 item</span>
+                    <span class="text-muted mt-2"><span name="lblQtdProduto">1</span> item(ns)</span>
                 </div>
             </div>
         </div>
