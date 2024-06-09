@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="recursos/css/header.css" />
     <link rel="stylesheet" href="recursos/css/perfil-usuario.css" />
     <link rel="stylesheet" href="recursos/css/avaliacao-estrelas.css" />
+    <link rel="stylesheet" href="recursos/css/acompanhar-entrega.css" />
     <link rel="stylesheet" href="recursos/css/footer.css" />
     <!-- ***** ESTILIZAÇÃO ***** -->
     <!-- ***** PROGRAMAÇÃO ***** -->
@@ -25,6 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
     <script src="recursos/javascript/principal.js"></script>
     <script src="recursos/javascript/pedidos.js"></script>
+    <script src="recursos/javascript/perfil-usuario.js"></script>
     <!-- ***** PROGRAMAÇÃO ***** -->
 </head>
 
@@ -37,21 +39,17 @@
     </header>
     <main class="main-usuario">
         <div class="menu-lateral rounded-bottom">
-            <button class="btn menu-lateral_opcao">
+            <button id="btnPedidos" onclick="exibirTela('section-meus-pedidos', this.id);" class="btn menu-lateral_opcao mt-3 btn-opcaoMenu_selecionado">
                 <i class="fa-solid fa-boxes-stacked"></i> 
                 <p>Pedidos</p>
             </button>
-            <button class="btn menu-lateral_opcao">
+            <button id="btnDados" onclick="exibirTela('section-seus-dados', this.id);" class="btn menu-lateral_opcao">
                 <i class="fa-solid fa-address-card"></i>
                 <p>Dados</p>
             </button>            
-            <button class="btn menu-lateral_opcao">
+            <button id="btnEnderecos" onclick="exibirTela('section-enderecos', this.id);" class="btn menu-lateral_opcao">
                 <i class="fa-solid fa-map-location-dot"></i>
                 <p>Endereços</p>
-            </button>
-            <button class="btn menu-lateral_opcao">
-                <i class="fa-solid fa-credit-card"></i>
-                <p>Cartões</p>
             </button>
             <a class="btn menu-lateral_opcao rounded-bottom" href="pagina-inicial.html">
                 <i class="fa-solid fa-person-walking-arrow-loop-left"></i>
@@ -64,33 +62,32 @@
                     <div class="container-ped_conteudo">
                         <div>
                             <a href="#" class="container-ped_info_img">
-                                <img src="recursos/imagens/produtos/sala-poltrona_cinza3.jpeg">
+                                <img src="recursos/imagens/produtos/sala-conjunto_poltrona_egg.jpg">
                             </a>
                             <h6></h6>
                         </div>
                         <small>Quantidade: <b>1</b></small>
-                        <small>Valor: <b>R$ 1.299,00</b></small>                    
+                        <small>Valor: <b>R$ 3.299,00</b></small>                    
                     </div>
                     <div class="container-ped_conteudo align-items-center flex-fill">
                         <ul class="d-flex">
-                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-receipt"></i></li>
-                            <li class="ped-status_linha ped_st_entregue_linha"></li>
-                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-file-invoice-dollar"></i></li>
-                            <li class="ped-status_linha ped_st_entregue_linha"></li>
-                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-dolly"></i></li>
-                            <li class="ped-status_linha ped_st_entregue_linha"></li>
-                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-truck-fast"></i></li>
-                            <li class="ped-status_linha ped_st_entregue_linha"></li>
-                            <li class="ped-status_etapa ped_st_entregue_etapa"><i class="fa-solid fa-house-circle-check"></i></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-receipt"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-file-invoice-dollar"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-dolly"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-truck-fast"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-house-circle-check"></i></li>
                         </ul>
-                        <small>Status: <b class="text-success">Pedido entregue - 13/06/2023 13:49</b></small>
-                        <small>Entrega realizada em: <b>13/06/2023</b></small>
+                        <small>Status: <b class="text-success">Pedido entregue - 13/06/2023 15:19</b></small>
                     </div>
                     <div class="container-ped_conteudo border-0 justify-content-between">
                         <h5>Resumo da compra</h5>
-                        <p>Pedido: <b>123456789</b></p>
-                        <p>Data do pedido <b>08/06/2024</b></p>
-                        <p>Valor total: <b>R$ 313,98</b></p>                            
+                        <small>Pedido: <b>123456789</b></small>
+                        <small>Data do pedido <b>08/06/2023</b></small>
+                        <small>Valor total: <b>R$ 3.299,00</b></small>                            
                         <div class="w-100">
                             <a href="detalhes-pedido.html" class="btn btn-detalhes_ped">Ver detalhes</a>
                             <button type="button" id="btnAvaliar" onclick="avaliar();" class="btn btn-avaliar_ped"><i class="fa-solid fa-star"></i> Avaliar</a>
@@ -98,15 +95,90 @@
                     </div>
                 </div>
             </div>
+            <div class="container-pedidos">
+                <div class="container-ped">
+                    <div class="container-ped_conteudo">
+                        <div>
+                            <a href="#" class="container-ped_info_img">
+                                <img src="recursos/imagens/produtos/sala-sofa_branco2.jpg">
+                            </a>
+                            <h6></h6>
+                        </div>
+                        <small>Quantidade: <b>1</b></small>
+                        <small>Valor: <b>R$ 5.299,00</b></small>                    
+                    </div>
+                    <div class="container-ped_conteudo align-items-center flex-fill">
+                        <ul class="d-flex">
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-receipt"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-file-invoice-dollar"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-dolly"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-truck-fast"></i></li>
+                            <li class="ped-status_linha"></li>
+                            <li class="ped-status_etapa"><i class="fa-solid fa-house-circle-check"></i></li>
+                        </ul>
+                        <small>Status: <b>Pagamento Confirmado - 08/06/2024 13:49</b></small>
+                    </div>
+                    <div class="container-ped_conteudo border-0 justify-content-between">
+                        <h5>Resumo da compra</h5>
+                        <small>Pedido: <b>010062024</b></small>
+                        <small>Data do pedido <b>08/06/2024</b></small>
+                        <small>Valor total: <b>R$ 5.299,00</b></small>                            
+                        <div class="w-100">
+                            <a href="detalhes-pedido.html" class="btn btn-detalhes_ped">Ver detalhes</a>
+                            <button type="button" id="btnAvaliar" onclick="acompanharEntrega();" class="btn btn-acompanhar"><i class="fa-solid fa-location-dot"></i>Acompanhar Entrega</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-pedidos">
+                <div class="container-ped">
+                    <div class="container-ped_conteudo">
+                        <div>
+                            <a href="#" class="container-ped_info_img">
+                                <img src="recursos/imagens/produtos/quarto-sofa_infantil.jpg">
+                            </a>
+                            <h6></h6>
+                        </div>
+                        <small>Quantidade: <b>1</b></small>
+                        <small>Valor: <b>R$ 2.299,00</b></small>                    
+                    </div>
+                    <div class="container-ped_conteudo align-items-center flex-fill">
+                        <ul class="d-flex">
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-receipt"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-file-invoice-dollar"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-dolly"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-truck-fast"></i></li>
+                            <li class="ped-status_linha ped_st_sucesso_linha"></li>
+                            <li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-house-circle-check"></i></li>
+                        </ul>
+                        <small>Status: <b class="text-success">Pedido entregue - 13/11/2023 13:49</b></small>
+                    </div>
+                    <div class="container-ped_conteudo border-0 justify-content-between">
+                        <h5>Resumo da compra</h5>
+                        <small>Pedido: <b>987654321</b></small>
+                        <small>Data do pedido <b>11/11/2023</b></small>
+                        <small>Valor total: <b>R$ 2.299,00</b></small>                            
+                        <div class="w-100">
+                            <a href="detalhes-pedido.html" class="btn btn-detalhes_ped">Ver detalhes</a>
+                            <a href="detalhes-pedido.html" class="btn btn-devolver"><i class="fa-solid fa-box"></i>Devolver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="section-tela" id="section-seus-dados" style="display: none;">
-
+            <h4 class="mt-3"><i class="fa-solid fa-code mx-3"></i> Desculpe, essa tela está em fase de desenvolvimento.</h4>
+            <p class="mx-3 mt-3">A FutureMob agradece a compreensão.</p>
         </section>
         <section class="section-tela" id="section-enderecos" style="display: none;">
-
-        </section>
-        <section class="section-tela" id="section-cartoes-salvos" style="display: none;">
-
+            <h4 class="mt-3"><i class="fa-solid fa-code mx-3"></i> Desculpe, essa tela está em fase de desenvolvimento.</h4>
+            <p class="mx-3 mt-3">A FutureMob agradece a compreensão.</p>
         </section>
     </main>
 </body>

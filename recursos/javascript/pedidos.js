@@ -52,3 +52,40 @@ function avaliar() {
         }
     });
 }
+
+function acompanharEntrega() {
+    popupSwal.fire({ 
+        title: `Previsão de Entrega: <b>10/06/2024</b>`
+        , icon: ''
+        , html: `
+        <section>
+            <ul class="d-flex flex-column">
+                <li class="acp-entrega_etapa d-flex">
+                    <i class="fa-solid fa-house-circle-check"></i>
+                    <small>O pedido foi entregue ao destinatário.</small>
+                </li>
+                <li class="acp-entrega_linha"></li>
+                <li class="acp-entrega_etapa acp-entrega_sucesso_etapa">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <small>Quase lá! O seu pedido está em rota de entrega.</small>
+                </li>
+                <li class="acp-entrega_linha acp-entrega_sucesso_linha"></li>
+                <li class="acp-entrega_etapa acp-entrega_sucesso_etapa">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                    <small>O seu pedido está sendo preparado para transporte.</small>
+                </li>
+                <li class="acp-entrega_linha acp-entrega_sucesso_linha"></li>
+                <li class="acp-entrega_etapa acp-entrega_sucesso_etapa">
+                    <i class="fa-solid fa-dolly"></i>
+                    <small>O pedido foi recolhido pela transportadora.</small>
+                </li>
+                <li class="acp-entrega_linha acp-entrega_sucesso_linha"></li>
+                <li class="acp-entrega_etapa acp-entrega_sucesso_etapa">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <small>Enviamos o seu pedido para transportadora.</small>
+                </li>
+            </ul>
+        </section>`
+        , confirmButtonText: "OK"
+    });    
+}

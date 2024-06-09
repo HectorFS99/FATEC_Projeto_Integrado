@@ -1,0 +1,36 @@
+.acp-entrega_etapa {
+    display: flex;
+    align-items: center;
+}
+
+.acp-entrega_etapa > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;     
+    min-width: 50px;
+    min-height: 50px;
+    font-size: 1.25rem;
+    border: 1px solid #a1a1a1;
+    color:#a1a1a1;
+}
+
+.acp-entrega_etapa > small {
+    margin-left: .5rem;
+}
+
+.acp-entrega_linha {
+    border-left: 3px dashed #b8b8b8;
+    margin-left: 22px;
+    height: 50px;
+}
+
+.acp-entrega_sucesso_etapa > i {
+    border: 3px solid #10BA78 !important;
+    color:#10BA78 !important;
+}
+
+.acp-entrega_sucesso_linha {
+    border-left: 3px solid #10BA78 !important;
+    color:#10BA78 !important;
+}

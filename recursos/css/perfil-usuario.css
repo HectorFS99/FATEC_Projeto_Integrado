@@ -4,7 +4,7 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
 }
 
 .main-usuario {
-    max-width: 1300px;
+    max-width: 1200px;
     display: flex;
     margin: auto;
 }
@@ -20,17 +20,22 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     display: flex;
     flex-direction: column;
     max-width: 100px;
+    height: auto;
     width: 100%;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    border-bottom-right-radius: .5rem;
 }
 
 .menu-lateral_opcao {
     height: 100px;
-    border-radius: 0;
+    border-radius: .5rem;
     background-color: white;
     padding: 1rem 0;
-    border-bottom: 1px solid rgba(211, 211, 211, 0.58);
+    margin: .25rem 0;
+    border: 1px solid rgba(211, 211, 211, 0.58);
+    transition: all .25s;
+}
+
+.menu-lateral_opcao:active {
+    border: 1px solid rgba(211, 211, 211, 0.58) !important;
 }
 
 .menu-lateral_opcao i {
@@ -42,7 +47,8 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     background: white;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: .5rem;
-    padding: 1rem;
+    /* padding: 1rem; */
+    margin: .5rem 0;
 }
 
 .container-ped {
@@ -61,18 +67,20 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
 }
 
 .container-ped_info_img > img {
-    width: 200px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     border-radius: .5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.ped_st_entregue_etapa i {
-    border: 2px solid #10BA78;
-    color:#10BA78;
+.ped_st_sucesso_etapa i {
+    border: 2px solid #10BA78 !important;
+    color:#10BA78 !important;
 }
 
-.ped_st_entregue_linha {
-    border-top: 3px dashed #10BA78;
+.ped_st_sucesso_linha {
+    border-top: 3px solid #10BA78 !important;
 }
 
 .ped-status_etapa > i {
@@ -80,27 +88,32 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     justify-content: center;
     align-items: center;
     border-radius: 100%;     
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     font-size: 1.5rem;
+    border: 1px solid #b8b8b8;
+    color:#b8b8b8;
 }
 
 .ped-status_linha {
-    margin-top: 33px;
-    width: 70px;
+    border-top: 3px dashed #b8b8b8;
+    margin-top: 27px;
+    width: 60px;
 }
 
-.btn-detalhes_ped, .btn-avaliar_ped {
+.btn-detalhes_ped, .btn-avaliar_ped, .btn-devolver {
     text-align: center;
     width: 100%;
+    height: auto;
     border-radius: .5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: white;
     text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.20);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     transition: all .25s;
     border: none;
+    text-align: center;
 }
 
 .btn-detalhes_ped {
@@ -135,3 +148,47 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
         color: white !important;
         background: #d79a00 !important;
     }
+
+.btn-acompanhar {
+    width: 100%;
+    background: rgba(128, 128, 128, 0.25);
+    font-weight: 600;
+    border: 0;
+    transition: all .25s;
+}
+    .btn-acompanhar:hover {
+        background: rgba(128, 128, 128, 0.35);
+    }
+    .btn-acompanhar:active {
+        background: rgba(128, 128, 128, 0.45) !important;        
+    }
+
+.btn-acompanhar > i {
+    margin-right: .5rem;
+}
+
+.btn-devolver {
+    background: #ce4444;
+    margin-bottom: .25rem;
+}
+    .btn-devolver:hover {
+        background: #c32d2d;
+        color: white;
+    }
+    .btn-devolver:active {
+        background: #a02222 !important;
+        color: white !important;
+        border: none;
+    }
+
+.btn-devolver > i {
+    margin-right: .5rem;
+}
+
+.btn-opcaoMenu_selecionado {
+    background: transparent !important;
+    border: none !important;
+    color: #ff4400 !important;
+    font-weight: 600;
+    text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.10);
+}
