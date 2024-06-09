@@ -8,13 +8,21 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     width: 100%;    
 }
 
+.col-1_pagamento {
+    max-width: 850px !important;
+}
+
 .coluna-2 {
     height: auto;
     max-width: 600px;
     width: 100%;    
 }
 
-.row-produto_container, .row-valor_container, .row-endereco {
+.col-2_pagamento {
+    max-width: 450px !important;
+}
+
+.info-container {
     background: white;
     border-radius: .5rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -22,31 +30,6 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 }
 
 /***** ACCORDION *****/
-.acc-pagamento {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    margin: 1rem .5rem .5rem .5rem;
-    background: white;
-}
-
-.acc-entrega {
-    border: 1px solid rgba(211, 211, 211, 0.431);
-}
-
-.acc-entrega .conteudo-accordion {
-    padding-top: 1rem;
-    border-top: 1px solid rgba(211, 211, 211, 0.334);
-}
-
-.acc-entrega .fa-solid {
-    width: 25px;
-    margin: 0 .5rem 0 .5rem;
-    color:#ff4400
-}
-
-#resultado-frete_endereco {
-    margin: .5rem 0 !important;
-}
-
 .componente-accordion {
     border-radius: .5rem;
 }
@@ -79,25 +62,50 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     padding: 0 1rem 1rem 1rem;
 }
 
-/***** Row ENDEREÇO *****/
-.row-endereco_atual {
+.acc-pagamento {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 1rem .5rem .5rem .5rem;
+    background: white;
+}
+
+.acc-entrega {
+    border: 1px solid rgba(211, 211, 211, 0.431);
+}
+
+.acc-entrega .conteudo-accordion {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(211, 211, 211, 0.334);
+}
+
+.acc-entrega .fa-solid {
+    width: 25px;
+    margin: 0 .5rem 0 .5rem;
+    color:#ff4400
+}
+
+#resultado-frete_endereco {
+    margin: .5rem 0 !important;
+}
+
+/***** ENDEREÇO *****/
+.div-endereco_atual {
     display: flex;
     align-items: center;
     padding: 1rem;
 }
 
-.row-endereco_atual > i {
+.div-endereco_atual > i {
     font-size: 2rem;
     color: #ff4400;
     padding-right: .5rem;
 }
 
-.row-endereco_cep {
+.div-endereco_cep {
     border-top: 1px solid lightgray;
     padding: 1rem;
 }
 
-.row-endereco_titulo {
+.div-endereco_titulo {
     display: flex;
     justify-content: space-between;
     background: #ff4400;
@@ -108,19 +116,19 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     font-weight: 600;
 }
 
-/***** Row PRODUTO *****/
-.row-produto_container {
+/***** PRODUTO *****/
+.produto_container {
     display: flex;
     flex-direction: column;
     padding: 1rem; 
 }
 
-.row-produto_info, .row-produto_opcoes {
+.div-produto_info, .div-produto_opcoes {
     display: flex;
     flex-wrap: wrap;
 }
 
-.row-produto_info_img, .row-produto_info_img > img {
+.div-produto_info_img, .div-produto_info_img > img {
     width: 125px !important;
     height: 125px !important;
     object-fit: cover;
@@ -129,14 +137,14 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     margin: 0 1rem 1rem 0;
 }
 
-.row-produto_opcoes {
+.div-produto_opcoes {
     align-items: end;
     justify-content: space-between;
     border-top: 1px solid lightgray;
 }
 
-/***** Row VALORES *****/
-.row-valor_titulo {
+/***** VALORES *****/
+.div-valor_titulo {
     padding: 1rem;
     background: linear-gradient(to right, #ff4400, #ffaa00);
     border-top-left-radius: 0.5rem;
@@ -144,7 +152,7 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     color: white;
 }
 
-.row-valor_info {
+.div-valor_info {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -165,7 +173,9 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     padding-right: 1rem;
 }
 
-/***** PIX - CONTEÚDO ACCORDION *****/
+/***** PIX *****/
+
+/** CONTEÚDO ACCORDION **/
 .total-pagar_pix {
     margin: 0 1rem;
     padding: 1rem 0;
@@ -201,6 +211,95 @@ p, h1, h2, h3, h4, h5, h6, span, small {
         height: 35px;
         border-left: 2px dashed #32BCAD;
         margin-left: 1rem;
+    }
+
+.div-pedido_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+}
+
+/** PÁGINA PAGAMENTO **/
+.pix-pagamento_titulo {
+    display: flex;
+    justify-content: space-between;
+    text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.20);
+    color: white;
+    padding: 1rem;
+    background: linear-gradient(to right, hsl(173, 60%, 30%), #2aa092, #32bcad);
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+.pix-pagamento_titulo i {
+    color: white;
+    margin: 0 !important;
+}
+
+.pix-pagamento_valor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.pix-pagamento_conteudo {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-top: 1px solid rgba(211, 211, 211, 0.462);
+    background: rgba(240, 240, 240, 0.443);
+    border-end-start-radius: 0.5rem;
+    border-end-end-radius: 0.5rem;
+}
+
+.pix-pagamento_col {
+    max-width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: .5rem;
+}
+
+.pix_pagamento_passo {
+    display: flex;
+}
+
+.pix_pagamento_passo i {
+    font-size: 1.25rem;
+    margin-right: .5rem;
+}
+
+.pix_pagamento_passo span {
+    text-align: justify;
+}
+
+.qrcode {
+    border-radius: .5rem;
+    border: 1px solid rgba(211, 211, 211, 0.588);
+    margin: 1rem 0
+}
+    .qrcode img {
+        border-radius: .5rem;
+        width: 100%;
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
+    }
+    .qrcode button {
+        font-size: 1.25rem;
+        font-weight: 600;
+        height: 50px;
+        width: 100%;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.05);
+
+    }
+    .qrcode button:active {
+        border: none;
     }
 
 /***** CARTÃO DE CRÉDITO - CONTEÚDO ACCORDION *****/
