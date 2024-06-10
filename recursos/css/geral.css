@@ -392,12 +392,12 @@ body.swal2-shown>[aria-hidden="true"] {
     width: 300px;
 }
 
-.tabela-frete {
-    border: 1px solid lightgray;
-    margin-top: .5rem;
-    border-radius: .5rem;
+#resultado-frete {
     display: none;
+    margin-top: .5rem;
+    max-width: 100%;
 }
+/**********/
 
 .fa-pix {
     color: #32BCAD;

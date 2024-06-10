@@ -349,3 +349,35 @@ function subtrairQtd(id_componente_qtd, name_lbl_valor, name_lbl_qtd, id_lbl_sub
 
     calcularSubtotal(name_lbl_valor, name_lbl_qtd, id_lbl_subTotal);
 }
+/***** BUSCA POR CEP *****/
+function pesquisaCep(id_componente_cep) {
+    var componente_cep = document.getElementById(id_componente_cep);
+    var cep = componente_cep.value.replace(/\D/g, '');
+
+    if (cep) {
+        var validacep = /^[0-9]{8}$/;      
+        if(validacep.test(cep)) {
+            var script = document.createElement('script');
+            script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=dados_cep';
+
+            document.body.appendChild(script);
+        } else {
+            componente_cep.value = '';
+            notificar(false, 'CEP inválido', 'Informe um CEP válido para consulta.', 'error', '');
+        }
+    } else { componente_cep.value = ''; }    
+}
+
+function dados_cep(conteudo) {
+    if (!("erro" in conteudo)) {
+        document.getElementById('resultado-cep_logradouro').innerHTML = conteudo.logradouro;
+        document.getElementById('resultado-cep_bairro').innerHTML = conteudo.bairro;
+        document.getElementById('resultado-cep_localidade').innerHTML = conteudo.localidade;
+        document.getElementById('resultado-cep_uf').innerHTML = conteudo.uf;  
+
+        document.getElementById('resultado-frete').style.display = 'block';
+    } else {
+        componente_cep.value = '';
+        notificar(false, 'CEP não encontrado', '', 'error', '');
+    }
+}

@@ -83,10 +83,6 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     color:#ff4400
 }
 
-#resultado-frete_endereco {
-    margin: .5rem 0 !important;
-}
-
 /***** ENDEREÇO *****/
 .div-endereco_atual {
     display: flex;
@@ -114,6 +110,10 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     border-top-right-radius: .5rem;
     color: white;
     font-weight: 600;
+}
+
+#resultado-frete_endereco {
+    margin: .5rem 0 !important;
 }
 
 /***** PRODUTO *****/

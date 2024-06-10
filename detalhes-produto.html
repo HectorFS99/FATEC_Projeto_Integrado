@@ -69,25 +69,14 @@
                         <div class="frete-input">
                             <div class="input-group" style="max-width: 250px;">
                                 <input id="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
-                                <button id="btnCalcularFrete" type="submit" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                <button onclick="pesquisaCep('txtCepFrete');" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                             <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios">Não sei o meu CEP</a>
                         </div>
-                        <table id="resultado-frete" class="table tabela-frete">
-                            <tbody>
-                                <tr>
-                                    <td class="text-center"><i class="fa-solid fa-location-dot"></i></td>
-                                    <td colspan="3"><span id="resultado-frete_endereco">Rua Tal, Bairro tal, 123</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center"><i class="fa-solid fa-truck"></i></td>
-                                    <td id="resultado-frete_entrega">Entrega Normal</td>
-                                    <td><b>Até 3 dias úteis</b></td>
-                                    <td><b>R$ 15,90</b></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div id="resultado-frete" style="display: none;">  
+                            <span id="resultado-cep_logradouro"></span> - <span id="resultado-cep_bairro"></span><br>
+                            <small id="resultado-cep_localidade"></small> - <small id="resultado-cep_uf"></small>
+                        </div>
                     </div>
             </div>
         </div>
