@@ -33,78 +33,78 @@
 	<main class="container">
 		<form id="formCadastro" class="formulario w-100" onsubmit="cadastrar(event);">
 			<h3 class="m-1 mt-5 mb-3">Cadastre-se</h1>
-				<!-- Nome, Nasc., CPF e RG -->
-				<div class="form-floating m-1">
-					<input onfocusout="validarCampo('txtNome', 'txtNomeErro');" id="txtNome" type="text" class="form-control" placeholder="Nome completo" required>
-					<label for="txtNome">Nome completo</label>
-					<div id="txtNomeErro" class="invalid-feedback">
+			<!-- Nome, Nasc., CPF e RG -->
+			<div class="form-floating m-1">
+				<input onfocusout="validarCampo('txtNome', 'txtNomeErro');" id="txtNome" type="text" class="form-control" placeholder="Nome completo" required>
+				<label for="txtNome">Nome completo</label>
+				<div id="txtNomeErro" class="invalid-feedback">
+				</div>
+			</div>
+			<div class="d-flex flex-wrap">
+				<div class="form-floating flex-fill m-1">
+					<input onfocusout="validarCampo('dtNasc', 'dtNascErro');" id="dtNasc" type="date" class="form-control" min="1900-01-01" max="2024-01-01" required>
+					<label for="dtNasc">Data de nascimento</label>
+					<div id="dtNascErro" class="invalid-feedback">
 					</div>
 				</div>
-				<div class="d-flex flex-wrap">
-					<div class="form-floating flex-fill m-1">
-						<input onfocusout="validarCampo('dtNasc', 'dtNascErro');" id="dtNasc" type="date" class="form-control" min="1900-01-01" max="2024-01-01" required>
-						<label for="dtNasc">Data de nascimento</label>
-						<div id="dtNascErro" class="invalid-feedback">
-						</div>
-					</div>
-					<div class="form-floating flex-fill m-1">
-						<input onfocusout="validarCampo('txtCPF', 'txtCPFerro');" oninput="aplicarMascaraCPF(this);" id="txtCPF" type="text" maxlength="14" class="form-control" placeholder="CPF" required>
-						<label for="txtCPF">CPF</label>
-						<div id="txtCPFerro" class="invalid-feedback">
-						</div>
-					</div>
-					<div class="form-floating flex-fill m-1">
-						<input onfocusout="validarCampo('txtRG', 'txtRGerro');" oninput="aplicarMascaraRG(this);" id="txtRG" type="text" maxlength="12" class="form-control" placeholder="RG" required>
-						<label for="txtRG">RG</label>
-						<div id="txtRGerro" class="invalid-feedback">
-						</div>
+				<div class="form-floating flex-fill m-1">
+					<input onfocusout="validarCampo('txtCPF', 'txtCPFerro');" oninput="aplicarMascaraCPF(this);" id="txtCPF" type="text" maxlength="14" class="form-control" placeholder="CPF" required>
+					<label for="txtCPF">CPF</label>
+					<div id="txtCPFerro" class="invalid-feedback">
 					</div>
 				</div>
-				<!-- Contato e senha -->
-				<h5 class="m-1 my-3">Contato</h5>
-				<div class="d-flex flex-wrap">
-					<div class="form-floating flex-fill m-1">
-						<input onfocusout="validarCampo('txtTelefone', 'txtTelefoneErro');" oninput="aplicarMascaraTelefone(this);" id="txtTelefone" type="tel" class="form-control" placeholder="Telefone" required>
-						<label for="txtTelefone">Celular com DDD</label>
-						<div id="txtTelefoneErro" class="invalid-feedback">
-						</div>
-					</div>
-					<div class="form-floating flex-fill m-1">
-						<input onfocusout="validarCampo('txtEmail', 'txtEmailErro');" id="txtEmail" type="email" class="form-control" placeholder="E-mail" required>
-						<label for="txtEmail">E-mail</label>
-						<div id="txtEmailErro" class="invalid-feedback">
-						</div>
-					</div>
-					<div class="form-floating flex-fill m-1">
-						<input onfocusout="validarCampo('txtConfirmarEmail', 'txtConfirmarEmailErro');" onpaste="impedirColagem(event);" id="txtConfirmarEmail" type="email" class="form-control" placeholder="Confirmar e-mail" autocomplete="off" required>
-						<label for="txtConfirmarEmail">Confirmar e-mail</label>
-						<div id="txtConfirmarEmailErro" class="invalid-feedback">
-						</div>
+				<div class="form-floating flex-fill m-1">
+					<input onfocusout="validarCampo('txtRG', 'txtRGerro');" oninput="aplicarMascaraRG(this);" id="txtRG" type="text" maxlength="12" class="form-control" placeholder="RG" required>
+					<label for="txtRG">RG</label>
+					<div id="txtRGerro" class="invalid-feedback">
 					</div>
 				</div>
-				<div class="d-flex flex-wrap">
-					<div class="flex-fill flex-sm-fill m-1">
-						<div class="form-floating ">
-							<input onfocusout="validarCampo('txtSenha', 'txtSenhaErro');" id="txtSenha" type="password" class="form-control" placeholder="Senha" required>
-							<label for="txtSenha">Senha</label>
-							<i onclick="visualizarSenha('txtSenha');" class="fa-solid fa-eye-slash olho-senha"></i>
-						</div>
-						<div id="txtSenhaErro" class="invalid-feedback">
-						</div>
-					</div>
-					<div class="form-floating flex-fill m-1">
-						<input onfocusout="validarCampo('txtConfirmarSenha', 'txtConfirmarSenhaErro');" onpaste="impedirColagem(event);" id="txtConfirmarSenha" type="password" class="form-control" placeholder="Confirmar senha" required>
-						<label for="txtConfirmarSenha">Confirmar senha</label>
-						<div id="txtConfirmarSenhaErro" class="invalid-feedback">
-						</div>
+			</div>
+			<!-- Contato e senha -->
+			<h5 class="m-1 my-3">Contato</h5>
+			<div class="d-flex flex-wrap">
+				<div class="form-floating flex-fill m-1">
+					<input onfocusout="validarCampo('txtTelefone', 'txtTelefoneErro');" oninput="aplicarMascaraTelefone(this);" id="txtTelefone" type="tel" class="form-control" placeholder="Telefone" required>
+					<label for="txtTelefone">Celular com DDD</label>
+					<div id="txtTelefoneErro" class="invalid-feedback">
 					</div>
 				</div>
-				<small class="form-text text-muted m-1"> A sua senha deve ter, no mínimo, 10 caracteres alfanuméricos, uma letra maiúscula e um caractere especial. </small>
-				<!-- Botões -->
-				<div class="d-flex justify-content-end flex-wrap mt-3 mb-5">
-					<a href="login.html" class="btn btn-lg btnCancelar m-1 flex-fill"><strong>Cancelar</strong></a>
-					<button id="btnCadastrar" type="submit" class="btn btn-lg btnCadastrar m-1 flex-fill"><strong>Cadastrar</strong></button>
+				<div class="form-floating flex-fill m-1">
+					<input onfocusout="validarCampo('txtEmail', 'txtEmailErro');" id="txtEmail" type="email" class="form-control" placeholder="E-mail" required>
+					<label for="txtEmail">E-mail</label>
+					<div id="txtEmailErro" class="invalid-feedback">
+					</div>
 				</div>
+				<div class="form-floating flex-fill m-1">
+					<input onfocusout="validarCampo('txtConfirmarEmail', 'txtConfirmarEmailErro');" onpaste="impedirColagem(event);" id="txtConfirmarEmail" type="email" class="form-control" placeholder="Confirmar e-mail" autocomplete="off" required>
+					<label for="txtConfirmarEmail">Confirmar e-mail</label>
+					<div id="txtConfirmarEmailErro" class="invalid-feedback">
+					</div>
+				</div>
+			</div>
+			<div class="d-flex flex-wrap">
+				<div class="flex-fill flex-sm-fill m-1">
+					<div class="form-floating ">
+						<input onfocusout="validarCampo('txtSenha', 'txtSenhaErro');" id="txtSenha" type="password" class="form-control" placeholder="Senha" required>
+						<label for="txtSenha">Senha</label>
+						<i onclick="visualizarSenha('txtSenha');" class="fa-solid fa-eye-slash olho-senha"></i>
+					</div>
+					<div id="txtSenhaErro" class="invalid-feedback">
+					</div>
+				</div>
+				<div class="form-floating flex-fill m-1">
+					<input onfocusout="validarCampo('txtConfirmarSenha', 'txtConfirmarSenhaErro');" onpaste="impedirColagem(event);" id="txtConfirmarSenha" type="password" class="form-control" placeholder="Confirmar senha" required>
+					<label for="txtConfirmarSenha">Confirmar senha</label>
+					<div id="txtConfirmarSenhaErro" class="invalid-feedback">
+					</div>
+				</div>
+			</div>
+			<small class="form-text text-muted m-1"> A sua senha deve ter, no mínimo, 10 caracteres alfanuméricos, uma letra maiúscula e um caractere especial. </small>
+			<!-- Botões -->
+			<div class="d-flex justify-content-end flex-wrap mt-3 mb-5">
+				<a href="login.html" class="btn btn-lg btnCancelar m-1 flex-fill"><strong>Cancelar</strong></a>
+				<button id="btnCadastrar" type="submit" class="btn btn-lg btnCadastrar m-1 flex-fill"><strong>Cadastrar</strong></button>
+			</div>
 		</form>
 	</main>
 </body>

@@ -10,29 +10,49 @@
 }
 
 #btnEntrar {
+    font-weight: 600;
     border: none;
     color: #FFFFFF;
-    padding: 0.75rem;
+    padding: 0.5rem;
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
     transition: all 0.5s;
 }
 
+.btnCadastrar {
+    font-weight: 600 !important;
+    padding: 0.5rem !important;
+}
+
 /***** Formulário de Autenticação *****/
 #formLogin {
+    margin-top: 5rem;
     width: 350px;
     transition: all 0.5s;
 }
 
-#formLogin input[type="email"] {
+#txtEmailLogin {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     transition: all .5s;
 }
 
-#formLogin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+#txtSenhaLogin {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
     transition: all .5s;
+}
+
+.logo_login {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 1.75rem;
+}
+
+.logo_login > img {
+    margin: auto;
+    object-fit: cover;
+    width: 150px;
 }

@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <button id="btnPesquisar" type="submit" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>					
                 </div>
             </form>
-            <a href="pagina-inicial.html" style="width: 60px;"><img src="recursos/imagens/logos/logo-futureMob.jpg" width="60"/></a>
+            <a href="pagina-inicial.html" style="width: 70px;"><img src="recursos/imagens/logos/logo_futureMob.png" width="70"/></a>
             <div class="botoes_barra_superior">        
                 <a href="pagina-inicial.html" class="btn-vertical">
                     <i class="fa-solid fa-house"></i>
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <i class="fa-solid fa-cube"></i>
                     <span>Produtos</span>
                 </a>
-                <a href="perfil-usuario.html" class="btn-vertical">
+                <a href="login.html" class="btn-vertical">
                     <i class="fa-solid fa-user"></i>
                     <span>Minha Conta</span>
                 </a>
