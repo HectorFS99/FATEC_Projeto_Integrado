@@ -20,14 +20,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
             </form>
             <a href="pagina-inicial.html" style="width: 60px;"><img src="recursos/imagens/logos/logo-futureMob.jpg" width="60"/></a>
-            <div class="botoes_barra_superior">
+            <div class="botoes_barra_superior">        
+                <a href="pagina-inicial.html" class="btn-vertical">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Início</span>
+                </a>
+                <a href="listagem-geral-produtos.html" class="btn-vertical">
+                    <i class="fa-solid fa-cube"></i>
+                    <span>Produtos</span>
+                </a>
                 <a href="perfil-usuario.html" class="btn-vertical">
                     <i class="fa-solid fa-user"></i>
                     <span>Minha Conta</span>
                 </a>
-                <a href="favoritos.html" class="btn-vertical" style="margin: 0 1.5rem">
+                <a href="favoritos.html" class="btn-vertical">
                     <i class="fa-solid fa-heart"></i>
-                    <span>Meus Favoritos</span>
+                    <span>Favoritos</span>
                 </a>
                 <a id="btnCarrinho" href="carrinho.html" class="btn btn-laranja">
                     <i class="fa-solid fa-cart-shopping"></i>

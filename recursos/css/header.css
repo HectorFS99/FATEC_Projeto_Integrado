@@ -18,6 +18,11 @@
     align-items: center;
 }
 
+.botoes_barra_superior > a {
+    margin: 0 .75rem;
+    font-size: 0.9rem;
+}
+
 #cboCategoria {
     width: 150px;
 }

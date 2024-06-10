@@ -76,10 +76,16 @@ input:focus, select:focus {
     border: 1px solid #dfc5b2 !important;
 }
 
+input[type='range']:focus {
+    box-shadow: none !important;
+    border: none !important;
+    outline: none;
+}
+
 /***** Botões *****/
 .btn-vertical {
     color: black;
-    font-weight: 700;
+    font-weight: 600;
     margin: .5rem;
     display: flex !important;
     flex-direction: column !important;
@@ -89,7 +95,7 @@ input:focus, select:focus {
 }
 
 .btn-vertical:hover {
-    transform: scale(1.15);
+    transform: scale(1.05);
     color: #ff4400;
 }
 
