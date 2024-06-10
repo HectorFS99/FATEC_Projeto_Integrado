@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <link href="recursos/css/geral.css" rel="stylesheet">
     <link href="recursos/css/header.css" rel="stylesheet">
-    <link href="recursos/css/login.css" rel="stylesheet">
+    <link href="recursos/css/esqueceu-senha.css" rel="stylesheet">
     <!-- ***** ESTILIZAÇÃO ***** -->
     <!-- ***** PROGRAMAÇÃO ***** -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -21,7 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
     <script src="recursos/javascript/principal.js"></script>
-    <script src="recursos/javascript/login.js"></script>
+    <script src="recursos/javascript/esqueceu-senha.js"></script>
     <!-- ***** PROGRAMAÇÃO ***** -->
 </head>
 
@@ -29,30 +29,18 @@
     <header>
         <nav class="custom-navbar">
             <a href="pagina-inicial.html"><i class="fa-solid fa-arrow-left"></i></a>
-            <span style="font-weight: 400;">Entrar</span>
+            <span style="font-weight: 400;">FUTUREMOB</span>
         </nav>
     </header>
     <main class="container">
-        <form id="formLogin" class="formulario" onsubmit="logar(event);">
-            <div class="logo_login">
-                <img src="recursos/imagens/logos/logo_futureMob.png">
-            </div>
-            <!-- <h3 class="mb-3">Acesse a sua conta</h1> -->
+        <form class="formulario" onsubmit="enviarCodigoRecuperacao(event);">
+            <h4 class="mb-4">Iremos te enviar um link de segurança no e-mail informado.</h4>
             <div class="form-floating">
                 <input id="txtEmailLogin" type="email" class="form-control" placeholder="Email" required>
                 <label for="txtEmailLogin">Email</label>
             </div>
-            <div class="form-floating">
-                <input id="txtSenhaLogin" type="password" class="form-control" placeholder="Senha" required>
-                <label for="txtSenhaLogin">Senha</label>
-                <i onclick="visualizarSenha('txtSenhaLogin');" class="fa-solid fa-eye-slash olho-senha"></i>
-            </div>
-            <div class="my-1">
-                <a class="text-start text-decoration-none" href="esqueceu-senha.html">Esqueceu a senha?</a>
-            </div>
             <div class="btn-group-vertical w-100 mt-2">
-                <button id="btnEntrar" class="btn btn-lg" type="submit">Entrar</button>
-                <a href="cadastro.html" class="btn btn-lg btnCadastrar">Ou cadastre-se</a>
+                <button class="btn btn-lg btn-laranja" type="submit">Confirmar</button>
             </div>
         </form>
     </main>
