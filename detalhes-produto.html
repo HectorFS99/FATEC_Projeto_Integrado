@@ -23,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
     <script src="recursos/javascript/principal.js"></script>
+    <script src="recursos/javascript/detalhes-produto.js"></script>
     <!-- ***** PROGRAMAÇÃO ***** -->
 </head>
 
@@ -60,9 +61,37 @@
                     </p>
                     <hr />
                     <p> ou em até 10x de 259,90 s/ juros </p>
-                    <div class="detalhes-conteudo_botoes">
-                        <a href="#" class="btn btn-lg btn-success"><strong>COMPRAR</strong></a>
-                        <a href="#" class="btn btn-lg btn-laranja"><strong><i class="fa-solid fa-cart-plus"></i> ADICIONAR AO CARRINHO</strong></a>
+                    <div id="div-qtd" class="my-2" style="max-width: 225px;">
+                        <div class="input-group input-group-sm" style="background: rgba(128, 128, 128, 0.2); border-radius: 0.25rem;">
+                            <span class="input-group-text" id="basic-addon3"><b>Quantidade</b></span>
+                            <button onclick="subtrairQtd('qtdProd2', 'lblValorProduto', 'lblQtdProduto', 'lblValorSubTotalPedido');" class="btn btn-dark btn-sm"><i class="fa-solid fa-minus"></i></button>
+                            <span id="qtdProd2" name="lblQtdProduto" class="mx-3" style="width: 41px;">1</span>                    
+                            <button onclick="adicionarQtd('qtdProd2','lblValorProduto', 'lblQtdProduto', 'lblValorSubTotalPedido');" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="my-3">
+                        <label><b>Selecione um tamanho</b></label>
+                        <div class="d-flex justify-content-between" style="max-width: 225px;">
+                            <div class="form-check" onclick="disponivel();">
+                                <input class="form-check-input" type="radio" name="especificidade" id="rdbCasal">
+                                <label class="form-check-label" for="rdbCasal">Casal</label>
+                            </div>
+                            <div class="form-check" onclick="disponivel();">
+                                <input class="form-check-input" type="radio" name="especificidade" id="rdbQueen" checked>
+                                <label class="form-check-label" for="rdbQueen">Queen</label>
+                            </div>
+                            <div class="form-check" onclick="indisponivel();">
+                                <input class="form-check-input" type="radio" name="especificidade" id="rdbKing">
+                                <label class="form-check-label"  for="rdbKing">King</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detalhes-conteudo_botoes" id="grpBtnAcoes">
+                        <a href="pagamento.html" class="btn btn-lg btn-success"><strong>COMPRAR</strong></a>
+                        <button onclick="adicionarAoCarrinho();" class="btn btn-lg btn-laranja"><strong><i class="fa-solid fa-cart-plus"></i> ADICIONAR AO CARRINHO</strong></button>
+                    </div>
+                    <div id="btnAviseMe" style="display: none;">
+                        <button onclick="avisarQuandoChegar();" class="btn btn-lg btn-danger w-100"><strong><i class="fa-solid fa-bell"></i> Avise-me quando chegar</strong></button>
                     </div>
                     <div class="frete">
                         <h6>Calcular frete e prazo</h6>

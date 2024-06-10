@@ -394,3 +394,26 @@ p, h1, h2, h3, h4, h5, h6, span, small {
         background: #1a337e !important;
         color: #ffffff !important;
     }
+
+.btn-escolherMaisProdutos {
+    color: white;
+    font-size: 1.15rem;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-end-start-radius: .5rem;
+    border-end-end-radius: .5rem;
+    background: #FF4400;
+    font-weight: 600;
+    transition: all .25s;
+    padding: .5rem;
+    text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.20);
+}
+    .btn-escolherMaisProdutos:hover {
+        background: #e23c00;
+        color: #ffffff;
+    }
+    .btn-escolherMaisProdutos:active {
+        background: #ca3600 !important;
+        color: #ffffff !important;
+    }
