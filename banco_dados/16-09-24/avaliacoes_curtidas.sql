@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `avaliacoes_curtidas` (
-  `id_cliente` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `id_avaliacao` int(11) NOT NULL,
   `curtiu` bit(1) NOT NULL,
   `descurtiu` bit(1) NOT NULL,
