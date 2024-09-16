@@ -1,0 +1,1 @@
+O script "future_mob.sql" contém os comandos de criação do banco de dados e das tabelas "usuarios" e "produtos".
