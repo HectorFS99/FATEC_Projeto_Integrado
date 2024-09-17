@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `peso` decimal(6,2) NOT NULL,
   `destaque` bit(1) NOT NULL,
   `oferta_relampago` bit(1) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
   PRIMARY KEY (`id_produto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

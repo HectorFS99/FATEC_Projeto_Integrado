@@ -1,1 +1,4 @@
-O script "future_mob.sql" contém os comandos de criação do banco de dados e das tabelas "usuarios" e "produtos".
+1 - O script "future_mob.sql" contém os comandos de criação do banco de dados e das tabelas "usuarios" e "produtos".
+2 - tabelas "avaliações" e "avaliacoes_curtidas"
+3 - tabelas "favoritos", "pedidos", "pedidos_produtos"
+4 - tabelas "carrinho", "categorias", "enderecos", "enderecos_usuarios"
