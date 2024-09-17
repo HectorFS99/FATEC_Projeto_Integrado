@@ -102,7 +102,7 @@
 			<small class="form-text text-muted m-1"> A sua senha deve ter, no mínimo, 10 caracteres alfanuméricos, uma letra maiúscula e um caractere especial. </small>
 			<!-- Botões -->
 			<div class="d-flex justify-content-end flex-wrap mt-3 mb-5">
-				<a href="login.html" class="btn btn-lg btnCancelar m-1 flex-fill"><strong>Cancelar</strong></a>
+				<a href="login.php" class="btn btn-lg btnCancelar m-1 flex-fill"><strong>Cancelar</strong></a>
 				<button id="btnCadastrar" type="submit" class="btn btn-lg btnCadastrar m-1 flex-fill" onclick="document.Diogao.action='cadastrar.php'"><strong>Cadastrar</strong></button>
 			</div>
 		</form>

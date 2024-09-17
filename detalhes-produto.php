@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes</title>
+    <!-- ***** ESTILIZAÇÃO ***** -->
+    <link rel="stylesheet" href="recursos/css/reset.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="recursos/css/geral.css" />
+    <link rel="stylesheet" href="recursos/css/header.css" />
+    <link rel="stylesheet" href="recursos/css/detalhes-produto.css" />
+    <link rel="stylesheet" href="recursos/css/footer.css" />
+    <!-- ***** ESTILIZAÇÃO ***** -->
+    <!-- ***** PROGRAMAÇÃO ***** -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+    <script src="recursos/javascript/principal.js"></script>
+    <script src="recursos/javascript/detalhes-produto.js"></script>
+    <!-- ***** PROGRAMAÇÃO ***** -->
+</head>
+
+<body>
+	<?php include 'header.php'; ?>
+    <main class="main-detalhes">
+        <div class="detalhes">
+            <div class="detalhes-midias">
+                <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" class="produto_img" />
+                <div class="detalhes-midias_outras_fotos">
+                    <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
+                    <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
+                    <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
+                    <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
+                    <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
+                </div>
+            </div>
+            <div class="detalhes-conteudo">
+                <a href="pagina-inicial.php" class="btn btn-sm btn-laranja mb-2"><b><i class="fa-solid fa-arrow-left"></i> Voltar</b></a>
+                <h5>Cama com molas ensacadas, em couro e veludo</h3>
+                    <div class="avaliacao-estrelas">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <b>(4.9)</b>
+                    </div>
+                    <p>
+                        <s class="text-muted">De: R$ 2.599,00</s><br>
+                        <b>Por: <span style="font-size: 1.5rem;">R$ 2.199,00</span></b>
+                    </p>
+                    <p class="text-success">
+                        <b>à vista com pix, ou em 1x no Cartão de Crédito</b>
+                    </p>
+                    <hr />
+                    <p> ou em até 10x de 259,90 s/ juros </p>
+                    <div id="div-qtd" class="my-2" style="max-width: 227px;">
+                        <div class="input-group input-group-sm" style="background: rgba(128, 128, 128, 0.2); border-radius: 0.25rem;">
+                            <span class="input-group-text" id="basic-addon3"><b>Quantidade</b></span>
+                            <button onclick="subtrairQtd('qtdProd2', 'lblValorProduto', 'lblQtdProduto', 'lblValorSubTotalPedido');" class="btn btn-dark btn-sm"><i class="fa-solid fa-minus"></i></button>
+                            <span id="qtdProd2" name="lblQtdProduto" class="mx-3" style="width: 41px;">1</span>                    
+                            <button onclick="adicionarQtd('qtdProd2','lblValorProduto', 'lblQtdProduto', 'lblValorSubTotalPedido');" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="my-3">
+                        <label><b>Selecione um tamanho</b></label>
+                        <div class="d-flex justify-content-between" style="max-width: 225px;">
+                            <div class="form-check" onclick="disponivel();">
+                                <input class="form-check-input" type="radio" name="especificidade" id="rdbCasal">
+                                <label class="form-check-label" for="rdbCasal">Casal</label>
+                            </div>
+                            <div class="form-check" onclick="disponivel();">
+                                <input class="form-check-input" type="radio" name="especificidade" id="rdbQueen" checked>
+                                <label class="form-check-label" for="rdbQueen">Queen</label>
+                            </div>
+                            <div class="form-check" onclick="indisponivel();">
+                                <input class="form-check-input" type="radio" name="especificidade" id="rdbKing">
+                                <label class="form-check-label"  for="rdbKing">King</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detalhes-conteudo_botoes" id="grpBtnAcoes">
+                        <a href="pagamento.php" class="btn btn-lg btn-success"><strong>COMPRAR</strong></a>
+                        <button onclick="adicionarAoCarrinho();" class="btn btn-lg btn-laranja"><strong><i class="fa-solid fa-cart-plus"></i> ADICIONAR AO CARRINHO</strong></button>
+                    </div>
+                    <div id="btnAviseMe" style="display: none;">
+                        <button onclick="avisarQuandoChegar();" class="btn btn-lg btn-danger w-100"><strong><i class="fa-solid fa-bell"></i> Avise-me quando chegar</strong></button>
+                    </div>
+                    <div class="frete">
+                        <h6>Calcular frete e prazo</h6>
+                        <div class="frete-input">
+                            <div class="input-group" style="max-width: 250px;">
+                                <input id="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
+                                <button onclick="pesquisaCep('txtCepFrete');" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                            <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios">Não sei o meu CEP</a>
+                        </div>
+                        <div id="resultado-frete" style="display: none;">  
+                            <span id="resultado-cep_logradouro"></span> - <span id="resultado-cep_bairro"></span><br>
+                            <small id="resultado-cep_localidade"></small> - <small id="resultado-cep_uf"></small>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="detalhes">
+            <div class="detalhes-dimensoes">
+                <h3 class="">
+                    <i class="bi bi-bounding-box-circles"></i> Dimensões </h3>
+                <div class="detalhes-dimensoes_valores">
+                    <div>
+                        <i class="fa-solid fa-up-down"></i> Altura: 88cm </div>
+                    <div>
+                        <i class="bi bi-box-fill"></i> Profundidade: 96cm </div>
+                    <div>
+                        <i class="fa-solid fa-left-right"></i> Largura: 190cm </div>
+                    <div>
+                        <i class="fa-solid fa-weight-hanging"></i> Peso: 36,0kg </div>
+                </div>
+            </div>
+            <div class="detalhes-descricao">
+                <h3>
+                    <i class="bi bi-justify-left"></i> Descrição </h3>
+                <p class="detalhes-descricao_texto"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+            </div>
+        </div>
+        <hr class="m-3">
+        <div class="detalhes">
+            <div class="detalhes-avaliacoes">
+                <div class="detalhes-avaliacoes_titulo">
+                    <h3 class="mb-0">Avaliações</h3>
+                    <div class="avaliacao-estrelas">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <b>(4.9)</b>
+                    </div>
+                </div>
+                <div class="avaliacao-usuario">
+                    <div class="avaliacao-usuario_cabecalho">
+                        <div class="avaliacao-usuario_info">
+                            <img src="recursos/imagens/usuarios/user_sample.png">
+                            <div>
+                                <h6 class="m-0">Catarina M.</h6>
+                                <b><small class="text-success"><i class="fa-solid fa-circle-check"></i> Verificado(a).</small></b>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column m-4">
+                            <div class="avaliacao-estrelas">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <small class="text-end">04/06/2024</small>
+                        </div>
+                    </div>
+                    <div class="avaliacao-usuario_corpo">
+                        <p><b>Ótimo produto!</b></p>
+                        <p> Material de qualidade e um estilo muito futurista! </p>
+                        <img class="avaliacao-usuario_corpo_imagem" src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg">
+                    </div>
+                    <div class="avaliacao-usuario_rodape">
+                        <small> Essa avaliação foi útil? <i class="fa-regular fa-thumbs-up"></i>68 <i class="fa-regular fa-thumbs-down"></i>12 </small>
+                    </div>
+                </div>
+                <div class="avaliacao-usuario">
+                    <div class="avaliacao-usuario_cabecalho">
+                        <div class="avaliacao-usuario_info">
+                            <img src="recursos/imagens/usuarios/user_sample.png">
+                            <div>
+                                <h6 class="m-0">Catarina M.</h6>
+                                <b><small class="text-success"><i class="fa-solid fa-circle-check"></i> Verificado(a).</small></b>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column m-4">
+                            <div class="avaliacao-estrelas">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <small class="text-end">04/06/2024</small>
+                        </div>
+                    </div>
+                    <div class="avaliacao-usuario_corpo">
+                        <p><b>Ótimo produto!</b></p>
+                        <p> Material de qualidade e um estilo muito futurista! </p>
+                        <img class="avaliacao-usuario_corpo_imagem" src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg">
+                    </div>
+                    <div class="avaliacao-usuario_rodape">
+                        <small> Essa avaliação foi útil? <i class="fa-regular fa-thumbs-up"></i>68 <i class="fa-regular fa-thumbs-down"></i>12 </small>
+                    </div>
+                </div>
+                <div class="avaliacao-usuario">
+                    <div class="avaliacao-usuario_cabecalho">
+                        <div class="avaliacao-usuario_info">
+                            <img src="recursos/imagens/usuarios/user_sample.png">
+                            <div>
+                                <h6 class="m-0">Catarina M.</h6>
+                                <b><small class="text-success"><i class="fa-solid fa-circle-check"></i> Verificado(a).</small></b>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column m-4">
+                            <div class="avaliacao-estrelas">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <small class="text-end">04/06/2024</small>
+                        </div>
+                    </div>
+                    <div class="avaliacao-usuario_corpo">
+                        <p><b>Ótimo produto!</b></p>
+                        <p> Material de qualidade e um estilo muito futurista! </p>
+                        <img class="avaliacao-usuario_corpo_imagem" src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg">
+                    </div>
+                    <div class="avaliacao-usuario_rodape">
+                        <small> Essa avaliação foi útil? <i class="fa-regular fa-thumbs-up"></i>68 <i class="fa-regular fa-thumbs-down"></i>12 </small>
+                    </div>
+                </div>
+                <div class="avaliacao-usuario">
+                    <div class="avaliacao-usuario_cabecalho">
+                        <div class="avaliacao-usuario_info">
+                            <img src="recursos/imagens/usuarios/user_sample.png">
+                            <div>
+                                <h6 class="m-0">Catarina M.</h6>
+                                <b><small class="text-success"><i class="fa-solid fa-circle-check"></i> Verificado(a).</small></b>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column m-4">
+                            <div class="avaliacao-estrelas">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <small class="text-end">04/06/2024</small>
+                        </div>
+                    </div>
+                    <div class="avaliacao-usuario_corpo">
+                        <p><b>Ótimo produto!</b></p>
+                        <p> Material de qualidade e um estilo muito futurista! </p>
+                        <img class="avaliacao-usuario_corpo_imagem" src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg">
+                    </div>
+                    <div class="avaliacao-usuario_rodape">
+                        <small> Essa avaliação foi útil? <i class="fa-regular fa-thumbs-up"></i>68 <i class="fa-regular fa-thumbs-down"></i>12 </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer id="footer"></footer>
+</body>
+
+</html>

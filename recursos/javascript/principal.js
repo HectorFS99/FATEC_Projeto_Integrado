@@ -1,50 +1,5 @@
 // Monta o header e o footer em todas as páginas que contêm a tag header e footer.
 document.addEventListener("DOMContentLoaded", function() {
-    header = document.getElementById('header');
-    if (header) {
-        header.innerHTML = `        
-        <nav class="navbar">
-            <form class="formulario">
-                <div class="input-group">
-                    <select id="cboCategoria" class="form-select">
-                        <option selected>Todos</option>
-                        <option value="1">Sala de Estar</option>
-                        <option value="2">Escritório</option>
-                        <option value="3">Quarto</option>
-                        <option value="3">Cozinha</option>
-                        <option value="3">Sala de Jantar</option>
-                        <option value="3">Área Externa</option>
-                    </select>
-                    <input id="txtPesquisar" type="text" class="form-control" placeholder="Encontrar sofás, mesas...">
-                    <button id="btnPesquisar" type="submit" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>					
-                </div>
-            </form>
-            <a href="pagina-inicial.html" style="width: 70px;"><img src="recursos/imagens/logos/logo_futureMob.png" width="70"/></a>
-            <div class="botoes_barra_superior">        
-                <a href="pagina-inicial.html" class="btn-vertical">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Início</span>
-                </a>
-                <a href="listagem-geral-produtos.html" class="btn-vertical">
-                    <i class="fa-solid fa-cube"></i>
-                    <span>Produtos</span>
-                </a>
-                <a href="login.html" class="btn-vertical">
-                    <i class="fa-solid fa-user"></i>
-                    <span>Minha Conta</span>
-                </a>
-                <a href="favoritos.html" class="btn-vertical">
-                    <i class="fa-solid fa-heart"></i>
-                    <span>Favoritos</span>
-                </a>
-                <a id="btnCarrinho" href="carrinho.html" class="btn btn-laranja">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span id="contador-carrinho" style="margin-left: 1rem;">0</span>
-                </a>
-            </div>
-        </nav>`;
-    }
-    
     var footer = document.getElementById('footer');
     if (footer) {
         footer.innerHTML = `

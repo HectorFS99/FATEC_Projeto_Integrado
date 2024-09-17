@@ -1,0 +1,5 @@
+O script "future_mob_mudancas_e_inserts_categorias" possui duas mudanças na tabela "categorias":
+	1. Definição de AUTO_INCREMENTO na coluna id_categoria que eu tinha esquecido de colocar, me perdoem rsrs
+	2. Para alterar isso, foi necessário remover o relacionamento com a tabela produtos, e refazer após a mudança.
+	3. Inclusão da coluna "caminho_icone", onde podemos salvar o caminho do ícone a ser carregado na página inicial, ou qualquer outra que tenha ícone na parte de categorias;
+	4. Inclusão de registros na tabela "Categorias"
