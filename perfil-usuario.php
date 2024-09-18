@@ -40,7 +40,7 @@
             <button id="btnDados" onclick="exibirTela('section-seus-dados', this.id);" class="btn menu-lateral_opcao">
                 <i class="fa-solid fa-address-card"></i>
                 <p>Dados</p>
-            </button>            
+            </button>
             <button id="btnEnderecos" onclick="exibirTela('section-enderecos', this.id);" class="btn menu-lateral_opcao">
                 <i class="fa-solid fa-map-location-dot"></i>
                 <p>Endereços</p>

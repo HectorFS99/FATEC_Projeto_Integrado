@@ -30,6 +30,10 @@
             <a href="login.php" class="btn-vertical">
                 <i class="fa-solid fa-user"></i>
                 <span>Minha Conta</span>
+            </a>            
+            <a href="admin/adm_index.php" class="btn-vertical">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>Admin.</span>
             </a>
             <a href="favoritos.php" class="btn-vertical">
                 <i class="fa-solid fa-heart"></i>
