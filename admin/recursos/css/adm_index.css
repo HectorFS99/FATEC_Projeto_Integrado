@@ -1,0 +1,39 @@
+body {
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    background: #F2F1F6;
+}
+
+.opcoes-gerenciamento {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.opc-geren {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    margin: 1rem;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    text-decoration: none !important;
+    transition: all .25s;
+    color: orangered;
+}
+
+.opc-geren > .fa-solid {
+    font-size: 3rem;
+    margin: 1rem;
+}
+
+.opc-geren:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

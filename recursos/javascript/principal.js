@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
             <div class="div-sobre">
                 <span>FUTUREMOB</span>
-                <a class="btn btn-sobre" href="sobre.html">Clique e conheça!</a>
+                <a class="btn btn-sobre" href="sobre.php">Clique e conheça!</a>
             </div>
         </div>`;
     }    

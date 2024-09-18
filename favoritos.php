@@ -1,4 +1,3 @@
-<!DOC
 <html lang="pt-br">
 
 <head>
