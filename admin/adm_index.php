@@ -37,6 +37,7 @@
                 <a href="#" class="opc-geren">
                     <i class="fa-solid fa-cube"></i>
                     <span>Produtos</span>
+                    <button onclick="window.location.href='admin-produtos.php'" class="btn-tela-produtos">Ver Produtos</button>
                 </a>
                 <a href="#" class="opc-geren">
                     <i class="fa-solid fa-layer-group"></i>
