@@ -21,7 +21,7 @@ $sql = mysql_query("SELECT * FROM usuarios
 if (mysql_num_rows($sql) > 0) {
     echo "
 	<script>
-	window.location.href = 'confirmacao-cadastro.php'; 
+	alert('oi'); 
 	 </script>";
 	
 } else {
