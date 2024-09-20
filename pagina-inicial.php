@@ -36,7 +36,7 @@
 			<div class="carrossel-container">
 				<div class="carrossel-item active" style="background-image: url('recursos/imagens/produtos/cozinha-armario_azul_laranja.jpg');">
 					<div class="carrossel-conteudo">
-						<h1>Cozinha FutureMob</h1>
+						<h1>Cozinha</h1>
 						<p class="opacity-75"> Nossa exclusiva tecnologia OpenPush dispensa o uso de puxadores em nossos armários. </p>
 						<div>
 							<a class="btn btn-lg btn-gradiente" href="detalhes-produto.php">Venha conferir!</a>
