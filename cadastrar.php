@@ -19,8 +19,16 @@ $sql = mysql_query("SELECT * FROM usuarios
 
 
 if (mysql_num_rows($sql) > 0) {
-    echo "<center><h1> O usuario ja existe </h1></center>";
+    echo "
+	<script>
+	alert('oi'); 
+	 </script>";
+	
 } else {
     mysql_query("INSERT INTO usuarios (nome_completo, dt_nascimento, cpf, rg, telefone_celular, email, senha) VALUES ('$nome_completo', '$dt_nascimento', '$cpf', '$rg', '$telefone_celular', '$email', '$senha' )");
-    echo "<center><h1> O usuario foi cadastrado </h1></center>";
+	echo "
+	<script>
+	window.location.href = 'confirmacao-cadastro.php'; 
+	 </script>";
+	
 }
