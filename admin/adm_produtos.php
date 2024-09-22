@@ -23,7 +23,6 @@
 <html lang="pt-br">
     <head>
         <?php include '/componentes/adm_head.php'; ?>
-        <link rel="stylesheet" href="recursos/css/adm_produtos.css" />
         <title>Produtos</title>
     </head>
     <body>
@@ -63,7 +62,8 @@
                                     <?php
                                         // Limita o nome para 30 caracteres e adiciona "..." se for maior.
                                         $nome = $linha['nome'];
-                                        echo mb_strlen($nome) > 30 ? mb_substr($nome, 0, 30) . "..." : $nome;
+                                        echo 
+                                            mb_strlen($nome) > 30 ? mb_substr($nome, 0, 30) . "..." : $nome;
                                     ?>
                                 </td>
                                 <td>R$ <?php echo $linha['preco_anterior']; ?></td>
