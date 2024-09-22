@@ -1,4 +1,5 @@
 <?php
+   	header('Content-Type: text/html; charset=utf-8');
     include 'conexao.php';
 	$sql_categorias = mysql_query("SELECT `id_categoria`, `nome`, `descricao`, `caminho_icone` FROM `categorias`");
 ?>
