@@ -1,0 +1,147 @@
+body {
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    background: linear-gradient(90deg, rgba(0, 33, 52, 0.8), rgba(146, 61, 0, 0.8));
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    color: whitesmoke;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    /* background-image: url(../imagens/papeis_parede/building_bottom_view_facade_1285566_1920x1200.jpg) */
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.conteudo-principal {
+    margin: 2rem 3rem !important;
+}
+
+.cabecalho {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 3rem;
+}
+
+.divisor {
+    margin: 0 3rem; 
+}
+
+/********** Botões **********/
+.botao {
+    padding: .5rem;
+    border-radius: .5rem;
+    border: none;
+    background: transparent;
+    transition: all .5s;
+    font-weight: 600;
+    color: whitesmoke;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.botao > i {
+    margin-right: .25rem;
+}
+
+.btn-usuario > img {
+    max-width: 50px;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.btn-usuario:hover {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.btn-adicionar {
+    padding: .5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    font-size: 1.075rem;
+    font-weight: 400;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: .25s;
+}
+
+.btn-adicionar:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.btn-adicionar:active {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(0.95);
+}
+
+.btn-tabela {
+    font-size: 1.5rem;
+    margin: 0 .5rem;
+}
+
+.btn-excluir {
+    color: #B62324;
+}
+
+/********** Customização do menu suspenso **********/
+.dropdown-item {
+    color: whitesmoke !important;
+}
+
+.dropdown-item > i {
+    margin-right: .5rem;
+}
+
+.dropdown-menu, .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
+    border: none;
+}
+
+/********** Tabela **********/
+.table-responsive {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0 0.75em;
+    border-radius: .5rem;
+    font-weight: 400;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.table, .tabela-linha, tr, th, td {
+    font-size: 1rem;
+    border: 1px solid transparent !important;
+}
+
+.tabela-linha > th {
+    opacity: 0.8;    
+}
+
+.tabela-linha > td {
+    opacity: 0.6;    
+}
+
+.dt-input {
+    background: whitesmoke !important;
+    backdrop-filter: blur(10px) !important;
+    opacity: 0.7;
+    color: #0D0D0D !important;
+    font-weight: 600;
+    outline: none;
+    border-radius: 0.25rem !important;
+    border: none !important;
+    padding: .25rem .5rem !important;
+}
+
+.first:hover, .previous:hover, .next:hover, .last:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: .25rem !important;
+    border: 1px solid transparent !important;
+}

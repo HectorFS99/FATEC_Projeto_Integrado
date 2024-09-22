@@ -1,11 +1,4 @@
-body {
-    font-family: "Poppins", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    background: #F2F1F6;
-}
-
+/********** Botões de gerenciamento **********/
 .opcoes-gerenciamento {
     display: flex;
     flex-direction: row;
@@ -19,13 +12,16 @@ body {
     align-items: center;
     width: 150px;
     height: 150px;
-    margin: 1rem;
     border-radius: 1rem;
-    background: white;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    text-decoration: none !important;
-    transition: all .25s;
-    color: orangered;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        text-decoration: none !important;
+    transition: all .225s;
+    color: whitesmoke;
+    margin: 1rem;
+    margin-left: 0;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 .opc-geren > .fa-solid {
@@ -34,6 +30,6 @@ body {
 }
 
 .opc-geren:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     cursor: pointer;
 }
