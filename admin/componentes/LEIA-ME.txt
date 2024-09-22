@@ -1,0 +1,8 @@
+Esta pasta foi criada para que possamos colocar todas as estruturas que são comuns à duas ou mais páginas,
+a fim de evitar repetições desnecessárias nos arquivos, e facilitar a manutenção.
+
+Perceba que o contéudo da tag <head> é comum à todos os arquivos, tal como o header.
+
+Para referenciar o componente na página, basta usar o código:
+
+    <?php include '[CAMINHO DO ARQUIVO AQUI]'; ?>
