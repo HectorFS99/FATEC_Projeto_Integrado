@@ -3,7 +3,7 @@
     <head>        
         <?php include '/componentes/adm_head.php'; ?>
         <link rel="stylesheet" href="recursos/css/adm_index.css" />
-        <title>Painel Administrativo</title>
+        <title>Painel Administrativo (Teste Commit)</title>
     </head>
     <body>
 	    <?php include '/componentes/adm_header.php'; ?>
