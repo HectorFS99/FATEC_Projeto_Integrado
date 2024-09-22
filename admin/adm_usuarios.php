@@ -95,9 +95,4 @@
             </div>
         </main>
     </body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            transformarTabela('#tabela-usuarios');
-        });
-    </script>
 </html>
