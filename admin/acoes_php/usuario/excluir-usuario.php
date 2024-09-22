@@ -8,7 +8,7 @@ if (isset($_GET['apagar']) && is_numeric($_GET['apagar'])) {
     echo "
         <script>
         alert('Usuario deletado'); 
-        window.location.href = 'FATEC_Projeto_Integrado/admin/adm_usuarios.php'
+        window.location.href = '/admin/adm_usuarios.php'
         </script>
         ";
 } else {
