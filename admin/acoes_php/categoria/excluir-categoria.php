@@ -1,5 +1,7 @@
 <?php
+
    	header('Content-Type: text/html; charset=utf-8');
+    include '/componentes/adm_head.php';    
     include '../conectar_banco_dados.php';     
     
     if(isset($_GET['APAGAR'])){
