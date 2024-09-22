@@ -1,5 +1,5 @@
 <?php
-    include '../conexao.php';
+    include '../conectar_banco_dados.php';
 
     if (!function_exists('boolval')) {
         function boolval($val) {
@@ -57,13 +57,13 @@
         echo
             "<script>
                 alert('Cadastro realizado com sucesso!');
-                window.location.href = 'admin-produtos.php';
+                window.location.href = '../../adm_produtos.php';
             </script>";
     } else {
         echo
             "<script>
                 alert(mysql_error());
-                window.location.href = 'admin-produtos.php';
+                window.location.href = '../../adm_produtos.php';
             </script>";
     }
 ?>

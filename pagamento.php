@@ -188,7 +188,7 @@
                                 <div class="form-floating mb-2">
                                     <select id="cboParcelas" class="form-select">
                                     </select>
-                                    <label for="floatingSelect">Quantidade de parcelas</label>
+                                    <label for="cboParcelas">Quantidade de parcelas</label>
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <div class="form-check mx-2">

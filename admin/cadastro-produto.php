@@ -8,88 +8,105 @@
     <body>
         <?php include '/componentes/adm_header.php'; ?>
         <main class="conteudo-principal">
-            <h1 class="titulo">
-                Cadastro de Produtos
-            </h1>
-            <form method="POST" name="form_cad_produtos" class="form-cad-produto">
-                <div class="div-campo">
-                    <label for="txt_nome">Nome do Produto:</label>
-                    <input name="txt_nome" type="text" required>
+            <div class="titulo-opcoes">
+                <h3 class="titulo">
+                    <a href="adm_produtos.php" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i></a>
+                    Adicionar Produto
+                </h3>
+            </div>
+            <form method="POST" name="form_cad_produtos" class="formulario w-100">
+                <!-- Nome, preço anterior e preço atual -->
+                <div class="formulario-grupo">
+                    <div class="form-floating">
+                        <input name="txt_nome" type="text" required class="form-control" placeholder="Nome completo">
+                        <label for="txt_nome">Nome:</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="txt_precoAnt" type="text" required class="form-control" placeholder="Nome completo">
+                        <label for="txt_precoAnt">Preço anterior:</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="txt_precoAtual" type="text" required class="form-control" placeholder="Nome completo">
+                        <label for="txt_precoAtual">Preço atual:</label>
+                    </div>
                 </div>
-                <div class="div-campo">
-                    <label for="txt_descricao">Descrição do produto:</label>
-                    <input name="txt_descricao" type="text" required>
+
+                <!-- Altura, largura, profundidade e peso -->
+                <div class="formulario-grupo">
+                    <div class="form-floating">
+                        <input name="txt_altura" type="text" required class="form-control" placeholder="Nome completo">
+                        <label for="txt_altura"> Altura (cm):</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="txt_largura" type="text" required class="form-control" placeholder="Nome completo">
+                        <label for="txt_largura">Largura (cm):</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="txt_profundidade" type="text" required class="form-control" placeholder="Nome completo">
+                        <label for="txt_profundidade">Profundidade (cm):</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="txt_peso" type="text" required class="form-control" placeholder="Nome completo">
+                        <label for="txt_peso">Peso (kg):</label>
+                    </div>
                 </div>
-                <div class="div-campo">
-                    <label for="txt_precoAnt">Preço anterior do produto:</label>
-                    <input name="txt_precoAnt" type="text" required>
+
+                <!-- Descrição -->
+                <div class="form-floating">
+                    <textarea name="txt_descricao" required class="form-control" rows="6" placeholder="Nome completo"></textarea>
+                    <label for="txt_descricao">Descrição:</label>
                 </div>
-                <div class="div-campo">
-                    <label for="txt_precoAtual">Preço atual do produto:</label>
-                    <input name="txt_precoAtual" type="text" required>
+
+                <!-- Categoria, destaque, oferta relâmpago e ativo/desativo -->
+                <div class="formulario-grupo">
+                    <div class="form-floating">
+                        <select name="cbo_categoria" id="" class="form-select">
+                            <option></option>
+                            <option value="1">Escritório</option>
+                            <option value="2">Quarto</option>
+                            <option value="3">Cozinha</option>
+                            <option value="4">Sala de Jantar</option>
+                            <option value="5">Área Externa</option>
+                            <option value="6">Sala de Estar</option>
+                        </select>
+                        <label for="cbo_categoria">Selecione a categoria:</label>
+                    </div>
+                    <div class="form-floating">
+                        <select name="cbo_destaque" id="" class="form-select">
+                            <option></option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
+                        </select>
+                        <label for="cbo_destaque">Colocar em destaque?</label>
+                    </div>
+                    <div class="form-floating">
+                        <select name="cbo_oferta" id="" class="form-select">
+                            <option></option>
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
+                        </select>
+                        <label for="cbo_oferta">É oferta relâmpago?</label>
+                    </div>
+                    <div class="form-floating">
+                        <select name="cbo_ativo" id="" class="form-select">
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
+                        </select>
+                        <label for="cbo_ativo">O produto estará ativo?</label>
+                    </div>
                 </div>
-                <div class="div-campo">
-                    <label for="txt_altura"> Altura do produto(em cm):</label>
-                    <input name="txt_altura" type="text" required>
+
+                <!-- Caminho da imagem -->
+                <div class="form-floating">
+                    <input name="txt_caminhoIM" type="text" required class="form-control" placeholder="Nome completo">
+                    <label for="txt_caminhoIM">Caminho da imagem:</label>
                 </div>
-                <div class="div-campo">
-                    <label for="txt_largura">Largura do produto(em cm):</label>
-                    <input name="txt_largura" type="text" required>
+
+                <div class="form-botoes">
+                    <button onclick="window.location.href='adm_produtos.php'" class="botao form-btn btn-cancelar">Cancelar</button>
+                    <button onclick="document.form_cad_produtos.action='acoes_php/produto/gravar-produto.php'" type="submit" value="Cadastrar" class="botao form-btn btn-confirmar">Confirmar</button>
                 </div>
-                <div class="div-campo">
-                    <label for="txt_profundidade">Profundidade do produto(em cm):</label>
-                    <input name="txt_profundidade" type="text" required>
-                </div>
-                <div class="div-campo">
-                    <label for="txt_peso">Peso do produto(em kg):</label>
-                    <input name="txt_peso" type="text" required>
-                </div>
-                <div class="div-campo">
-                    <label for="txt_caminhoIM">Caminho do arquivo de imagem</label>
-                    <input name="txt_caminhoIM" type="text" required>
-                </div>
-                <div class="div-campo">
-                    <label for="cbo_categoria">Categoria</label>
-                    <select name="cbo_categoria" id="">
-                        <option>Categoria do Produto:</option>
-                        <option value="1">Escritório.</option>
-                        <option value="2">Quarto</option>
-                        <option value="3">Cozinha</option>
-                        <option value="4">Sala de Jantar</option>
-                        <option value="5">Área Externa</option>
-                        <option value="6">Sala de Estar</option>
-                    </select>
-                </div>
-                <div class="div-campo">
-                    <label for="cbo_destaque">Destaque</label>
-                    <select name="cbo_destaque" id="">
-                        <option>Colocar produto em destaque na pagina inicial?</option>
-                        <option value="1">Sim.</option>
-                        <option value="0">Não</option>
-                    </select>
-                </div>
-                </div>
-                <div class="div-campo">
-                    <label for="cbo_oferta">Ofertas</label>
-                    <select name="cbo_oferta" id="">
-                        <option>Colocar produto em ofertas relâmpago na pagina inicial?</option>
-                        <option value="1">Sim.</option>
-                        <option value="0">Não</option>
-                    </select>
-                </div>
-                <div class="div-campo">
-                    <label for="cbo_ativo">Ativo</label>
-                    <select name="cbo_ativo" id="">
-                        <option>Produto Ativo?</option>
-                        <option value="1">Sim.</option>
-                        <option value="0">Não</option>
-                    </select>
-                </div>
-                <div class="div-botoes">
-                    <button type="submit" value="Cadastrar" onclick="document.form_cad_produtos.action='acoes_php/produto/gravar-produto.php'" class="btn-cadastrar">Cadastrar</button>
-                    <button onclick="window.location.href='admin-produtos.php'" class="btn-tela-produtos">Ver Produtos</button>
-                </div>
-            </form>            
+            </form>
         </main>
     </body>
 </html>

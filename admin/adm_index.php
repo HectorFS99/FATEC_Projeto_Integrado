@@ -11,7 +11,7 @@
             <div class="container-opcoes">
                 <h3>Gerenciar</h3>
                 <div class="opcoes-gerenciamento">
-                    <a href="admin-produtos.php" class="opc-geren">
+                    <a href="adm_produtos.php" class="opc-geren">
                         <i class="fa-solid fa-cube"></i>
                         <span>Produtos</span>
                     </a>

@@ -24,7 +24,10 @@
             const opcoesData = { day: 'numeric', month: 'long', year: 'numeric' };
             const dataFormatada = data.toLocaleDateString('pt-BR', opcoesData);
             
-            return `${dataFormatada} - ${data.getHours()}:${data.getMinutes()}`;
+            const horas = String(data.getHours()).padStart(2, '0');
+            const minutos = String(data.getMinutes()).padStart(2, '0');
+            
+            return `${dataFormatada} - ${horas}:${minutos}`;
         }
 
         const dataAtual = new Date();

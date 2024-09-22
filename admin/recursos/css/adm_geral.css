@@ -7,14 +7,22 @@ body {
     background-size: 200% 200%;
     animation: gradientAnimation 10s ease infinite;
     color: whitesmoke;
-    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
     /* background-image: url(../imagens/papeis_parede/building_bottom_view_facade_1285566_1920x1200.jpg) */
 }
 
 @keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .conteudo-principal {
@@ -29,8 +37,15 @@ body {
     margin: 2rem 3rem;
 }
 
+.titulo-opcoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
 .divisor {
-    margin: 0 3rem; 
+    margin: 0 3rem;
 }
 
 /********** Botões **********/
@@ -45,39 +60,36 @@ body {
     text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 }
 
-.botao > i {
+.botao>i {
     margin-right: .25rem;
 }
 
-.btn-usuario > img {
+.btn-usuario>img {
     max-width: 50px;
     border-radius: 50%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
-.btn-usuario:hover {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
+    .btn-usuario:hover {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+    }
 
 .btn-adicionar {
     padding: .5rem 1rem;
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     font-size: 1.075rem;
     font-weight: 400;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     transition: .25s;
 }
-
-.btn-adicionar:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.btn-adicionar:active {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(0.95);
-}
+    .btn-adicionar:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+    .btn-adicionar:active {
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(0.95);
+    }
 
 .btn-tabela {
     font-size: 1.5rem;
@@ -88,49 +100,89 @@ body {
     color: #B62324;
 }
 
+.btn-editar {
+    color: #0053a6;
+}
+
+.btn-cancelar {
+    background: transparent;
+    backdrop-filter: blur(20px);
+}
+    .btn-cancelar:hover {
+        background: rgb(182, 35, 36, 0.9);
+    }
+    .btn-cancelar:active {
+        background: rgb(182, 35, 36, 1);
+        transform: scale(0.9);
+    }
+
+.btn-confirmar {
+    background: rgb(21, 115, 71, 0.7);
+    backdrop-filter: blur(20px);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+    .btn-confirmar:hover {
+        background: rgba(17, 133, 79, 0.9);
+    }
+    .btn-confirmar:active {
+        background: rgb(21, 115, 71, 1);
+        transform: scale(0.9);
+    }
+
+.btn-voltar {
+    font-size: 1rem !important;
+    color: whitesmoke;
+    margin-right: .5rem;
+}
+
 /********** Customização do menu suspenso **********/
 .dropdown-item {
     color: whitesmoke !important;
 }
 
-.dropdown-item > i {
+.dropdown-item>i {
     margin-right: .5rem;
 }
 
-.dropdown-menu, .dropdown-item:hover {
+.dropdown-menu,
+.dropdown-item:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
     border: none;
 }
 
 /********** Tabela **********/
 .table-responsive {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
     padding: 0 0.75em;
     border-radius: .5rem;
     font-weight: 400;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.table, .tabela-linha, tr, th, td {
+.table,
+.tabela-linha,
+tr,
+th,
+td {
     font-size: 1rem;
-    border: 1px solid transparent !important;
+    background: transparent;
+    border: 2px solid transparent !important;
 }
 
-.tabela-linha > th {
-    opacity: 0.8;    
-}
-
-.tabela-linha > td {
-    opacity: 0.6;    
+.tabela-linha>th,
+td {
+    background: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(20px);
+    opacity: 0.9;
 }
 
 .dt-input {
-    background: whitesmoke !important;
-    backdrop-filter: blur(10px) !important;
-    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(20px) !important;
+    opacity: 0.9;
     color: #0D0D0D !important;
     font-weight: 600;
     outline: none;
@@ -139,9 +191,80 @@ body {
     padding: .25rem .5rem !important;
 }
 
-.first:hover, .previous:hover, .next:hover, .last:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(10px) !important;
-    border-radius: .25rem !important;
-    border: 1px solid transparent !important;
+    .first:hover,
+    .previous:hover,
+    .next:hover,
+    .last:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(20px) !important;
+        border-radius: .25rem !important;
+        border: 1px solid transparent !important;
+    }
+
+/********** Formulário **********/
+.formulario-grupo,
+.form-botoes {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que os itens quebrem para a linha seguinte se não houver espaço */
+    gap: 1rem;
+    /* Espaçamento entre os campos */
+    justify-content: end;
+}
+
+.formulario label {
+    transition: all 0.25s;
+    color: white !important;
+}
+    .formulario label::after {
+        background: transparent !important;
+    }
+
+textarea {
+    min-height: 150px !important;
+    max-height: 150px !important;
+    resize: none;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea {
+    transition: all 0.25s;
+    font-size: 0.9rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+}
+    .formulario input:focus,
+    .formulario select:focus,
+    .formulario textarea:focus {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(20px);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+
+    input[type='range']:focus {
+        box-shadow: none !important;
+        border: none !important;
+        outline: none;
+    }
+
+.form-floating,
+.form-btn {
+    margin: .5rem 0;
+    flex: 1;
+    min-width: 150px;
+}
+
+    .formulario .form-floating:focus-within {
+        z-index: 2;
+        transition: all 0.5s;
+    }
+
+.form-botoes {
+    flex-wrap: nowrap !important;
+}
+
+.form-btn {
+    flex: .125;
 }
