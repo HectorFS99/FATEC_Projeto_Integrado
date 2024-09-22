@@ -15,7 +15,7 @@
                         <i class="fa-solid fa-cube"></i>
                         <span>Produtos</span>
                     </a>
-                    <a href="#" class="opc-geren">
+                    <a href="adm_categorias.php" class="opc-geren">
                         <i class="fa-solid fa-layer-group"></i>
                         <span>Categorias</span>
                     </a>
