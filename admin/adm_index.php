@@ -23,7 +23,7 @@
                         <i class="fa-solid fa-boxes-stacked"></i>
                         <span>Pedidos</span>
                     </a>
-                    <a href="#" class="opc-geren">
+                    <a href="adm_usuarios.php" class="opc-geren">
                         <i class="fa-solid fa-users"></i>
                         <span>Usuarios</span>
                     </a>
