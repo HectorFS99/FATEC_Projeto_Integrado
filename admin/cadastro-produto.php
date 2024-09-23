@@ -6,12 +6,6 @@
             include '/componentes/adm_head.php'; 
             include '/acoes_php/conectar_banco_dados.php';
             $sql_categorias = mysql_query("SELECT `id_categoria`, `nome`, `descricao`, `caminho_icone` FROM `categorias`");
-            $resultado = $mysqli->query($sql_categorias);
-                if ($resultado->num_rows > 0) {
-                    $categorias = $resultado->fetch_all(MYSQLI_ASSOC); // Armazena todas as categorias
-                } else {
-                    $categorias = [];
-                }
         ?>
         <link rel="stylesheet" href="recursos/css/adm_produtos.css" />
         <title>Cadastrar Produtos</title>
