@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <?php include '/componentes/adm_head.php'; ?>
+    <meta charset="UTF-8">
+        <?php 
+            include '/componentes/adm_head.php'; 
+            include '/acoes_php/conectar_banco_dados.php';
+            $sql_categorias = mysql_query("SELECT `id_categoria`, `nome`, `descricao`, `caminho_icone` FROM `categorias`");
+        ?>
         <link rel="stylesheet" href="recursos/css/adm_produtos.css" />
         <title>Cadastrar Produtos</title>
     </head>
@@ -62,12 +67,13 @@
                     <div class="form-floating">
                         <select name="cbo_categoria" id="" class="form-select">
                             <option></option>
-                            <option value="1">Escritório</option>
+                            <option value="1">"Escritório"</option>
                             <option value="2">Quarto</option>
                             <option value="3">Cozinha</option>
                             <option value="4">Sala de Jantar</option>
                             <option value="5">Área Externa</option>
                             <option value="6">Sala de Estar</option>
+                            <option value="7">Praia</option>
                         </select>
                         <label for="cbo_categoria">Selecione a categoria:</label>
                     </div>
