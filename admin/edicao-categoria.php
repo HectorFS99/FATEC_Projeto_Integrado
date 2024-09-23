@@ -1,27 +1,40 @@
-<?php 
-header('Content-Type: text/html; charset=utf-8');
+<?php
+    header('Content-Type: text/html; charset=utf-8');
+    include '../conexao.php'; // Certifique-se de que este caminho está correto
 
-// Inclui a conexão ao banco de dados
-include '../conexao.php';
+    if (isset($_GET['editar'])) {
+        $id_categoria = $_GET['editar'];
 
-if (isset($_GET['editar'])) {
-    $id_categoria = $_GET['editar'];
+        // Consulta SQL para buscar os dados da categoria
+        $sql = "SELECT * FROM categorias WHERE id_categoria = $id_categoria";
+        $resultado = mysql_query($sql, $conecta_db);
 
-    if (!$conecta_db) {
-        die("Falha na conexão: " . mysqli_connect_error());
+        if (mysql_num_rows($resultado) > 0) {
+            // Pega os dados da categoria
+            $categoria = mysql_fetch_assoc($resultado);
+        } else {
+            echo "Categoria não encontrada!";
+            exit;
+        }
     }
 
-    // Executa a consulta no banco de dados
-    $sql = "SELECT * FROM categorias WHERE id_categoria = $id_categoria";
+    if (isset($_POST['salvar'])) {
+        $id_categoria = $_POST['id_categoria'];
+        $nome = $_POST['nome'];
+        $descricao = $_POST['descricao'];
+        $caminho_icone = $_POST['caminho_icone'];
 
-
-    //if (mysqli_num_rows($resultado) > 0) {
-    //    $categoria = mysqli_fetch_assoc($resultado);
-    //} else {
-    //    echo "Categoria não encontrada!";
-    //    exit;
-    //}
-}
+        // Atualiza os dados da categoria no banco de dados
+        $sql_update = "UPDATE categorias 
+                       SET nome = '$nome', descricao = '$descricao', caminho_icone = '$caminho_icone'
+                       WHERE id_categoria = $id_categoria";
+        
+        if (mysql_query($sql_update, $conecta_db)) {
+            echo "<script>alert('Categoria atualizada com sucesso!'); window.location.href = 'adm_categorias.php';</script>";
+        } else {
+            echo "Erro ao atualizar categoria: " . mysql_error();
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,8 +44,9 @@ if (isset($_GET['editar'])) {
 </head>
 <body>
     <h2>Editar Categoria</h2>
-    <form action="edicao_categoria.php" method="POST">
+    <form action="edicao-categoria.php" method="POST">
         <input type="hidden" name="id_categoria" value="<?php echo $categoria['id_categoria']; ?>">
+
         <label for="nome">Nome:</label>
         <input type="text" name="nome" value="<?php echo $categoria['nome']; ?>" required><br><br>
 
