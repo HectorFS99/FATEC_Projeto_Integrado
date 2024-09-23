@@ -268,3 +268,21 @@ textarea {
 .form-btn {
     flex: .125;
 }
+
+/********** Barra de rolagem customizada **********/
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #676767;
+}
+
+::-webkit-scrollbar-thumb {
+    background:  rgba(47, 47, 47, 0.8);
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:  rgba(47, 47, 47, 1); 
+}
