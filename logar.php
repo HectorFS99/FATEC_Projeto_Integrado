@@ -23,16 +23,22 @@ if (mysql_num_rows($sql) == 0) {
 	$id_usuario = $usuario['id_usuario'];
 
 	$sql_carrinho = mysql_query("SELECT * FROM carrinho WHERE id_usuario = '$id_usuario'");
-	$_SESSION['carrinho'] = mysql_fetch_assoc($sql_carrinho);
+    $_SESSION['carrinho'] = [];
+    while ($item_carrinho = mysql_fetch_assoc($sql_carrinho)) {
+        $_SESSION['carrinho'][] = $item_carrinho; 
+    }
 
-	$sql_pedidos = mysql_query("SELECT * FROM pedidos_produtos WHERE id_usuario = '$id_usuario'");
-	$_SESSION['pedidos'] = [];
+    $sql_pedidos = mysql_query("SELECT * FROM pedidos_produtos WHERE id_usuario = '$id_usuario'");
+    $_SESSION['pedidos'] = [];
+    while ($pedido = mysql_fetch_assoc($sql_pedidos)) {
+        $_SESSION['pedidos'][] = $pedido;  
+    }
 
-	$sql_favoritos = mysql_query("SELECT * FROM favoritos WHERE id_usuario = '$id_usuario'");
-	$_SESSION['favoritos'] = [];
-	while ($favorito = mysql_fetch_assoc($sql_favoritos)) {
-		$_SESSION['favoritos'][] = $favorito;
-	}
+    $sql_favoritos = mysql_query("SELECT * FROM favoritos WHERE id_usuario = '$id_usuario'");
+    $_SESSION['favoritos'] = [];
+    while ($favorito = mysql_fetch_assoc($sql_favoritos)) {
+        $_SESSION['favoritos'][] = $favorito;  
+    }
 
 	header("Location: pagina-inicial.php");
 
