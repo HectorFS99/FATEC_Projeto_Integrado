@@ -19,6 +19,7 @@ if (mysql_num_rows($sql) == 0) {
 
 	$_SESSION['email'] = $usuario['email'];
 	$_SESSION['id_usuario'] = $usuario['id_usuario'];
+	$_SESSION['admin'] = $usuario['admin'];
 	$id_usuario = $usuario['id_usuario'];
 
 	$sql_carrinho = mysql_query("SELECT * FROM carrinho WHERE id_usuario = '$id_usuario'");

@@ -1,6 +1,7 @@
 <?php
    	header('Content-Type: text/html; charset=utf-8');
     include 'conexao.php';
+	session_start();
 	$sql_categorias_header = mysql_query("SELECT `id_categoria`, `nome`, `descricao`, `caminho_icone` FROM `categorias`");
 ?>
 
@@ -32,10 +33,15 @@
 				<i class="fa-solid fa-user"></i>
 				<span>Minha Conta</span>
 			</a>
-			<a href="admin/adm_index.php" class="btn-vertical">
-				<i class="fa-solid fa-screwdriver-wrench"></i>
-				<span>Admin.</span>
-			</a>
+            <?php
+       
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) { ?>
+                <a href="admin/adm_index.php" class="btn-vertical">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <span>Admin.</span>
+                </a>
+            <?php } ?>
+
 			<a href="favoritos.php" class="btn-vertical">
 				<i class="fa-solid fa-heart"></i>
 				<span>Favoritos</span>
