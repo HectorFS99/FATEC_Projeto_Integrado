@@ -5,8 +5,8 @@
     </div>
     <div class="dropdown">
         <button class="botao btn-usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="mx-2">Hector Silva</span>
-            <img src="recursos/imagens/usuarios/hector.jpg">
+            <span class="mx-2">Usuário Admin.</span>
+            <img src="recursos/imagens/usuarios/admin.png">
         </button>
         <ul class="dropdown-menu">
             <li>
