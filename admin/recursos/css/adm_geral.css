@@ -37,6 +37,11 @@ body {
     margin: 2rem 3rem;
 }
 
+.titulo {
+    display: flex;
+    align-items: center;
+}
+
 .titulo-opcoes {
     display: flex;
     justify-content: space-between;
@@ -60,7 +65,7 @@ body {
     text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 }
 
-.botao>i {
+.botao > i {
     margin-right: .25rem;
 }
 

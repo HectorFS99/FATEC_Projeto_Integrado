@@ -2,7 +2,6 @@
 <html lang="pt-br">
     <head>
         <?php include '/componentes/adm_head.php'; ?>
-        <link rel="stylesheet" href="recursos/css/adm_produtos.css" />
         <title>Cadastrar Produtos</title>
     </head>
     <body>
