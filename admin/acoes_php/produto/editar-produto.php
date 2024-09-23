@@ -152,7 +152,7 @@
                 </div>
 
                 <div class="form-botoes">
-                    <button onclick="window.location.href='../../adm_produtos.php'" class="botao form-btn btn-cancelar">Cancelar</button>
+                    <button type="button" onclick="window.location.href='../../adm_produtos.php'" class="botao form-btn btn-cancelar">Cancelar</button>
                     <button onclick="document.form_ed_produtos.action='modificar-campo.php?mod=<?= $ID ?>'" type="submit" value="Confirmar" class="botao form-btn btn-confirmar">Confirmar</button>
                 </div>
             </form>
