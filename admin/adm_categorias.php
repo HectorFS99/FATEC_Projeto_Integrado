@@ -57,10 +57,10 @@
                                 <td> <?php echo $linha['caminho_icone']; ?></td>
                                 <td>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <a class="btn-tabela btn-excluir" href="acoes_php/categoria/excluir-categoria.php?apagar=<?php echo $linha['id_categoria']; ?>">
+                                        <a class="btn-tabela btn-excluir" href="acoes_php/categoria/excluir-categoria.php?apagar=<?php echo $linha['id_produto']; ?>">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </a>
-                                        <a class="btn-tabela btn-editar" href="../categoria/edicao-categoria.php?editar=<?php echo $linha['id_categoria']; ?>">
+                                        <a class="btn-tabela btn-editar" href="acoes_php/categoria/editar-categoria.php?editar=<?php echo $linha['id_produto']; ?>">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
                                     </div>
