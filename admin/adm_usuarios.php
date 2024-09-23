@@ -86,9 +86,6 @@
                                         <a class="btn-tabela btn-excluir" href="acoes_php/usuario/excluir-usuario.php?apagar=<?php echo $linha['id_usuario']; ?>">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </a>
-                                        <a class="btn-tabela btn-editar" href="acoes_php/usuario/editar-usuario.php?editar=<?php echo $linha['id_usuario']; ?>">
-                                            <i class="fa-solid fa-pen"></i>
-                                        </a>
                                     </div>
                                 </td>
                             </tr> 
@@ -98,9 +95,4 @@
             </div>
         </main>
     </body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            transformarTabela('#tabela-usuarios');
-        });
-    </script>
 </html>

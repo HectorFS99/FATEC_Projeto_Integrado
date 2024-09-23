@@ -11,5 +11,12 @@
             </script>";
 
         return false;
-    }
+    } else {
+        echo "
+            <script>
+                alert('Ocorreu um erro, tente novamente');
+                window.location.href = '../../adm_categorias.php';
+            </script>
+        ";
+        }
 ?>
