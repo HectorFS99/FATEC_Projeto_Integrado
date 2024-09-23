@@ -69,6 +69,7 @@
                                 <td>R$ <?php echo $linha['preco_anterior']; ?></td>
                                 <td>R$ <?php echo $linha['preco_atual']; ?></td>
                                 <td><?php echo $linha['destaque'] ? 'Sim' : 'Não'; ?></td>
+                                
                                 <td><?php echo $linha['oferta_relampago'] ? 'Sim' : 'Não'; ?></td>
                                 <td><?php echo $linha['id_categoria']; ?></td>
                                 <td><?php echo $linha['ativo'] ? 'Sim' : 'Não'; ?></td>
@@ -77,7 +78,7 @@
                                         <a class="btn-tabela btn-excluir" href="acoes_php/produto/excluir-produto.php?apagar=<?php echo $linha['id_produto']; ?>">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </a>
-                                        <a class="btn-tabela btn-editar" href="editar-produto.php?editar=<?php echo $linha['id_produto']; ?>">
+                                        <a class="btn-tabela btn-editar" href="acoes_php/produto/editar-produto.php?editar=<?php echo $linha['id_produto']; ?>">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
                                     </div>

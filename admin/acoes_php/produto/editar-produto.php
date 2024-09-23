@@ -1,7 +1,8 @@
 <?php
     include '../conectar_banco_dados.php';
-
     
+    $ID = 0;
+
     if (isset($_GET['editar'])) {
         $ID = $_GET['editar'];
     
@@ -22,7 +23,10 @@
             `caminho_imagem`,
             `ativo`
         FROM 
-            `produtos`;");
+            `produtos`
+        WHERE
+            `id_produto` = $ID;");
+
         $produto = mysql_fetch_assoc($sql_produtos);
     }
 ?>
@@ -30,11 +34,30 @@
 <html lang="pt-br">
     <head>
         <?php include '../../componentes/adm_head.php'; ?>
-        <link rel="stylesheet" href="../../recursos/css/adm_produtos.css" />
+        <link rel="stylesheet" href="../../recursos/css/adm_geral.css" />
         <title>Editar Produtos</title>
     </head>
     <body>
-        <?php include '../../componentes/adm_header.php'; ?>
+        <header class="cabecalho">
+            <div>
+                <h1>Painel Administrativo</h1>
+                <span id="data-atual"></span>
+            </div>
+            <div class="dropdown">
+                <button class="botao btn-usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="mx-2">Usuário Admin.</span>
+                    <img src="../../recursos/imagens/usuarios/admin.png">
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="../pagina-inicial.php">
+                            <i class="fa-solid fa-person-walking-arrow-right"></i>Sair
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <hr class="divisor">
         <main class="conteudo-principal">
             <div class="titulo-opcoes">
                 <h3 class="titulo">
@@ -89,7 +112,7 @@
                 <div class="formulario-grupo">
                     <div class="form-floating">
                         <select name="cbo_categoria" class="form-select">
-                            <option></option>
+                            <option></option>                            
                             <option value="1" <?= $produto['id_categoria'] == 1 ? 'selected' : '' ?>>Escritório</option>
                             <option value="2" <?= $produto['id_categoria'] == 2 ? 'selected' : '' ?>>Quarto</option>
                             <option value="3" <?= $produto['id_categoria'] == 3 ? 'selected' : '' ?>>Cozinha</option>
@@ -134,5 +157,25 @@
                 </div>
             </form>
         </main>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                function formatarData(data) {
+                    const opcoesData = { day: 'numeric', month: 'long', year: 'numeric' };
+                    const dataFormatada = data.toLocaleDateString('pt-BR', opcoesData);
+                    
+                    const horas = String(data.getHours()).padStart(2, '0');
+                    const minutos = String(data.getMinutes()).padStart(2, '0');
+                    
+                    return `${dataFormatada} - ${horas}:${minutos}`;
+                }
+
+                const dataAtual = new Date();
+                const elementoData = document.getElementById('data-atual');
+
+                if (elementoData) {
+                    elementoData.textContent = formatarData(dataAtual);
+                }
+            });
+        </script>
     </body>
 </html>
