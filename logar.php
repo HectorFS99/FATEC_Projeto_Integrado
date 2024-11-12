@@ -9,10 +9,12 @@ $senha = $_POST['txt_senha'];
 $sql = mysql_query("SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'");
 
 if (mysql_num_rows($sql) == 0) {
+    $_SESSION['autenticado'] = false;
+    
 	echo "
     <script>
-    alert('Email ou senha incorretos'); 
-    window.location.href = 'login.php';
+        alert('Email ou senha incorretos'); 
+        window.location.href = 'login.php';
     </script>";
 } else {
 	$usuario = mysql_fetch_assoc($sql);
@@ -39,6 +41,8 @@ if (mysql_num_rows($sql) == 0) {
     while ($favorito = mysql_fetch_assoc($sql_favoritos)) {
         $_SESSION['favoritos'][] = $favorito;  
     }
+
+	$_SESSION['autenticado'] = true;
 
 	header("Location: pagina-inicial.php");
 

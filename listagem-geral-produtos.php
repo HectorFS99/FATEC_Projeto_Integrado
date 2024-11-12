@@ -189,7 +189,11 @@
                             <small><s>De: R$ <?php echo number_format($linha['preco_anterior'], 2, ',', '.'); ?></s></small>
                             <p>Por: R$ <?php echo number_format($linha['preco_atual'], 2, ',', '.'); ?></p>
                             <small>ou em até 10x de R$ <?php echo number_format($linha['preco_atual'] / 10, 2, ',', '.'); ?> s/ juros</small>
-                            <a href="pagamento.php" class="btn btn-laranja mt-2">Comprar</a>
+                            <?php if (isset($_SESSION['autenticado']) && $_SESSION['id_usuario'] > 0) { ?>
+                                <a href="pagamento.php" class="btn btn-laranja mt-2">Comprar</a>
+                            <?php } else { ?>
+                                <a href="login.php" class="btn btn-laranja mt-2">Comprar</a>                                
+                            <?php } ?>
                         </div>			
 					<?php } ?>
                 </div>            
