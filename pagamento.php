@@ -1,6 +1,38 @@
 <?php
     session_start();
-    include 'conexao.php';    
+    include 'conexao.php';
+    
+    $id_usuario = $_SESSION['id_usuario'];
+
+	// Consulta base para enderecos
+	$select_enderecos = 
+        "SELECT 
+            `id_endereco`
+            , `id_usuario`
+            , `nome_endereco`
+            , `cep`
+            , `logradouro`
+            , `numero`
+            , `complemento`
+            , `bairro`
+            , `cidade`
+            , `uf`
+            , `dt_cadastro`
+            , `principal` 
+        FROM 
+            `enderecos`
+        WHERE
+            `id_usuario` = $id_usuario";
+	
+	// Consultas específicas para endereços
+	$sql_enderecos = mysql_query($select_enderecos . " AND `principal` = 0");
+    $sql_enderecoPrincipal = mysql_query($select_enderecos . " AND `principal` = 1"); 
+
+    $temEnderecosCadastrados = true;
+
+    if (mysql_num_rows($sql_enderecos) == 0 && mysql_num_rows($sql_enderecoPrincipal) == 0) {
+        $temEnderecosCadastrados = false;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -45,129 +77,194 @@
                     </div>
                     <div class="div-endereco_cep">                        
                         <div class="componente-accordion acc-entrega" id="secao-opcoes_entrega">
+                            <!-- Entrega Normal -->
                             <section class="border-bottom w-100">
                                 <div onclick="document.getElementById('opcao-entrega_normal').click();" class="btn-accordion">
                                     <div>
-                                        <input onclick="exibirAccordion('entrega_normal', 'secao-opcoes_entrega');" id="opcao-entrega_normal" type="radio" name="opcao-entrega"/>
+                                        <input onclick="exibirAccordion('entrega_normal', 'secao-opcoes_entrega');" id="opcao-entrega_normal" type="radio" name="acc_opcoes-entrega"/>
                                         <i class="fa-solid fa-truck"></i>Entrega Normal 
                                     </div>
                                 </div>
                                 <div id="entrega_normal" class="container-accordion" style="display: none;">
                                     <div class="conteudo-accordion">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                Default radio
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                Default checked radio
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input onclick="document.getElementById('frmCadastrarEndereco').style.display = 'block';" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                                            <label class="form-check-label" for="flexRadioDefault3">
-                                                Cadastrar novo endereço
-                                            </label>
-                                        </div>
+                                        <!-- Endereço principal -->
+                                        <?php if ($temEnderecosCadastrados) {
+                                            while($linha = mysql_fetch_assoc($sql_enderecoPrincipal)) { ?>
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="radio" name="opcao-entrega" id="chkEndereco_principal">
+                                                    <label class="form-check-label" for="chkEndereco_principal">
+                                                        <strong>
+                                                            Endereço Principal - <?php echo $linha['nome_endereco']; ?>
+                                                        </strong>
+                                                        <p>
+                                                            <?php echo $linha['logradouro']; ?>, <?php echo $linha['numero']; ?> - <?php echo $linha['complemento']; ?>
+                                                        </p> 
+                                                        <p>
+                                                            <?php echo $linha['cep']; ?> - <?php echo $linha['bairro']; ?>, <?php echo $linha['cidade']; ?> - <?php echo $linha['uf']; ?>
+                                                        </p> 
+                                                    </label>
+                                                </div>
+                                            <?php }?>                                   
+                                        <?php } else { ?>
+                                            <h4 class="mb-2">Você não possui endereços cadastrados.</h4>
+                                            <p class="mb-3">
+                                                Cadastre um abaixo para prosseguir (por ser o seu primeiro endereço cadastrado, 
+                                                o mesmo será definido como "Endereço principal" automaticamente. 
+                                                Você pode mudar isso nas suas configurações de perfil ou cadastrando outro endereço, marcando-o como principal).
+                                            </p>
+                                        <?php }?>
 
-                                        <!-- Formulário de cadastro de endereço -->
-                                        <form id="frmCadastrarEndereco" method="post" name="frmCadastrarEndereco" class="formulario mt-3" onsubmit="document.frmCadastrarEndereco.action='acoes_php/endereco/cadastrar_endereco.php'" style="display: none;">
-                                            <!-- Nome do Endereço -->                                   
-                                            <div class="form-floating">
-                                                <input name="txtNomeEndereco" type="text" class="form-control" placeholder="Nome do Endereço (Exemplos: Casa, Trabalho)" required>
-                                                <label for="txtNomeEndereco">Nome do Endereço (Exemplos: Casa, Trabalho)</label>
-                                            </div>
+                                        <!-- Outras opções de endereços -->
+                                        <div class="accordion" id="accordionEnderecosOpcoes">
+                                            <!-- Endereços cadastrados do usuário -->
+                                            <?php if ($temEnderecosCadastrados) { ?>
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOutrosEnderecos">
+                                                            <strong>Escolher outro Endereço</strong>
+                                                        </button>
+                                                    </h2>
+                                                    <?php if (mysql_num_rows($sql_enderecos) > 0) { ?>
+                                                        <div id="collapseOutrosEnderecos" class="accordion-collapse collapse m-3" data-bs-parent="#accordionEnderecosOpcoes">
+                                                            <?php while($linha = mysql_fetch_assoc($sql_enderecos)) { ?>
+                                                                <div class="form-check mb-3">
+                                                                    <input class="form-check-input" type="radio" name="opcao-entrega" id="chkEndereco_<?php echo $linha["id_endereco"]; ?>">
+                                                                    <label class="form-check-label" for="chkEndereco_<?php echo $linha["id_endereco"]; ?>">
+                                                                        <strong>
+                                                                            <?php echo $linha['nome_endereco']; ?>
+                                                                        </strong>
+                                                                        <p>
+                                                                            <?php echo $linha['logradouro']; ?>, <?php echo $linha['numero']; ?> - <?php echo $linha['complemento']; ?>
+                                                                        </p> 
+                                                                        <p>
+                                                                            <?php echo $linha['cep']; ?> - <?php echo $linha['bairro']; ?>, <?php echo $linha['cidade']; ?> - <?php echo $linha['uf']; ?>
+                                                                        </p> 
+                                                                    </label>
+                                                                </div>                                            
+                                                            <?php }?> 
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <div id="collapseOutrosEnderecos" class="accordion-collapse collapse m-3" data-bs-parent="#accordionEnderecosOpcoes">
+                                                            <h5 class="mb-2">Você não possui outros endereços cadastrados.</h5>
+                                                            <p class="mb-3">                                                            
+                                                                Cadastre um novo logo abaixo.
+                                                            </p>                                                            
+                                                        </div>
+                                                    <?php } ?>
+                                                </div>
+                                            <?php } ?>
 
-                                            <!-- CEP -->
-                                            <div class="form-floating mt-0">
-                                                <input onfocusout="pesquisaCep('txtCepFrete');" id="txtCepFrete" name="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
-                                                <label for="txtCepFrete">CEP</label>
-                                                <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios m-0">Não sei o meu CEP</a>
-                                                <div id="txtCepFreteErro" class="invalid-feedback">
+                                            <!-- Cadastro de endereços -->
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCadastrarEndereco" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <strong>Cadastrar Endereço</strong>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseCadastrarEndereco" class="accordion-collapse collapse" data-bs-parent="#accordionEnderecosOpcoes">
+                                                    <!-- Formulário para cadastro de endereço -->
+                                                    <form id="frmCadastrarEndereco" method="post" name="frmCadastrarEndereco" class="formulario m-3" onsubmit="document.frmCadastrarEndereco.action='acoes_php/endereco/cadastrar_endereco.php'">
+                                                        <!-- Nome do Endereço -->                                   
+                                                        <div class="form-floating">
+                                                            <input name="txtNomeEndereco" type="text" class="form-control" placeholder="Nome do Endereço (Exemplos: Casa, Trabalho)" required>
+                                                            <label for="txtNomeEndereco">Nome do Endereço (Exemplos: Casa, Trabalho)</label>
+                                                        </div>
+
+                                                        <!-- CEP -->
+                                                        <div class="form-floating mt-0">
+                                                            <input onfocusout="pesquisaCep('txtCepFrete');" id="txtCepFrete" name="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
+                                                            <label for="txtCepFrete">CEP</label>
+                                                            <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios m-0">Não sei o meu CEP</a>
+                                                            <div id="txtCepFreteErro" class="invalid-feedback">
+                                                            </div>
+                                                        </div>
+                                                    
+                                                        <!-- Logradouro -->                                   
+                                                        <div class="form-floating">
+                                                            <input id="resultado-cep_logradouro" name="resultado-cep_logradouro" type="text" class="form-control" placeholder="Logradouro" required>
+                                                            <label for="resultado-cep_logradouro">Logradouro</label>
+                                                        </div>
+                                                    
+                                                        <!-- Número -->                                   
+                                                        <div class="form-floating">
+                                                            <input name="txtNumeroEndereco" type="text" class="form-control" placeholder="Número" required>
+                                                            <label for="resultado-cep_logradouro">Número</label>
+                                                        </div>
+                                                    
+                                                        <!-- Complemento -->                                   
+                                                        <div class="form-floating">
+                                                            <input name="txtComplemento" type="text" class="form-control" placeholder="Complemento" required>
+                                                            <label for="txtComplemento">Complemento</label>
+                                                        </div>
+                                                        
+                                                        <!-- Bairro -->                                   
+                                                        <div class="form-floating">
+                                                            <input id="resultado-cep_bairro" name="resultado-cep_bairro" type="text" class="form-control" placeholder="Bairro" required>
+                                                            <label for="resultado-cep_bairro">Bairro</label>
+                                                        </div>
+                                                        
+                                                        <!-- Cidade -->                                   
+                                                        <div class="form-floating">
+                                                            <input id="resultado-cep_cidade" name="resultado-cep_cidade" type="text" class="form-control" placeholder="Localidade" required>
+                                                            <label for="resultado-cep_cidade">Cidade</label>
+                                                        </div>
+                                                        
+                                                        <!-- UF -->                                   
+                                                        <div class="form-floating mb-0">
+                                                            <input id="resultado-cep_uf" name="resultado-cep_uf" type="text" class="form-control" placeholder="UF" required>
+                                                            <label for="resultado-cep_uf">UF</label>
+                                                        </div>
+
+                                                        <!-- Endereço principal e botão de confirmação --> 
+                                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                                            <div class="form-check">
+                                                                <input name="chkEnderecoPrincipal" class="form-check-input" type="checkbox">
+                                                                <label class="form-check-label" for="flexCheckDefault">Marcar como Endereço Principal</label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-laranja">
+                                                                <strong>Confirmar</strong>
+                                                            </button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        
-                                            <!-- Logradouro -->                                   
-                                            <div class="form-floating">
-                                                <input id="resultado-cep_logradouro" name="resultado-cep_logradouro" type="text" class="form-control" placeholder="Logradouro" required>
-                                                <label for="resultado-cep_logradouro">Logradouro</label>
-                                            </div>
-                                        
-                                            <!-- Número -->                                   
-                                            <div class="form-floating">
-                                                <input name="txtNumeroEndereco" type="text" class="form-control" placeholder="Número" required>
-                                                <label for="resultado-cep_logradouro">Número</label>
-                                            </div>
-                                        
-                                            <!-- Complemento -->                                   
-                                            <div class="form-floating">
-                                                <input name="txtComplemento" type="text" class="form-control" placeholder="Complemento" required>
-                                                <label for="txtComplemento">Complemento</label>
-                                            </div>
-                                            
-                                            <!-- Bairro -->                                   
-                                            <div class="form-floating">
-                                                <input id="resultado-cep_bairro" name="resultado-cep_bairro" type="text" class="form-control" placeholder="Bairro" required>
-                                                <label for="resultado-cep_bairro">Bairro</label>
-                                            </div>
-                                            
-                                            <!-- Cidade -->                                   
-                                            <div class="form-floating">
-                                                <input id="resultado-cep_cidade" name="resultado-cep_cidade" type="text" class="form-control" placeholder="Localidade" required>
-                                                <label for="resultado-cep_cidade">Cidade</label>
-                                            </div>
-                                            
-                                            <!-- UF -->                                   
-                                            <div class="form-floating mb-0">
-                                                <input id="resultado-cep_uf" name="resultado-cep_uf" type="text" class="form-control" placeholder="UF" required>
-                                                <label for="resultado-cep_uf">UF</label>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                                <div class="form-check">
-                                                    <input name="chkEnderecoPrincipal" class="form-check-input" type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault">Marcar como Endereço Principal</label>
-                                                </div>
-                                                <button type="submit" class="btn btn-laranja">
-                                                    <strong>Confirmar</strong>
-                                                </button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>                    
                             </section>
-                            <section class="border-bottom w-100">
+
+                            <!-- Entrega Agendada -->
+                            <!-- <section class="border-bottom w-100">
                                 <div onclick="document.getElementById('opcao-entrega_agendada').click();" class="btn-accordion">
                                     <div>
-                                        <input onclick="exibirAccordion('entrega_agendada', 'secao-opcoes_entrega');" id="opcao-entrega_agendada" type="radio" name="opcao-entrega"/>
+                                        <input onclick="exibirAccordion('entrega_agendada', 'secao-opcoes_entrega');" id="opcao-entrega_agendada" type="radio" name="acc_opcoes-entrega"/>
                                         <i class="fa-solid fa-calendar-days"></i>Entrega Agendada
                                     </div>
                                 </div>
                                 <div id="entrega_agendada" class="container-accordion" style="display: none;">
                                     <div class="conteudo-accordion">
                                         <label class="mb-1">Selecione uma data abaixo:</label>
-                                        <input onchange="" id="dtEntregaAgendada" type="date" class="form-control">
+                                        <input id="dtEntregaAgendada" type="date" class="form-control">
                                     </div>
-                                </div>                    
-                            </section>
+                                </div>
+                            </section> -->
+
+                            <!-- Retirar na Loja -->
                             <section class="w-100">
                                 <div onclick="document.getElementById('opcao-entrega_retirar').click();" class="btn-accordion">
                                     <div>
-                                        <input onclick="exibirAccordion('entrega_retirar', 'secao-opcoes_entrega');" id="opcao-entrega_retirar" type="radio" name="opcao-entrega"/>
+                                        <input onclick="exibirAccordion('entrega_retirar', 'secao-opcoes_entrega');" id="opcao-entrega_retirar" type="radio" name="acc_opcoes-entrega"/>
                                         <i class="fa-solid fa-shop"></i>Retirar na Loja
                                     </div>
                                 </div>
                                 <div id="entrega_retirar" class="container-accordion" style="display: none;">
                                     <div class="conteudo-accordion">
                                         <div class="form-check">
-                                            <input id="rdbLojaAlphaville" class="form-check-input" type="radio" name="flexRadioDefault">
+                                            <input id="rdbLojaAlphaville" class="form-check-input" type="radio" name="opcao-entrega">
                                             <label class="form-check-label" for="rdbLojaAlphaville">Loja Alphaville - Av. Yojiro Takaoka, 2001</label>
                                         </div>
                                         <div class="form-check">
-                                            <input id="rdbLojaSaoCaetano" class="form-check-input" type="radio" name="flexRadioDefault">
+                                            <input id="rdbLojaSaoCaetano" class="form-check-input" type="radio" name="opcao-entrega">
                                             <label class="form-check-label" for="rdbLojaSaoCaetano">Loja São Caetano - ParkShopping São Caetano - Loja 3, 3º Andar</label>
                                         </div>
                                     </div>
@@ -346,6 +443,4 @@
             </div>
         </main>
     </body>
-
-
 </html>

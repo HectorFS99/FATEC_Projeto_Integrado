@@ -75,7 +75,7 @@ function verificaOpcaoEntrega(linkRedirecionamento) {
     if (selectedRadio) {
         window.location.href = linkRedirecionamento;
     } else {
-        notificar(false, 'Informe o CEP e escolha uma opção de entrega', '', 'error', '');
+        notificar(false, 'Escolha uma opção de entrega.', '', 'error', '');
         document.getElementById('txtCepFrete').focus();
     }    
 }
