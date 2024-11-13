@@ -42,79 +42,137 @@
                 <div class="info-container">
                     <div class="div-endereco_titulo">
                         <h5><i class="fa-solid fa-truck-ramp-box"></i> Endereço de Entrega</h5>
-                        <!-- <a href="#" class="btn-trocar">Trocar</a> -->
                     </div>
-                    <!-- <div class="div-endereco_atual">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <div>
-                            <h6>Casa do José</h6>
-                            <p>Rua Josefina Silva, 251, Mauá</p>
-                        </div>
-                    </div> -->
-                    <div class="div-endereco_cep">
-                        <div class="frete mt-0">
-                            <h6 class="mb-1">Calcular frete e prazo</h6>
-                            <div class="frete-input">
-                                <div class="input-group" style="max-width: 250px;">
-                                    <input id="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
-                                    <button onclick="pesquisaCep('txtCepFrete');" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <div class="div-endereco_cep">                        
+                        <div class="componente-accordion acc-entrega" id="secao-opcoes_entrega">
+                            <section class="border-bottom w-100">
+                                <div onclick="document.getElementById('opcao-entrega_normal').click();" class="btn-accordion">
+                                    <div>
+                                        <input onclick="exibirAccordion('entrega_normal', 'secao-opcoes_entrega');" id="opcao-entrega_normal" type="radio" name="opcao-entrega"/>
+                                        <i class="fa-solid fa-truck"></i>Entrega Normal 
+                                    </div>
                                 </div>
-                                <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios">Não sei o meu CEP</a>
-                            </div>
-                            <div id="resultado-frete">
-                                <div class="mb-2">  
-                                    <span id="resultado-cep_logradouro"></span> - <span id="resultado-cep_bairro"></span><br>
-                                    <small id="resultado-cep_localidade"></small> - <small id="resultado-cep_uf"></small>
-                                </div>
-                                <div class="componente-accordion acc-entrega" id="secao-opcoes_entrega">
-                                    <section class="border-bottom w-100">
-                                        <div onclick="document.getElementById('opcao-entrega_normal').click();" class="btn-accordion">
-                                            <div>
-                                                <input onclick="exibirAccordion('entrega_normal', 'secao-opcoes_entrega');" id="opcao-entrega_normal" type="radio" name="opcao-entrega"/>
-                                                <i class="fa-solid fa-truck"></i>Entrega Normal 
-                                            </div>
+                                <div id="entrega_normal" class="container-accordion" style="display: none;">
+                                    <div class="conteudo-accordion">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Default radio
+                                            </label>
                                         </div>
-                                        <div id="entrega_normal" class="container-accordion" style="display: none; width: 0; height: 0;">
-                                            <div class="conteudo-accordion">
-                                            </div>
-                                        </div>                    
-                                    </section>
-                                    <section class="border-bottom w-100">
-                                        <div onclick="document.getElementById('opcao-entrega_agendada').click();" class="btn-accordion">
-                                            <div>
-                                                <input onclick="exibirAccordion('entrega_agendada', 'secao-opcoes_entrega');" id="opcao-entrega_agendada" type="radio" name="opcao-entrega"/>
-                                                <i class="fa-solid fa-calendar-days"></i>Entrega Agendada
-                                            </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Default checked radio
+                                            </label>
                                         </div>
-                                        <div id="entrega_agendada" class="container-accordion" style="display: none;">
-                                            <div class="conteudo-accordion">
-                                                <label class="mb-1">Selecione uma data abaixo:</label>
-                                                <input onchange="" id="dtEntregaAgendada" type="date" class="form-control">
-                                            </div>
-                                        </div>                    
-                                    </section>
-                                    <section class="w-100">
-                                        <div onclick="document.getElementById('opcao-entrega_retirar').click();" class="btn-accordion">
-                                            <div>
-                                                <input onclick="exibirAccordion('entrega_retirar', 'secao-opcoes_entrega');" id="opcao-entrega_retirar" type="radio" name="opcao-entrega"/>
-                                                <i class="fa-solid fa-shop"></i>Retirar na Loja
-                                            </div>
+                                        <div class="form-check">
+                                            <input onclick="document.getElementById('frmCadastrarEndereco').style.display = 'block';" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                                            <label class="form-check-label" for="flexRadioDefault3">
+                                                Cadastrar novo endereço
+                                            </label>
                                         </div>
-                                        <div id="entrega_retirar" class="container-accordion" style="display: none;">
-                                            <div class="conteudo-accordion">
-                                                <div class="form-check">
-                                                    <input id="rdbLojaAlphaville" class="form-check-input" type="radio" name="flexRadioDefault">
-                                                    <label class="form-check-label" for="rdbLojaAlphaville">Loja Alphaville - Av. Yojiro Takaoka, 2001</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input id="rdbLojaSaoCaetano" class="form-check-input" type="radio" name="flexRadioDefault">
-                                                    <label class="form-check-label" for="rdbLojaSaoCaetano">Loja São Caetano - ParkShopping São Caetano - Loja 3, 3º Andar</label>
+
+                                        <!-- Formulário de cadastro de endereço -->
+                                        <form id="frmCadastrarEndereco" method="post" name="frmCadastrarEndereco" class="formulario mt-3" onsubmit="document.frmCadastrarEndereco.action='acoes_php/endereco/cadastrar_endereco.php'" style="display: none;">
+                                            <!-- Nome do Endereço -->                                   
+                                            <div class="form-floating">
+                                                <input name="txtNomeEndereco" type="text" class="form-control" placeholder="Nome do Endereço (Exemplos: Casa, Trabalho)" required>
+                                                <label for="txtNomeEndereco">Nome do Endereço (Exemplos: Casa, Trabalho)</label>
+                                            </div>
+
+                                            <!-- CEP -->
+                                            <div class="form-floating mt-0">
+                                                <input onfocusout="pesquisaCep('txtCepFrete');" id="txtCepFrete" name="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
+                                                <label for="txtCepFrete">CEP</label>
+                                                <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios m-0">Não sei o meu CEP</a>
+                                                <div id="txtCepFreteErro" class="invalid-feedback">
                                                 </div>
                                             </div>
-                                        </div>                    
-                                    </section>
+                                        
+                                            <!-- Logradouro -->                                   
+                                            <div class="form-floating">
+                                                <input id="resultado-cep_logradouro" name="resultado-cep_logradouro" type="text" class="form-control" placeholder="Logradouro" required>
+                                                <label for="resultado-cep_logradouro">Logradouro</label>
+                                            </div>
+                                        
+                                            <!-- Número -->                                   
+                                            <div class="form-floating">
+                                                <input name="txtNumeroEndereco" type="text" class="form-control" placeholder="Número" required>
+                                                <label for="resultado-cep_logradouro">Número</label>
+                                            </div>
+                                        
+                                            <!-- Complemento -->                                   
+                                            <div class="form-floating">
+                                                <input name="txtComplemento" type="text" class="form-control" placeholder="Complemento" required>
+                                                <label for="txtComplemento">Complemento</label>
+                                            </div>
+                                            
+                                            <!-- Bairro -->                                   
+                                            <div class="form-floating">
+                                                <input id="resultado-cep_bairro" name="resultado-cep_bairro" type="text" class="form-control" placeholder="Bairro" required>
+                                                <label for="resultado-cep_bairro">Bairro</label>
+                                            </div>
+                                            
+                                            <!-- Cidade -->                                   
+                                            <div class="form-floating">
+                                                <input id="resultado-cep_cidade" name="resultado-cep_cidade" type="text" class="form-control" placeholder="Localidade" required>
+                                                <label for="resultado-cep_cidade">Cidade</label>
+                                            </div>
+                                            
+                                            <!-- UF -->                                   
+                                            <div class="form-floating mb-0">
+                                                <input id="resultado-cep_uf" name="resultado-cep_uf" type="text" class="form-control" placeholder="UF" required>
+                                                <label for="resultado-cep_uf">UF</label>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <div class="form-check">
+                                                    <input name="chkEnderecoPrincipal" class="form-check-input" type="checkbox" value="">
+                                                    <label class="form-check-label" for="flexCheckDefault">Marcar como Endereço Principal</label>
+                                                </div>
+                                                <button type="submit" class="btn btn-laranja">
+                                                    <strong>Confirmar</strong>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>                    
+                            </section>
+                            <section class="border-bottom w-100">
+                                <div onclick="document.getElementById('opcao-entrega_agendada').click();" class="btn-accordion">
+                                    <div>
+                                        <input onclick="exibirAccordion('entrega_agendada', 'secao-opcoes_entrega');" id="opcao-entrega_agendada" type="radio" name="opcao-entrega"/>
+                                        <i class="fa-solid fa-calendar-days"></i>Entrega Agendada
+                                    </div>
                                 </div>
-                            </div>
+                                <div id="entrega_agendada" class="container-accordion" style="display: none;">
+                                    <div class="conteudo-accordion">
+                                        <label class="mb-1">Selecione uma data abaixo:</label>
+                                        <input onchange="" id="dtEntregaAgendada" type="date" class="form-control">
+                                    </div>
+                                </div>                    
+                            </section>
+                            <section class="w-100">
+                                <div onclick="document.getElementById('opcao-entrega_retirar').click();" class="btn-accordion">
+                                    <div>
+                                        <input onclick="exibirAccordion('entrega_retirar', 'secao-opcoes_entrega');" id="opcao-entrega_retirar" type="radio" name="opcao-entrega"/>
+                                        <i class="fa-solid fa-shop"></i>Retirar na Loja
+                                    </div>
+                                </div>
+                                <div id="entrega_retirar" class="container-accordion" style="display: none;">
+                                    <div class="conteudo-accordion">
+                                        <div class="form-check">
+                                            <input id="rdbLojaAlphaville" class="form-check-input" type="radio" name="flexRadioDefault">
+                                            <label class="form-check-label" for="rdbLojaAlphaville">Loja Alphaville - Av. Yojiro Takaoka, 2001</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input id="rdbLojaSaoCaetano" class="form-check-input" type="radio" name="flexRadioDefault">
+                                            <label class="form-check-label" for="rdbLojaSaoCaetano">Loja São Caetano - ParkShopping São Caetano - Loja 3, 3º Andar</label>
+                                        </div>
+                                    </div>
+                                </div>                    
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -288,4 +346,6 @@
             </div>
         </main>
     </body>
+
+
 </html>

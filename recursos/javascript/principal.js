@@ -304,6 +304,7 @@ function subtrairQtd(id_componente_qtd, name_lbl_valor, name_lbl_qtd, id_lbl_sub
 
     calcularSubtotal(name_lbl_valor, name_lbl_qtd, id_lbl_subTotal);
 }
+
 /***** BUSCA POR CEP *****/
 function pesquisaCep(id_componente_cep) {
     var componente_cep = document.getElementById(id_componente_cep);
@@ -325,12 +326,19 @@ function pesquisaCep(id_componente_cep) {
 
 function dados_cep(conteudo) {
     if (!("erro" in conteudo)) {
-        document.getElementById('resultado-cep_logradouro').innerHTML = conteudo.logradouro;
-        document.getElementById('resultado-cep_bairro').innerHTML = conteudo.bairro;
-        document.getElementById('resultado-cep_localidade').innerHTML = conteudo.localidade;
-        document.getElementById('resultado-cep_uf').innerHTML = conteudo.uf;  
+        var container = document.getElementById('resultado-frete');
 
-        document.getElementById('resultado-frete').style.display = 'block';
+        var logradouro = document.getElementById('resultado-cep_logradouro'); // Endereço
+        var bairro = document.getElementById('resultado-cep_bairro');
+        var localidade = document.getElementById('resultado-cep_cidade'); // Cidade
+        var uf = document.getElementById('resultado-cep_uf');
+
+        logradouro.innerHTML = logradouro.value = conteudo.logradouro;
+        bairro.innerHTML = bairro.value = conteudo.bairro;
+        localidade.innerHTML = localidade.value = conteudo.localidade;
+        uf.innerHTML = uf.value = conteudo.uf;  
+
+        if (container) { container.style.display = 'block'; }
     } else {
         componente_cep.value = '';
         notificar(false, 'CEP não encontrado', '', 'error', '');

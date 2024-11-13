@@ -71,8 +71,6 @@ function finalizarPedidoCartao(e) {
 }
 
 function verificaOpcaoEntrega(linkRedirecionamento) {
-
-
     const selectedRadio = document.querySelector('input[name="opcao-entrega"]:checked');
     if (selectedRadio) {
         window.location.href = linkRedirecionamento;
@@ -80,4 +78,8 @@ function verificaOpcaoEntrega(linkRedirecionamento) {
         notificar(false, 'Informe o CEP e escolha uma opção de entrega', '', 'error', '');
         document.getElementById('txtCepFrete').focus();
     }    
+}
+
+function cadastrarEndereco(event) {
+    event.preventDefault();
 }
