@@ -102,7 +102,7 @@
 					</div>
 					<div class="produtos_cards">
 						<?php while($linha = mysql_fetch_assoc($sql_novidades)) { ?>
-							<a href="detalhes-produto.php" class="card-produto">
+							<a href="detalhes-produto.php?id_produto=<?php echo $linha['id_produto']; ?>" class="card-produto">
 								<img src="<?php echo $linha['caminho_imagem']; ?>" class="card-produto_img" alt="..." />
 								<div class="card-produto_conteudo">
 									<p class="card-produto_titulo"><?php echo $linha['nome']; ?></p>
