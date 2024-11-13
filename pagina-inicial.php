@@ -55,7 +55,7 @@
 								<h1><?php echo $linha['nome']; ?></h1>
 								<p class="opacity-75"><?php echo $linha['descricao']; ?></p>
 								<div>
-									<a class="btn btn-lg btn-gradiente" href="detalhes-produto.php">Venha conferir!</a>
+									<a class="btn btn-lg btn-gradiente" href="detalhes-produto.php?id_produto=<?php echo $linha['id_produto']; ?>">Venha conferir!</a>
 								</div>
 							</div>
 						</div> 			

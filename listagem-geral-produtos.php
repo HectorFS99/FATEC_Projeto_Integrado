@@ -175,8 +175,8 @@
                 </div>
                 <div class="grid-produtos">
                     <?php while($linha = mysql_fetch_assoc($sql_produtos)) { ?>
-                        <div href="detalhes-produto.php" class="card-produto_listagem">
-                            <a href="detalhes-produto.php"><img class="card-produto_listagem_img" src="<?php echo $linha['caminho_imagem']; ?>"></a>
+                        <div href="detalhes-produto.php?id_produto=<?php echo $linha['id_produto']; ?>" class="card-produto_listagem">
+                            <a href="detalhes-produto.php?id_produto=<?php echo $linha['id_produto']; ?>"><img class="card-produto_listagem_img" src="<?php echo $linha['caminho_imagem']; ?>"></a>
                             <h6 class="mb-1"><?php echo $linha['nome']; ?></h6>
                             <!-- <div class="avaliacao-estrelas mb-2">
                                 <i class="fa-solid fa-star"></i>
