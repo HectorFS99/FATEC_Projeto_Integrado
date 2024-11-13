@@ -8,21 +8,56 @@
     </head>
     <body>
         <?php include 'header.php'; ?>
+
+        <?php 
+            if (isset($_GET['id_produto'])) {
+                $id_produto = $_GET['id_produto'];
+
+            $select_produtos = "
+                SELECT 
+                    `id_produto`,
+                    `nome`,
+                    `descricao`,
+                    `preco_anterior`,
+                    `preco_atual`,
+                    `altura`,
+                    `largura`,
+                    `profundidade`,
+                    `peso`,
+                    `id_categoria`,
+                    `caminho_imagem`
+                FROM 
+                    `produtos`
+                WHERE 
+                    `id_produto` = '$id_produto'
+            ";
+
+            $resultado = mysql_query($select_produtos);
+            
+
+            if ($produto = mysql_fetch_assoc($resultado)) {
+            } else {
+                echo "Produto não encontrado.";
+            }
+        } else {
+            echo "ID do produto não fornecido.";
+        }
+?>
+
+
         <main class="main-detalhes">
             <div class="detalhes">
                 <div class="detalhes-midias">
-                    <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" class="produto_img" />
+                    <img src="<?php echo $produto['caminho_imagem']; ?>" class="produto_img" />
                     <div class="detalhes-midias_outras_fotos">
-                        <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
-                        <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
-                        <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
-                        <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
-                        <img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" />
+                        <img src="<?php echo $produto['caminho_imagem']; ?>" />
                     </div>
                 </div>
+
                 <div class="detalhes-conteudo">
                     <a href="pagina-inicial.php" class="btn btn-sm btn-laranja mb-2"><b><i class="fa-solid fa-arrow-left"></i> Voltar</b></a>
-                    <h5>Cama com molas ensacadas, em couro e veludo</h3>
+                    <h3><?php echo $produto['nome']; ?></h3>
+
                         <div class="avaliacao-estrelas">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -32,37 +67,20 @@
                             <b>(4.9)</b>
                         </div>
                         <p>
-                            <s class="text-muted">De: R$ 2.599,00</s><br>
-                            <b>Por: <span style="font-size: 1.5rem;">R$ 2.199,00</span></b>
+                            <s class="text-muted">R$<?php echo number_format($produto['preco_anterior'], 2, ',', '.'); ?></s><br>
+                            <b>Por: R$ <span style="font-size: 1.5rem;"><?php echo number_format($produto['preco_atual'], 2, ',', '.'); ?></span></b>
                         </p>
                         <p class="text-success">
                             <b>à vista com pix, ou em 1x no Cartão de Crédito</b>
                         </p>
                         <hr />
-                        <p> ou em até 10x de 259,90 s/ juros </p>
+                        <p> ou em até 10x de R$ <?php echo number_format($produto['preco_atual'] / 10, 2, ',', '.'); ?> s/ juros </p>
                         <div id="div-qtd" class="my-2" style="max-width: 227px;">
                             <div class="input-group input-group-sm" style="background: rgba(128, 128, 128, 0.2); border-radius: 0.25rem;">
                                 <span class="input-group-text" id="basic-addon3"><b>Quantidade</b></span>
                                 <button onclick="subtrairQtd('qtdProd2', 'lblValorProduto', 'lblQtdProduto', 'lblValorSubTotalPedido');" class="btn btn-dark btn-sm"><i class="fa-solid fa-minus"></i></button>
                                 <span id="qtdProd2" name="lblQtdProduto" class="mx-3" style="width: 41px;">1</span>                    
                                 <button onclick="adicionarQtd('qtdProd2','lblValorProduto', 'lblQtdProduto', 'lblValorSubTotalPedido');" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i></button>
-                            </div>
-                        </div>
-                        <div class="my-3">
-                            <label><b>Selecione um tamanho</b></label>
-                            <div class="d-flex justify-content-between" style="max-width: 225px;">
-                                <div class="form-check" onclick="disponivel();">
-                                    <input class="form-check-input" type="radio" name="especificidade" id="rdbCasal">
-                                    <label class="form-check-label" for="rdbCasal">Casal</label>
-                                </div>
-                                <div class="form-check" onclick="disponivel();">
-                                    <input class="form-check-input" type="radio" name="especificidade" id="rdbQueen" checked>
-                                    <label class="form-check-label" for="rdbQueen">Queen</label>
-                                </div>
-                                <div class="form-check" onclick="indisponivel();">
-                                    <input class="form-check-input" type="radio" name="especificidade" id="rdbKing">
-                                    <label class="form-check-label"  for="rdbKing">King</label>
-                                </div>
                             </div>
                         </div>
                         <div class="detalhes-conteudo_botoes" id="grpBtnAcoes">
@@ -94,19 +112,19 @@
                         <i class="bi bi-bounding-box-circles"></i> Dimensões </h3>
                     <div class="detalhes-dimensoes_valores">
                         <div>
-                            <i class="fa-solid fa-up-down"></i> Altura: 88cm </div>
+                            <i class="fa-solid fa-up-down"></i> Altura: <?php echo $produto['altura']; ?> </div>
                         <div>
-                            <i class="bi bi-box-fill"></i> Profundidade: 96cm </div>
+                            <i class="bi bi-box-fill"></i> Profundidade: <?php echo $produto['profundidade']; ?> </div>
                         <div>
-                            <i class="fa-solid fa-left-right"></i> Largura: 190cm </div>
+                            <i class="fa-solid fa-left-right"></i> Largura: <?php echo $produto['largura']; ?> </div>
                         <div>
-                            <i class="fa-solid fa-weight-hanging"></i> Peso: 36,0kg </div>
+                            <i class="fa-solid fa-weight-hanging"></i> Peso: <?php echo $produto['peso']; ?> </div>
                     </div>
                 </div>
                 <div class="detalhes-descricao">
                     <h3>
                         <i class="bi bi-justify-left"></i> Descrição </h3>
-                    <p class="detalhes-descricao_texto"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                    <p class="detalhes-descricao_texto"> <?php echo $produto['descricao']; ?> </p>
                 </div>
             </div>
             <hr class="m-3">
