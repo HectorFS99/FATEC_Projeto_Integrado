@@ -169,8 +169,6 @@ p, h1, h2, h3, h4, h5, h6, span, small {
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 /***** PIX *****/
@@ -310,7 +308,10 @@ p, h1, h2, h3, h4, h5, h6, span, small {
 }
 
 .bandeiras_pagamento {
-    width: 165px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px !important;
 }
 
 .bandeiras_pagamento > img {
