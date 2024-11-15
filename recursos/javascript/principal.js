@@ -328,7 +328,7 @@ function pesquisaCep(id_componente_cep) {
         if(validacep.test(cep)) {
             var script = document.createElement('script');
             script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=dados_cep';
-
+            
             document.body.appendChild(script);
         } else {
             componente_cep.value = '';
@@ -338,6 +338,9 @@ function pesquisaCep(id_componente_cep) {
 }
 
 function dados_cep(conteudo) {
+    var campo = document.getElementById('txtCep');
+    var feedback = document.getElementById('txtCepErro');
+
     if (!("erro" in conteudo)) {
         var container = document.getElementById('resultado-frete');
 
@@ -352,8 +355,12 @@ function dados_cep(conteudo) {
         uf.innerHTML = uf.value = conteudo.uf;  
 
         if (container) { container.style.display = 'block'; }
+
+        limparFeedback(feedback);
     } else {
-        componente_cep.value = '';
+        campo.value = '';
+        exibirFeedback(campo, feedback, 'Informe um CEP válido.');
+
         notificar(false, 'CEP não encontrado', '', 'error', '');
     }
 }

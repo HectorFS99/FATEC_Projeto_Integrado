@@ -71,7 +71,7 @@ function verificaOpcaoEntrega(linkRedirecionamento) {
         window.location.href = linkRedirecionamento;
     } else {
         notificar(false, 'Escolha uma opção de entrega.', '', 'error', '');
-        document.getElementById('txtCepFrete').focus();
+        document.getElementById('txtCep').focus();
     }    
 }
 

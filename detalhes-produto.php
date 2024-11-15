@@ -94,8 +94,8 @@
                             <h6>Calcular frete e prazo</h6>
                             <div class="frete-input">
                                 <div class="input-group" style="max-width: 250px;">
-                                    <input id="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
-                                    <button onclick="pesquisaCep('txtCepFrete');" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    <input id="txtCep" type="text" class="form-control" placeholder="Informe o CEP">
+                                    <button onclick="pesquisaCep('txtCep');" class="btn btn-laranja"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </div>
                                 <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios">Não sei o meu CEP</a>
                             </div>

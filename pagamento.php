@@ -194,55 +194,77 @@
                                                 </h2>
                                                 <div id="collapseCadastrarEndereco" class="accordion-collapse collapse" data-bs-parent="#accordionEnderecosOpcoes">
                                                     <!-- Formulário -->
-                                                    <form id="frmCadastrarEndereco" method="post" name="frmCadastrarEndereco" class="formulario m-3" onsubmit="document.frmCadastrarEndereco.action='acoes_php/endereco/cadastrar_endereco.php'">
+                                                    <form id="frmCadastrarEndereco" method="post" name="frmCadastrarEndereco" class="formulario m-3"  onsubmit="confirmarFormulario(event, 'frmCadastrarEndereco', 'acoes_php/endereco/cadastrar_endereco.php');">
                                                         <!-- Nome do Endereço -->                                   
                                                         <div class="form-floating">
-                                                            <input name="txtNomeEndereco" type="text" class="form-control" placeholder="Nome do Endereço (Exemplos: Casa, Trabalho)" required>
+                                                            <input id="txtNomeEndereco" name="txtNomeEndereco" type="text" class="form-control" placeholder="Nome do Endereço (Exemplos: Casa, Trabalho)" 
+                                                                onfocusout="validarNome('txtNomeEndereco', 'txtNomeEnderecoErro');"
+                                                                maxlength="30" required>
+
                                                             <label for="txtNomeEndereco">Nome do Endereço (Exemplos: Casa, Trabalho)</label>
+                                                            <div id="txtNomeEnderecoErro" class="invalid-feedback">
+                                                            </div>
                                                         </div>
 
                                                         <!-- CEP -->
                                                         <div class="form-floating mt-0">
-                                                            <input onfocusout="pesquisaCep('txtCepFrete');" id="txtCepFrete" name="txtCepFrete" type="text" class="form-control" placeholder="Informe o CEP">
-                                                            <label for="txtCepFrete">CEP</label>
+                                                            <input id="txtCep" name="txtCep" type="text" class="form-control" placeholder="Informe o CEP"
+                                                                onfocusout="pesquisaCep('txtCep');"
+                                                                maxlength="8" required>
+
+                                                            <label for="txtCep">CEP</label>
                                                             <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="link-correios m-0">Não sei o meu CEP</a>
-                                                            <div id="txtCepFreteErro" class="invalid-feedback">
+                                                            <div id="txtCepErro" class="invalid-feedback">
                                                             </div>
                                                         </div>
                                                     
                                                         <!-- Logradouro -->                                   
                                                         <div class="form-floating">
-                                                            <input id="resultado-cep_logradouro" name="resultado-cep_logradouro" type="text" class="form-control" placeholder="Logradouro" required>
-                                                            <label for="resultado-cep_logradouro">Logradouro</label>
+                                                            <input id="resultado-cep_logradouro" name="resultado-cep_logradouro" type="text" class="form-control" placeholder="Logradouro" 
+                                                                maxlength="50" required>
+
+                                                            <label for="resultado-cep_logradouro">Logradouro</label>                                                         
                                                         </div>
                                                     
                                                         <!-- Número -->                                   
                                                         <div class="form-floating">
-                                                            <input name="txtNumeroEndereco" type="text" class="form-control" placeholder="Número" required>
+                                                            <input name="txtNumeroEndereco" type="text" class="form-control" placeholder="Número" 
+                                                                maxlength="7" required>
+
                                                             <label for="resultado-cep_logradouro">Número</label>
+                                                            <div id="txtCepErro" class="invalid-feedback">
+                                                            </div>
                                                         </div>
                                                     
                                                         <!-- Complemento -->                                   
                                                         <div class="form-floating">
-                                                            <input name="txtComplemento" type="text" class="form-control" placeholder="Complemento" required>
+                                                            <input name="txtComplemento" type="text" class="form-control" placeholder="Complemento" 
+                                                                maxlength="30" required>
+
                                                             <label for="txtComplemento">Complemento</label>
                                                         </div>
                                                         
                                                         <!-- Bairro -->                                   
                                                         <div class="form-floating">
-                                                            <input id="resultado-cep_bairro" name="resultado-cep_bairro" type="text" class="form-control" placeholder="Bairro" required>
+                                                            <input id="resultado-cep_bairro" name="resultado-cep_bairro" type="text" class="form-control" placeholder="Bairro" 
+                                                                maxlength="30" required>
+
                                                             <label for="resultado-cep_bairro">Bairro</label>
                                                         </div>
                                                         
                                                         <!-- Cidade -->                                   
                                                         <div class="form-floating">
-                                                            <input id="resultado-cep_cidade" name="resultado-cep_cidade" type="text" class="form-control" placeholder="Localidade" required>
+                                                            <input id="resultado-cep_cidade" name="resultado-cep_cidade" type="text" class="form-control" placeholder="Localidade" 
+                                                                maxlength="60" required>
+
                                                             <label for="resultado-cep_cidade">Cidade</label>
                                                         </div>
                                                         
                                                         <!-- UF -->                                   
                                                         <div class="form-floating mb-0">
-                                                            <input id="resultado-cep_uf" name="resultado-cep_uf" type="text" class="form-control" placeholder="UF" required>
+                                                            <input id="resultado-cep_uf" name="resultado-cep_uf" type="text" class="form-control" placeholder="UF" 
+                                                                maxlength="2" required>
+
                                                             <label for="resultado-cep_uf">UF</label>
                                                         </div>
 
@@ -295,7 +317,7 @@
                     <section class="border-bottom w-100">
                         <div onclick="document.getElementById('forma-pagamento_pix').click();" class="btn-accordion">
                             <div>
-                                <input onclick="exibirAccordion('pix_info', 'secao-formas_pagamento');" id="forma-pagamento_pix" type="radio" name="forma-pagamento_pix"/>
+                                <input onclick="exibirAccordion('pix_info', 'secao-formas_pagamento');" id="forma-pagamento_pix" type="radio" name="forma-pagamento"/>
                                 <i class="fa-brands fa-pix"></i>Pix 
                             </div>
                             <small>aprovação imediata!</small>
@@ -331,9 +353,9 @@
                     <!-- Cartão de Crédito/Débito -->
                     <section class="w-100">
                         <div onclick="document.getElementById('forma-pagamento_credito').click();" class="btn-accordion">
-                            <div>
-                                <input onclick="exibirAccordion('credito_info', 'secao-formas_pagamento');" id="forma-pagamento_credito" type="radio" name="forma-pagamento"/>
-                                <i class="fa-solid fa-credit-card"></i>Cartão de Crédito/Débito                            
+                            <div onclick="exibirAccordion('credito_info', 'secao-formas_pagamento');" id="forma-pagamento_credito">
+                                <i class="fa-solid fa-credit-card mx-0"></i>
+                                <span class="mx-1">Cartão de Crédito/Débito</span>                                                            
                             </div>
                         </div>
                         <div id="credito_info" class="container-accordion" style="display: none;">
@@ -342,7 +364,7 @@
                                 <?php if ($temCartoesPagamentoCadastrados) {
                                     while($linha = mysql_fetch_assoc($sql_cartoes_pagamento_principal)) { ?>
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="opcao-pagamento" id="chkPagamento_principal">
+                                            <input class="form-check-input" type="radio" name="forma-pagamento" id="chkPagamento_principal">
                                             <label class="form-check-label" for="chkPagamento_principal">
                                                 <strong>
                                                     Cartão Principal - <?php echo $linha['apelido']; ?>
@@ -379,7 +401,7 @@
                                                 <div id="collapseOutrosPagamentos" class="accordion-collapse collapse m-3" data-bs-parent="#accordionCartoesPagamentoOpcoes">
                                                     <?php while($linha = mysql_fetch_assoc($sql_cartoes_pagamento)) { ?>
                                                         <div class="form-check mb-3">
-                                                            <input class="form-check-input" type="radio" name="opcao-pagamento" id="chkPagamento_<?php echo $linha["id_cartao_pagamento"]; ?>">
+                                                            <input class="form-check-input" type="radio" name="forma-pagamento" id="chkPagamento_<?php echo $linha["id_cartao_pagamento"]; ?>">
                                                             <label class="form-check-label" for="chkPagamento_<?php echo $linha["id_cartao_pagamento"]; ?>">
                                                                 <strong>
                                                                     <?php echo $linha['apelido']; ?>

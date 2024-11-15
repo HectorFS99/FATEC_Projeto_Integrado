@@ -7,7 +7,7 @@
     $id_usuario = $_SESSION['id_usuario'];
     
     $nome_endereco = $_POST["txtNomeEndereco"];
-    $cep = $_POST["txtCepFrete"];
+    $cep = $_POST["txtCep"];
     $logradouro = $_POST["resultado-cep_logradouro"];
     $numero = $_POST["txtNumeroEndereco"];
     $complemento = $_POST["txtComplemento"];
