@@ -31,11 +31,14 @@
 		</nav>
 	</header>
 	<main class="container">
-		<form id="formCadastro" method="post" name="Diogao" class="formulario w-100">	
+		<form id="formCadastro" method="post" name="Diogao" class="formulario w-100" onsubmit="confirmarFormulario(event, 'formCadastro', 'cadastrar.php')">	
 			<h3 class="m-1 mt-5 mb-3">Cadastre-se</h1>
 			<!-- Nome, Nasc., CPF e RG -->
 			<div class="form-floating m-1">
-				<input onfocusout="validarNome('txtNome', 'txtNomeErro');" id="txtNome" type="text" class="form-control" placeholder="Nome completo" name="txt_nome" required>
+				<input id="txtNome" type="text" class="form-control" placeholder="Nome completo" name="txt_nome"
+					onfocusout="validarNome('txtNome', 'txtNomeErro');" 
+					required>
+
 				<label for="txtNome">Nome completo</label>
 				<div id="txtNomeErro" class="invalid-feedback">
 				</div>
@@ -103,7 +106,7 @@
 			<!-- Botões -->
 			<div class="d-flex justify-content-end flex-wrap mt-3 mb-5">
 				<a href="login.php" class="btn btn-lg btnCancelar m-1 flex-fill"><strong>Cancelar</strong></a>
-				<button id="btnCadastrar" type="button" onclick="confirmarFormulario('formCadastro', 'cadastrar.php')" type="submit" class="btn btn-lg btnCadastrar m-1 flex-fill"><strong>Cadastrar</strong></button>
+				<button id="btnCadastrar" type="submit" class="btn btn-lg btnCadastrar m-1 flex-fill"><strong>Cadastrar</strong></button>
 			</div>
 		</form>
 	</main>
