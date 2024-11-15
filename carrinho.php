@@ -153,10 +153,10 @@ print_r($_SESSION);
                             <button class="btn btn-sm btn-favorito"><i class="fa-solid fa-heart"></i> Favoritar</button>
                             <button class="btn btn-sm btn-compartilhar"><i class="fa-solid fa-share-from-square"></i>
                                 Compartilhar</button>
-                            <a href="remover-carrinho.php?id=<?= $item['id_produto']; ?>"
-                                class="btn btn-sm btn-danger border-0">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </a>
+<a href="./acoes_php/carrinho/remover_produto.php?id=<?= $item['id_produto']; ?>&usuario=<?= $_SESSION['id_usuario']; ?>"
+    class="btn btn-sm btn-danger border-0">
+    <i class="fa-solid fa-trash-can"></i>
+</a>
                         </div>
                     </div>
                 </div>
