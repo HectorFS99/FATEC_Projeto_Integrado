@@ -27,6 +27,12 @@
 </head>
 
 <body>
+    //SELECT CORRETO
+    SELECT DISTINCT c. * , nome
+    FROM carrinho AS c
+    INNER JOIN produtos AS p ON c.id_produto = p.id_produto
+    WHERE id_usuario =3
+
     <header>
         <nav class="custom-navbar">
             <a href="pagina-inicial.php"><i class="fa-solid fa-arrow-left"></i></a>

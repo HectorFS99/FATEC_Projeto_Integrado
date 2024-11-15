@@ -85,7 +85,7 @@
                         </div>
                         <div class="detalhes-conteudo_botoes" id="grpBtnAcoes">
                             <a href="pagamento.php" class="btn btn-lg btn-success"><strong>COMPRAR</strong></a>
-                            <button onclick="adicionarAoCarrinho();" class="btn btn-lg btn-laranja"><strong><i class="fa-solid fa-cart-plus"></i> ADICIONAR AO CARRINHO</strong></button>
+                            <a href="./acoes_php/carrinho/adicionar_produto.php?id_produto=<?= $id_produto ?>" class="btn btn-lg btn-laranja"><strong><i class="fa-solid fa-cart-plus"></i> ADICIONAR AO CARRINHO</strong></a>
                         </div>
                         <div id="btnAviseMe" style="display: none;">
                             <button onclick="avisarQuandoChegar();" class="btn btn-lg btn-danger w-100"><strong><i class="fa-solid fa-bell"></i> Avise-me quando chegar</strong></button>
