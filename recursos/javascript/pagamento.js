@@ -29,8 +29,10 @@ function exibirAccordion(id_accordion, id_componente) {
 
     accordion = document.getElementById(id_accordion);
     accordion.style.display = "block";
+
 }
 
+/***** Máscaras para formulário de cartão de crédito/débito *****/
 function aplicarMascaraNumeroCartao(campo) {
     campo.value = campo.value.replace(/[^0-9 ]/g, ''); // Remove letras e mantém apenas números, ponto (.) e hífen (-).
     $(`#${campo.id}`).mask("0000 0000 0000 0000");
@@ -43,6 +45,38 @@ function aplicarMascaraValidadeCartao(campo) {
 
 function aplicarMascaraCodigoSeguranca(campo) {
     campo.value = campo.value.replace(/[^0-9/]/g, ''); // Remove letras e mantém apenas números, ponto (.) e hífen (-).
+}
+/*****/
+
+/***** Validações *****/
+function validarDataExpiracao(id_campo, id_feedback) {
+    var campo = document.getElementById(id_campo);
+    var div_feedback = document.getElementById(id_feedback);
+
+    var posBarra = campo.value.indexOf('/');
+    var mes = parseInt(campo.value.substring(0, posBarra));
+    var ano = parseInt(campo.value.substring(posBarra + 1));
+    
+    if (mes > 12 || (ano > 2043 || ano < new Date().getFullYear())) {
+        exibirFeedback(campo, div_feedback, 'Data inválida. Informe a validade corretamente.')
+    } else {
+        limparFeedback(div_feedback);
+    }
+}
+/*****/
+
+function verificaOpcaoEntrega(linkRedirecionamento) {
+    const selectedRadio = document.querySelector('input[name="opcao-entrega"]:checked');
+    if (selectedRadio) {
+        window.location.href = linkRedirecionamento;
+    } else {
+        notificar(false, 'Escolha uma opção de entrega.', '', 'error', '');
+        document.getElementById('txtCepFrete').focus();
+    }    
+}
+
+function cadastrarEndereco(event) {
+    event.preventDefault();
 }
 
 function finalizarPedidoPIX() {
@@ -68,18 +102,4 @@ function finalizarPedidoCartao(e) {
     }
 
     verificaOpcaoEntrega('perfil-usuario.html');
-}
-
-function verificaOpcaoEntrega(linkRedirecionamento) {
-    const selectedRadio = document.querySelector('input[name="opcao-entrega"]:checked');
-    if (selectedRadio) {
-        window.location.href = linkRedirecionamento;
-    } else {
-        notificar(false, 'Escolha uma opção de entrega.', '', 'error', '');
-        document.getElementById('txtCepFrete').focus();
-    }    
-}
-
-function cadastrarEndereco(event) {
-    event.preventDefault();
 }

@@ -5,6 +5,7 @@
     include '../../conexao.php';
 
     $id_usuario = $_SESSION['id_usuario'];
+    
     $nome_endereco = $_POST["txtNomeEndereco"];
     $cep = $_POST["txtCepFrete"];
     $logradouro = $_POST["resultado-cep_logradouro"];

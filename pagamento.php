@@ -34,10 +34,11 @@
         $temEnderecosCadastrados = false;
     }
 
-    // Consulta base para pagamentos
-    $select_pagamentos = 
+    // Consulta base para cartões de pagamento
+    $select_cartoes_pagamento = 
         "SELECT 
-            `id_pagamento`
+            `id_cartao_pagamento`
+            , `id_usuario`
             , `numero_cartao`
             , `nome_impresso`
             , `dt_expiracao`
@@ -45,22 +46,22 @@
             , `bandeira`
             , `dt_cadastro`
             , `apelido`
-            , `id_usuario`
             , `credito`
             , `debito`
+            , `principal`
         FROM 
-            `pagamentos`
+            `cartoes_pagamento`
         WHERE
             `id_usuario` = $id_usuario";
 
-    // Consultas específicas para pagamentos
-    $sql_pagamentos = mysql_query($select_pagamentos . " AND `principal` = 0");
-    $sql_pagamentoPrincipal = mysql_query($select_pagamentos . " AND `principal` = 1"); 
+    // Consultas específicas para cartões de pagamento
+    $sql_cartoes_pagamento = mysql_query($select_cartoes_pagamento . " AND `principal` = 0");
+    $sql_cartoes_pagamento_principal = mysql_query($select_cartoes_pagamento . " AND `principal` = 1"); 
 
-    $temPagamentosCadastrados = true;
+    $temCartoesPagamentoCadastrados = true;
 
-    if (mysql_num_rows($sql_pagamentos) == 0 && mysql_num_rows($sql_pagamentoPrincipal) == 0) {
-        $temPagamentosCadastrados = false;
+    if (mysql_num_rows($sql_cartoes_pagamento) == 0 && mysql_num_rows($sql_cartoes_pagamento_principal) == 0) {
+        $temCartoesPagamentoCadastrados = false;
     }
 ?>
 
@@ -192,7 +193,7 @@
                                                     </button>
                                                 </h2>
                                                 <div id="collapseCadastrarEndereco" class="accordion-collapse collapse" data-bs-parent="#accordionEnderecosOpcoes">
-                                                    <!-- Formulário para cadastro de endereço -->
+                                                    <!-- Formulário -->
                                                     <form id="frmCadastrarEndereco" method="post" name="frmCadastrarEndereco" class="formulario m-3" onsubmit="document.frmCadastrarEndereco.action='acoes_php/endereco/cadastrar_endereco.php'">
                                                         <!-- Nome do Endereço -->                                   
                                                         <div class="form-floating">
@@ -332,14 +333,14 @@
                         <div onclick="document.getElementById('forma-pagamento_credito').click();" class="btn-accordion">
                             <div>
                                 <input onclick="exibirAccordion('credito_info', 'secao-formas_pagamento');" id="forma-pagamento_credito" type="radio" name="forma-pagamento"/>
-                                <i class="fa-solid fa-credit-card"></i>Cartão de Crédito                            
+                                <i class="fa-solid fa-credit-card"></i>Cartão de Crédito/Débito                            
                             </div>
                         </div>
                         <div id="credito_info" class="container-accordion" style="display: none;">
                             <div class="conteudo-accordion">
                                 <!-- Pagamento principal -->
-                                <?php if ($temPagamentosCadastrados) {
-                                    while($linha = mysql_fetch_assoc($sql_pagamentoPrincipal)) { ?>
+                                <?php if ($temCartoesPagamentoCadastrados) {
+                                    while($linha = mysql_fetch_assoc($sql_cartoes_pagamento_principal)) { ?>
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="radio" name="opcao-pagamento" id="chkPagamento_principal">
                                             <label class="form-check-label" for="chkPagamento_principal">
@@ -364,22 +365,22 @@
                                     </p>
                                 <?php }?>
 
-                                <!-- Outras opções de pagamentos -->
-                                <div class="accordion" id="accordionPagamentosOpcoes">
-                                    <!-- Pagamentos cadastrados do usuário -->
-                                    <?php if ($temPagamentosCadastrados) { ?>
+                                <!-- Outras opções de Cartões para Pagamento -->
+                                <div class="accordion" id="accordionCartoesPagamentoOpcoes">
+                                    <!-- Cartões cadastrados do usuário -->
+                                    <?php if ($temCartoesPagamentoCadastrados) { ?>
                                         <div class="accordion-item">
                                             <h2 class="accordion-header">
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOutrosPagamentos">
                                                     <strong>Escolher outro cartão</strong>
                                                 </button>
                                             </h2>
-                                            <?php if (mysql_num_rows($sql_pagamentos) > 0) { ?>
-                                                <div id="collapseOutrosPagamentos" class="accordion-collapse collapse m-3" data-bs-parent="#accordionPagamentosOpcoes">
-                                                    <?php while($linha = mysql_fetch_assoc($sql_pagamentos)) { ?>
+                                            <?php if (mysql_num_rows($sql_cartoes_pagamento) > 0) { ?>
+                                                <div id="collapseOutrosPagamentos" class="accordion-collapse collapse m-3" data-bs-parent="#accordionCartoesPagamentoOpcoes">
+                                                    <?php while($linha = mysql_fetch_assoc($sql_cartoes_pagamento)) { ?>
                                                         <div class="form-check mb-3">
-                                                            <input class="form-check-input" type="radio" name="opcao-pagamento" id="chkPagamento_<?php echo $linha["id_pagamento"]; ?>">
-                                                            <label class="form-check-label" for="chkPagamento_<?php echo $linha["id_pagamento"]; ?>">
+                                                            <input class="form-check-input" type="radio" name="opcao-pagamento" id="chkPagamento_<?php echo $linha["id_cartao_pagamento"]; ?>">
+                                                            <label class="form-check-label" for="chkPagamento_<?php echo $linha["id_cartao_pagamento"]; ?>">
                                                                 <strong>
                                                                     <?php echo $linha['apelido']; ?>
                                                                 </strong>
@@ -394,7 +395,7 @@
                                                     <?php }?> 
                                                 </div>
                                             <?php } else { ?>
-                                                <div id="collapseOutrosPagamentos" class="accordion-collapse collapse m-3" data-bs-parent="#accordionPagamentosOpcoes">
+                                                <div id="collapseOutrosPagamentos" class="accordion-collapse collapse m-3" data-bs-parent="#accordionCartoesPagamentoOpcoes">
                                                     <h5 class="mb-2">Você não possui outros cartões cadastrados.</h5>
                                                     <p class="mb-3">                                                            
                                                         Cadastre um logo abaixo.
@@ -404,25 +405,33 @@
                                         </div>
                                     <?php } ?>
 
-                                    <!-- Cadastro de pagamento -->
+                                    <!-- Cadastro de Cartão para Pagamento -->
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCadastrarPagamento">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCadastrarCartaoPagamento">
                                                 <strong>Cadastrar Cartão de Crédito/Débito</strong>
                                             </button>
                                         </h2>
-                                        <div id="collapseCadastrarPagamento" class="accordion-collapse collapse" data-bs-parent="#accordionPagamentosOpcoes">
-                                            <!-- Formulário para cadastro de pagamento -->
-                                            <form id="frmCadastrarCartaoPagamento" name="frmCadastrarCartaoPagamento" class="formulario m-3" onsubmit="document.frmCadastrarCartaoPagamento.action='acoes_php/pagamento/cadastrar_cartao.php'">
+                                        <div id="collapseCadastrarCartaoPagamento" class="accordion-collapse collapse" data-bs-parent="#accordionCartoesPagamentoOpcoes">
+                                            <!-- Formulário -->
+                                            <form id="frmCadastrarCartaoPagamento" name="frmCadastrarCartaoPagamento" class="formulario m-3" method="post" onsubmit="confirmarFormulario(event, 'frmCadastrarCartaoPagamento', 'acoes_php/pagamento/cadastrar_cartao.php');">
                                                 <!-- Apelido -->
                                                 <div class="form-floating">
-                                                    <input id="txtApelidoCartao" name="txtApelidoCartao" type="text" class="form-control" placeholder="Apelido (exemplo: Cartão Pessoal, Cartão Corporativo)" required>
+                                                    <input id="txtApelidoCartao" name="txtApelidoCartao" type="text" class="form-control" 
+                                                        onfocusout="validarNome('txtApelidoCartao', 'txtApelidoCartaoErro');"
+                                                        placeholder="Apelido (exemplo: Cartão Pessoal, Cartão Corporativo)" 
+                                                        maxlength="30" required>
+
                                                     <label for="txtApelidoCartao">Apelido (exemplo: Cartão Pessoal, Cartão Corporativo)</label>
+                                                    <div id="txtApelidoCartaoErro" class="invalid-feedback">
+                                                    </div>
                                                 </div>                                                    
 
                                                 <!-- Número do Cartão -->
                                                 <div class="form-floating mt-0">
-                                                    <input id="txtNumeroCartao" name="txtNumeroCartao"  oninput="aplicarMascaraNumeroCartao(this);"  type="text" maxlength="19" class="form-control" placeholder="Número do Cartão" required>
+                                                    <input id="txtNumeroCartao" name="txtNumeroCartao" 
+                                                        oninput="aplicarMascaraNumeroCartao(this);"  type="text" maxlength="19" class="form-control" placeholder="Número do Cartão" required>
+
                                                     <label for="txtNumeroCartao">Número do Cartão <small style="color: rgb(184, 184, 184);">(0000 0000 0000 0000)</small></label>
                                                     <div id="txtNumeroCartaoErro" class="invalid-feedback">
                                                     </div>
@@ -430,7 +439,12 @@
 
                                                 <!-- Nome Impresso no Cartão -->
                                                 <div class="form-floating">
-                                                    <input id="txtNomeImpressoCartao" name="txtNomeImpressoCartao" onfocusout="validarCampo('txtNomeImpressoCartao', 'txtNomeImpressoCartaoErro');"type="text" class="form-control" placeholder="Nome Impresso no Cartão" required>
+                                                    <input id="txtNomeImpressoCartao" name="txtNomeImpressoCartao" 
+                                                        onfocusout="validarNome('txtNomeImpressoCartao', 'txtNomeImpressoCartaoErro');"
+                                                        oninput="this.value = this.value.toUpperCase();"
+                                                        type="text" class="form-control" placeholder="Nome Impresso no Cartão" 
+                                                        maxlength="20" required>
+
                                                     <label for="txtNomeImpressoCartao">Nome Impresso no Cartão</label>
                                                     <div id="txtNomeImpressoCartaoErro" class="invalid-feedback">
                                                     </div>
@@ -438,7 +452,10 @@
 
                                                 <!-- Data de Expiração -->                                                
                                                 <div class="form-floating">
-                                                    <input id="txtExpiracaoCartao" name="txtExpiracaoCartao" onfocusout="validarCampo('txtValidadeCartao', 'txtValidadeCartaoErro');" oninput="aplicarMascaraValidadeCartao(this);"type="text" maxlength="7" class="form-control" placeholder="Validade (MM/AAAA)" required>
+                                                    <input id="txtExpiracaoCartao" name="txtExpiracaoCartao"
+                                                        onfocusout="validarDataExpiracao('txtExpiracaoCartao', 'txtExpiracaoCartaoErro');" 
+                                                        oninput="aplicarMascaraValidadeCartao(this);"type="text" maxlength="7" class="form-control" placeholder="Validade (MM/AAAA)" required>
+
                                                     <label for="txtExpiracaoCartao">Data de Expiração<small style="color: rgb(184, 184, 184);">(MM/AAAA)</small></label>
                                                     <div id="txtExpiracaoCartaoErro" class="invalid-feedback">
                                                     </div>
@@ -446,33 +463,32 @@
 
                                                 <!-- Código de Segurança -->                                                
                                                 <div class="form-floating">
-                                                    <input id="txtCodigoSegurancaCartao" name="txtCodigoSegurancaCartao" oninput="aplicarMascaraCodigoSeguranca(this);" type="text" maxlength="4" class="form-control" placeholder="Código de Segurança" autocomplete="off" required>
+                                                    <input id="txtCodigoSegurancaCartao" name="txtCodigoSegurancaCartao" 
+                                                        oninput="aplicarMascaraCodigoSeguranca(this);" type="text" maxlength="3" class="form-control" placeholder="Código de Segurança" autocomplete="off" required>
+
                                                     <label for="txtCodigoSegurancaCartao">Código de Segurança</label>
-                                                    <div id="txtCodigoSegurancaCartaoErro" class="invalid-feedback">
+                                                </div>
+
+                                                <!-- Crédito ou Débito, Cartão Principal -->
+                                                <div class="d-flex align-items-start justify-content-between m-0">
+                                                    <!-- Crédito ou Débito -->
+                                                    <div>
+                                                        <div class="form-check d-flex align-items-center">
+                                                            <input id="rdbCredito" class="form-check-input" type="radio" value="credito" name="rdbCreditoDebito">
+                                                            <label class="form-check-label mx-2" for="rdbCredito">Crédito</label>
+                                                        </div>
+                                                        <div class="form-check d-flex align-items-center">
+                                                            <input id="rdbDebito" class="form-check-input" type="radio" value="debito" name="rdbCreditoDebito" checked>
+                                                            <label class="form-check-label mx-2" for="rdbDebito">Débito</label>
+                                                        </div>
                                                     </div>
-                                                </div>
-
-                                                <!-- Crédito ou Débito -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="rdbCreditoDebito" id="rdbCredito">
-                                                    <label class="form-check-label" for="rdbCreditoDebito">
-                                                        Crédito
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="rdbCreditoDebito" id="rdbDebito" checked>
-                                                    <label class="form-check-label" for="rdbCreditoDebito">
-                                                        Débito
-                                                    </label>
-                                                </div>
-
-                                                <!-- Cartão Principal --> 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                                    
+                                                    <!-- Cartão Principal --> 
                                                     <div class="form-check">
                                                         <input name="chkCartaoPagamentoPrincipal" class="form-check-input" type="checkbox">
                                                         <label class="form-check-label" for="chkCartaoPagamentoPrincipal">Marcar como Cartão Principal</label>
                                                     </div>
-                                                </div>
+                                                </div>       
 
                                                 <div class="div-finalizar">
                                                     <div class="bandeiras_pagamento">
@@ -486,20 +502,35 @@
                                                     </button>
                                                 </div>
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>
 
-                                <?php if ($temPagamentosCadastrados) { ?>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">                                    
-                                        <div class="form-floating">
-                                            <select id="cboParcelas" class="form-select">
-                                            </select>
-                                            <label for="cboParcelas">Quantidade de parcelas</label>
+                                <?php if ($temCartoesPagamentoCadastrados) { ?>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="d-flex justify-content-between align-items-center"> 
+                                            <!-- Quantidade de parcelas -->
+                                            <div class="form-floating">
+                                                <select id="cboParcelas" class="form-select">
+                                                </select>
+                                                <label for="cboParcelas">Quantidade de parcelas</label>
+                                            </div>
+
+                                            <!-- Crédito ou Débito -->
+                                            <div class="mx-3">
+                                                <div class="form-check d-flex align-items-center">
+                                                    <input id="rdbCredito" class="form-check-input" type="radio" value="credito" name="rdbCreditoDebito">
+                                                    <label class="form-check-label mx-2" for="rdbCredito">Crédito</label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center">
+                                                    <input id="rdbDebito" class="form-check-input" type="radio" value="debito" name="rdbCreditoDebito" checked>
+                                                    <label class="form-check-label mx-2" for="rdbDebito">Débito</label>
+                                                </div>
+                                            </div>                                           
                                         </div>
+
                                         <button type="submit" class="btn btn-lg btn-finalizar btn-cartao m-0">
-                                            <i class="fa-solid fa-credit-card"></i>Finalizar com Cartão de Crédito/Débito
+                                            <i class="fa-solid fa-credit-card"></i>Finalizar Pedido
                                         </button>
                                     </div>
                                 <?php } ?>

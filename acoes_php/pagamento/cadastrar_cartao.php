@@ -5,73 +5,73 @@
     include '../../conexao.php';
 
     $id_usuario = $_SESSION['id_usuario'];
-    $nome_endereco = $_POST["txtNomeEndereco"];
-    $cep = $_POST["txtCepFrete"];
-    $logradouro = $_POST["resultado-cep_logradouro"];
-    $numero = $_POST["txtNumeroEndereco"];
-    $complemento = $_POST["txtComplemento"];
-    $bairro = $_POST["resultado-cep_bairro"];
-    $cidade = $_POST["resultado-cep_cidade"];
-    $uf = $_POST["resultado-cep_uf"];
-    $principal = isset($_POST["chkEnderecoPrincipal"]) ? 1 : 0;
 
-    // Consulta para verificar se já existem endereços cadastrados para o usuário em questão.
-    // Caso não, o endereço será definido como principal automaticamente.
-	$select_enderecos = 
+    $apelido = $_POST["txtApelidoCartao"];
+    $numero_cartao = str_replace(' ', '', $_POST["txtNumeroCartao"]);
+    $nome_impresso = $_POST["txtNomeImpressoCartao"];
+    $dt_expiracao = $_POST["txtExpiracaoCartao"];
+    $codigo_seguranca = $_POST["txtCodigoSegurancaCartao"];
+    $credito = $_POST["rdbCreditoDebito"] === "credito" ? 1 : 0;
+    $debito = $_POST["rdbCreditoDebito"] === "debito" ? 1 : 0;
+    $principal = isset($_POST["chkCartaoPagamentoPrincipal"]) ? 1 : 0;
+
+    // Consulta para verificar se já existem cartões cadastrados para o usuário em questão.
+    // Caso não, o cartão será definido como principal automaticamente.
+	$select_pagamentos = 
         "SELECT 
-            `id_endereco`
+            `id_cartao_pagamento`
             , `id_usuario`
-            , `nome_endereco`
-            , `cep`
-            , `logradouro`
-            , `numero`
-            , `complemento`
-            , `bairro`
-            , `cidade`
-            , `uf`
+            , `numero_cartao`
+            , `nome_impresso`
+            , `dt_expiracao`
+            , `codigo_seguranca`
+            , `bandeira`
+            , `apelido`
+            , `credito`
+            , `debito`
             , `dt_cadastro`
             , `principal` 
         FROM 
-            `enderecos`
+            `cartoes_pagamento`
         WHERE
             `id_usuario` = $id_usuario";
 
-    $sql_enderecos = mysql_query($select_enderecos);
+    $sql_pagamentos = mysql_query($select_pagamentos);
 
-    if (mysql_num_rows($sql_enderecos) == 0) {
+    if (mysql_num_rows($sql_pagamentos) == 0) {
         $principal = 1;
     } else {
-        $sql_enderecoPrincipal = mysql_query($select_enderecos . " AND `principal` = 1");
-        $enderecoPrincipal = mysql_fetch_assoc($sql_enderecoPrincipal);
-        $idEnderecoPrincipal = $enderecoPrincipal['id_endereco'];
+        $sql_pagamentoPrincipal = mysql_query($select_pagamentos . " AND `principal` = 1");
+        $pagamentoPrincipal = mysql_fetch_assoc($sql_pagamentoPrincipal);
+        $idPagamentoPrincipal = $pagamentoPrincipal['id_cartao_pagamento'];
 
         if ($principal == 1) {
-            $update = mysql_query("UPDATE enderecos set `principal` = 0 WHERE `id_endereco` = $idEnderecoPrincipal");
+            $update = mysql_query("UPDATE cartoes_pagamento set `principal` = 0 WHERE `id_cartao_pagamento` = $idPagamentoPrincipal");
         }
     }
 
     $sql = mysql_query(
-        "INSERT INTO enderecos(
+        "INSERT INTO cartoes_pagamento(
             id_usuario
-            , nome_endereco
-            , cep
-            , logradouro
-            , numero
-            , complemento
-            , bairro
-            , cidade
-            , uf
+            , numero_cartao
+            , nome_impresso
+            , dt_expiracao
+            , codigo_seguranca
+            , bandeira
+            , apelido
+            , credito
+            , debito
             , principal
         ) VALUES (
-            $id_usuario 
-            , '$nome_endereco'
-            , '$cep'
-            , '$logradouro'
-            , '$numero'
-            , '$complemento'
-            , '$bairro'
-            , '$cidade'
-            , '$uf'
+            $id_usuario
+            , '$numero_cartao'
+            , '$nome_impresso'
+            , '$dt_expiracao'
+            , $codigo_seguranca
+            , 'MasterCard'
+            , '$apelido'                                           
+            , $credito
+            , $debito
             , $principal
         )"
     );
@@ -84,8 +84,9 @@
     } else {
         echo
             "<script>
-                notificar(true, 'Erro ao cadastrar endereço', '', mysql_error(), '../../pagamento.php')
-                alert(mysql_error());
+                alert('Não foi possível cadastrar o cartão de pagamento.');
+                console.log('$apelido');
+                console.log('$numero_cartao');
             </script>";
     }
 ?>
