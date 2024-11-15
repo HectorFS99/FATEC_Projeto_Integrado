@@ -4,6 +4,34 @@
     
     $id_usuario = $_SESSION['id_usuario'];
 
+	// Consulta base para produtos
+	$select_produto = 
+        "SELECT 
+            `id_produto`
+            , `nome`
+            , `descricao`
+            , `preco_anterior`
+            , `preco_atual`
+            , `altura`
+            , `largura`
+            , `profundidade`
+            , `peso`
+            , `destaque`
+            , `oferta_relampago`
+            , `id_categoria` 
+            , `caminho_imagem` 
+            , `ativo` 
+            , `dt_cadastro` 
+        FROM 
+            `produtos`";	
+
+    // Para "Comprar Agora"...
+    $id_produto = isset($_GET['id_produto']) ? $_GET['id_produto'] : 0;
+	$sql_produto = mysql_query($select_produto . "WHERE `id_produto` = $id_produto");
+
+    // Para um carrinho de compras
+    //$sql_produtosCarrinho = mysql_query($select_produto . " AND `id_produto IN()"); 
+
 	// Consulta base para enderecos
 	$select_enderecos = 
         "SELECT 
@@ -22,8 +50,8 @@
         FROM 
             `enderecos`
         WHERE
-            `id_usuario` = $id_usuario";
-	
+            `id_usuario` = $id_usuario";	    
+
 	// Consultas específicas para endereços
 	$sql_enderecos = mysql_query($select_enderecos . " AND `principal` = 0");
     $sql_enderecoPrincipal = mysql_query($select_enderecos . " AND `principal` = 1"); 
@@ -565,7 +593,7 @@
                 <div class="info-container">
                     <h5 class="div-valor_titulo"><i class="fa-solid fa-bag-shopping"></i> Resumo do Pedido</h5>
                     <div class="div-valor_info resumo-pedido">
-                        <p>Subtotal (2 itens):</p>
+                        <p>Subtotal:</p>
                         <p>R$ <span id="lblValorSubTotalPedido"></span></p>
                     </div>
                     <div class="div-valor_info resumo-pedido">
@@ -582,55 +610,37 @@
                     </div>
                     <a href="listagem-geral-produtos.php" class="btn btn-escolherMaisProdutos">Escolher mais produtos</a> 
                 </div>
+
                 <div class="info-container p-3">
-                    <div class="div-produto_info">
-                        <a href="detalhes-produto.php" class="div-produto_info_img"><img src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg" /></a>
-                        <div class="mb-2">
-                            <h5 class="mb-1">Luminária Rosa, com detalhes em Ouro Rosé</h5>
-                            <div class="avaliacao-estrelas mb-2">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <b>(4.9)</b>
+                    <?php if ($id_produto !== 0) {
+                        while($linha = mysql_fetch_assoc($sql_produto)) { ?>
+                            <div class="div-produto_info">
+                                <a href="detalhes-produto.php" class="div-produto_info_img"><img src="<?php echo $linha['caminho_imagem']; ?>" /></a>
+                                <div class="mb-2">
+                                    <h5 class="mb-1"><?php echo $linha['nome']; ?></h5>
+                                    <!-- <div class="avaliacao-estrelas mb-2">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <b>(4.9)</b>
+                                    </div> -->
+                                    <p>
+                                        <s class="text-muted">De: R$ <?php echo number_format($linha['preco_anterior'], 2, ',', '.'); ?></s><br>
+                                        <b>Por: R$ <span name="lblValorProduto"><?php echo number_format($linha['preco_atual'], 2, ',', '.'); ?></span></b>
+                                    </p>
+                                    <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
+                                    <p>ou em até 10x de <?php echo number_format($linha['preco_atual'] / 10, 2, ',', '.'); ?> s/ juros</p>
+                                </div>
                             </div>
-                            <p>
-                                <s class="text-muted">De: R$ 1.999,00</s><br>
-                                <b>Por: R$ <span name="lblValorProduto">1.299,00</span></b>
-                            </p>
-                            <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
-                            <p>ou em até 10x de 139,90 s/ juros</p>
-                        </div>
-                    </div>
-                    <div class="div-produto_opcoes">
-                        <span class="text-muted mt-2"><span name="lblQtdProduto">2</span> item(ns)</span>
-                    </div>
-                </div>
-                <div class="info-container p-3">
-                    <div class="div-produto_info">
-                        <a href="detalhes-produto.php" class="div-produto_info_img"><img src="recursos/imagens/produtos/quarto-cama_couro_veludo.jpg" /></a>
-                        <div class="mb-2">
-                            <h5 class="mb-1">Cama com molas ensacadas, em couro e <br>veludo</h5>
-                            <div class="avaliacao-estrelas mb-2">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <b>(4.9)</b>
+                            <div class="div-produto_opcoes">
+                                <span class="text-muted mt-2"><span name="lblQtdProduto">1</span> item(ns)</span>
                             </div>
-                            <p>
-                                <s class="text-muted">De: R$ 2.599,00</s><br>
-                                <b>Por: R$ <span name="lblValorProduto">2.199,00</span></b>
-                            </p>
-                            <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
-                            <p>ou em até 10x de 259,90 s/ juros</p>
-                        </div>
-                    </div>
-                    <div class="div-produto_opcoes">
-                        <span class="text-muted mt-2"><span name="lblQtdProduto">1</span> item(ns)</span>
-                    </div>
+                        <?php } ?>
+                    <?php } else { // Os produtos do carrinho deverão ser renderizados aqui. ?>
+                        
+                    <?php }?>
                 </div>
             </div>
         </main>
