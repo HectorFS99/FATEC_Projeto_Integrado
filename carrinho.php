@@ -166,12 +166,12 @@ print_r($_SESSION);
             <div class="info-container">
                 <div class="div-valor_info px-3 pt-3">
                     <?php
-                        $total_itens = 0;
-                        foreach ($itens_carrinho as $item) {
-                            $total_itens += $item['total_quantidade'];
-                        }
-                        ?>
-                        <h5>Subtotal (<?= $total_itens; ?> itens):</h5>
+                    $total_itens = 0;
+                    foreach ($itens_carrinho as $item) {
+                        $total_itens += $item['total_quantidade'];
+                    }
+                    ?>
+                    <h5>Subtotal (<?= $total_itens; ?> itens):</h5>
                     <h4 class="text-success"><b>R$ <span id="lblValorSubTotalPedido"></span></b></h4>
                 </div>
                 <div class="p-3">
@@ -179,18 +179,6 @@ print_r($_SESSION);
                 </div>
             </div>
         </div>
-    </main>
-    <div class="coluna-2">
-        <div class="info-container">
-            <div class="div-valor_info px-3 pt-3">
-                <h5>Subtotal (<?= $total_itens; ?> itens):</h5>
-                <h4 class="text-success"><b>R$ <span id="lblValorSubTotalPedido"></span></b></h4>
-            </div>
-            <div class="p-3">
-                <a href="pagamento.php" class="btn btn-success w-100"><b>Comprar</b></a>
-            </div>
-        </div>
-    </div>
     </main>
 </body>
 <script>
