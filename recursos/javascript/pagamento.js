@@ -65,41 +65,45 @@ function validarDataExpiracao(id_campo, id_feedback) {
 }
 /*****/
 
-function verificaOpcaoEntrega(linkRedirecionamento) {
-    const selectedRadio = document.querySelector('input[name="opcao-entrega"]:checked');
-    if (selectedRadio) {
-        window.location.href = linkRedirecionamento;
-    } else {
-        notificar(false, 'Escolha uma opção de entrega.', '', 'error', '');
-        document.getElementById('txtCep').focus();
-    }    
+function formatarParaDecimal(valorStr) {
+    let valorFormatado = valorStr.replace('.', '').replace(',', '.');
+    return parseFloat(valorFormatado);
 }
 
-function cadastrarEndereco(event) {
-    event.preventDefault();
-}
-
-function finalizarPedidoPIX() {
-    verificaOpcaoEntrega('pagamento-pix.html');
-}
-
-function finalizarPedidoCartao(e) {
+function finalizarPedido(e) {
     e.preventDefault();
 
-    var creditoInfoDiv = document.getElementById('credito_info');
-    if (!creditoInfoDiv) {
-        console.error('A div com ID "credito-info" não foi encontrada.');
+    var opcaoEntrega = document.querySelector('input[name="opcao-entrega"]:checked');
+    var formaPagamento = document.querySelector('input[name="forma-pagamento"]:checked');
+
+    if (!opcaoEntrega || !formaPagamento) {
+        notificar(false, 'Escolha uma opção de entrega e uma forma de pagamento.', '', 'error', '');
         return;
-    }
+    } else {
+        var creditoDebito = document.querySelector('input[name="credito_debito"]:checked');
 
-    var feedbacksInvalidos = creditoInfoDiv.querySelectorAll('.invalid-feedback');
-    for (let i = 0; i < feedbacksInvalidos.length; i++) {
-        var feedback = feedbacksInvalidos[i].innerHTML.trim();
-        if (feedback) {
-            notificar(false, 'Os dados informados não são válidos. Por favor, verifique os campos destacados.', '', 'error', '');
-            return;
+        if (formaPagamento.value !== 'pix' && !creditoDebito) {
+            notificar(false, 'Escolha uma opção de pagamento para o cartão selecionado (crédito ou débito).', '', 'error', '');
+            return;           
         }
-    }
+        
+        var subTotal = formatarParaDecimal(document.getElementById('lblValorSubTotalPedido').innerText);
+        var frete = formatarParaDecimal(document.getElementById('lblValorFrete').innerText);
+        var desconto = formatarParaDecimal(document.getElementById('lblValorDesconto').innerText);
+        var total = formatarParaDecimal(document.getElementById('lblValorTotalPedido').innerText);
+        var parcelas = document.getElementById('cboParcelas').value;
 
-    verificaOpcaoEntrega('perfil-usuario.html');
+        document.getElementById('txtValorSubTotalPedido').value = subTotal;
+        document.getElementById('txtValorFrete').value = frete;
+        document.getElementById('txtValorDesconto').value = desconto;
+        document.getElementById('txtValorTotalPedido').value = total;
+        document.getElementById('txtCreditoDebito').value = creditoDebito.value;
+        document.getElementById('txtFormaPagamento').value = formaPagamento.value;
+        document.getElementById('txtParcelas').value = parcelas;
+        document.getElementById('txtOpcaoEntrega').value = opcaoEntrega.value;
+
+        var formulario = document.getElementById('frmFinalizarPedido');
+        formulario.action = 'acoes_php/pedidos/cadastrar_pedido.php';
+        formulario.submit();  
+    }  
 }

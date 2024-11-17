@@ -1,61 +1,29 @@
 <?php
-include 'conexao.php';
-session_start();
+    include 'conexao.php';
+    session_start();
 
-// Verifique se o usuário está logado
-if (!isset($_SESSION['id_usuario'])) {
-    header('Location: login.php');
-    exit;
-}
-
-$id_usuario = $_SESSION['id_usuario'];
-
-// Query para buscar itens do carrinho
-$sql = "SELECT 
-            c.id_produto,
-            p.nome,
-            p.caminho_imagem,
-            p.preco_atual,
-            p.preco_anterior,
-            SUM(c.quantidade) AS total_quantidade
-        FROM 
-            carrinho AS c
-        INNER JOIN 
-            produtos AS p 
-        ON 
-            c.id_produto = p.id_produto
-        WHERE 
-            c.id_usuario = $id_usuario
-        GROUP BY 
-            c.id_produto, p.nome, p.caminho_imagem, p.preco_atual, p.preco_anterior";
-
-// Executando a query
-$result = mysql_query($sql);
-
-// Array para armazenar os itens do carrinho
-$itens_carrinho = [];
-if ($result && mysql_num_rows($result) > 0) {
-    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-        $itens_carrinho[] = $row;
+    // Verifique se o usuário está logado
+    if (!isset($_SESSION['id_usuario'])) {
+        header('Location: login.php');
+        exit;
     }
-}
 
-/* Exibir variáveis para teste
-echo '<pre>';
-echo "ID do Usuário: ";
-var_dump($id_usuario);
+    $id_usuario = $_SESSION['id_usuario'];
 
-echo "\nItens do Carrinho:\n";
-print_r($itens_carrinho);
+    include 'acoes_php/carrinho/selecionar_produtos.php';
 
-// Ver todas as variáveis globais (inclui $_SESSION, $_POST, $_GET, etc.)
-echo "\nVariáveis de Sessão:\n";
-print_r($_SESSION);
+    /* Exibir variáveis para teste
+    echo '<pre>';
+    echo "ID do Usuário: ";
+    var_dump($id_usuario);
 
-*/
+    echo "\nItens do Carrinho:\n";
+    print_r($itens_carrinho);
 
-
-
+    // Ver todas as variáveis globais (inclui $_SESSION, $_POST, $_GET, etc.)
+    echo "\nVariáveis de Sessão:\n";
+    print_r($_SESSION);
+    */
 ?>
 
 <!DOCTYPE html>
@@ -151,12 +119,11 @@ print_r($_SESSION);
                         </div>
                         <div class="mt-1">
                             <button class="btn btn-sm btn-favorito"><i class="fa-solid fa-heart"></i> Favoritar</button>
-                            <button class="btn btn-sm btn-compartilhar"><i class="fa-solid fa-share-from-square"></i>
-                                Compartilhar</button>
-<a href="./acoes_php/carrinho/remover_produto.php?id=<?= $item['id_produto']; ?>&usuario=<?= $_SESSION['id_usuario']; ?>"
-    class="btn btn-sm btn-danger border-0">
-    <i class="fa-solid fa-trash-can"></i>
-</a>
+                            <button class="btn btn-sm btn-compartilhar"><i class="fa-solid fa-share-from-square"></i>Compartilhar</button>
+                            <a href="./acoes_php/carrinho/remover_produto.php?id=<?= $item['id_produto']; ?>&usuario=<?= $_SESSION['id_usuario']; ?>"
+                                class="btn btn-sm btn-danger border-0">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -4,35 +4,35 @@
     
     $id_usuario = $_SESSION['id_usuario'];
 
-	// Consulta base para produtos
-	$select_produto = 
+    /* * * * * * * * * * * * * * * * * * * * * * CONSULTA PARA ITENS DO CARRINHO * * * * * * * * * * * * * * * * * * * * * */
+    include 'acoes_php/carrinho/selecionar_produtos.php';
+
+    /* * * * * * * * * * * * * * * * * * * * * * CONSULTA PARA PRODUTO (COMPRAR AGORA) * * * * * * * * * * * * * * * * * * * * * */
+    $id_produto = isset($_GET['id_produto']) ? $_GET['id_produto'] : 0;
+	$sql_produto = mysql_query(
         "SELECT 
             `id_produto`
             , `nome`
-            , `descricao`
-            , `preco_anterior`
-            , `preco_atual`
-            , `altura`
-            , `largura`
-            , `profundidade`
-            , `peso`
-            , `destaque`
-            , `oferta_relampago`
-            , `id_categoria` 
             , `caminho_imagem` 
-            , `ativo` 
-            , `dt_cadastro` 
+            , `preco_atual`
+            , `preco_anterior`
         FROM 
-            `produtos`";	
+            `produtos`
+        WHERE 
+            `id_produto` = $id_produto"
+    );
 
-    // Para "Comprar Agora"...
-    $id_produto = isset($_GET['id_produto']) ? $_GET['id_produto'] : 0;
-	$sql_produto = mysql_query($select_produto . "WHERE `id_produto` = $id_produto");
+    /* * * * * * * * * * * * * * * * * * * * * * CONSULTA PARA LOJAS FUTUREMOB * * * * * * * * * * * * * * * * * * * * * */
+	$sql_lojas = mysql_query(
+        "SELECT 
+            `id_loja`
+            , `nome`
+            , `endereco_completo` 
+        FROM 
+            `lojas`"
+    );	
 
-    // Para um carrinho de compras
-    //$sql_produtosCarrinho = mysql_query($select_produto . " AND `id_produto IN()"); 
-
-	// Consulta base para enderecos
+    /* * * * * * * * * * * * * * * * * * * * * * CONSULTA PARA ENDEREÇOS DO USUÁRIO * * * * * * * * * * * * * * * * * * * * * */
 	$select_enderecos = 
         "SELECT 
             `id_endereco`
@@ -50,9 +50,9 @@
         FROM 
             `enderecos`
         WHERE
-            `id_usuario` = $id_usuario";	    
+            `id_usuario` = $id_usuario"
+    ;	    
 
-	// Consultas específicas para endereços
 	$sql_enderecos = mysql_query($select_enderecos . " AND `principal` = 0");
     $sql_enderecoPrincipal = mysql_query($select_enderecos . " AND `principal` = 1"); 
 
@@ -62,7 +62,7 @@
         $temEnderecosCadastrados = false;
     }
 
-    // Consulta base para cartões de pagamento
+    /* * * * * * * * * * * * * * * * * * * * * * CONSULTA PARA CARTÕES DE PAGAMENTO (CRÉDITO/DÉBITO) DO USUÁRIO * * * * * * * * * * * * * * * * * * * * * */
     $select_cartoes_pagamento = 
         "SELECT 
             `id_cartao_pagamento`
@@ -80,9 +80,9 @@
         FROM 
             `cartoes_pagamento`
         WHERE
-            `id_usuario` = $id_usuario";
+            `id_usuario` = $id_usuario"
+    ;
 
-    // Consultas específicas para cartões de pagamento
     $sql_cartoes_pagamento = mysql_query($select_cartoes_pagamento . " AND `principal` = 0");
     $sql_cartoes_pagamento_principal = mysql_query($select_cartoes_pagamento . " AND `principal` = 1"); 
 
@@ -150,8 +150,8 @@
                                         <?php if ($temEnderecosCadastrados) {
                                             while($linha = mysql_fetch_assoc($sql_enderecoPrincipal)) { ?>
                                                 <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="radio" name="opcao-entrega" id="chkEndereco_principal">
-                                                    <label class="form-check-label" for="chkEndereco_principal">
+                                                    <input class="form-check-input" type="radio" name="opcao-entrega" id="rdbEndereco_principal" value="endereco_<?php echo $linha['id_endereco']; ?>">
+                                                    <label class="form-check-label" for="rdbEndereco_principal">
                                                         <strong>
                                                             Endereço Principal - <?php echo $linha['nome_endereco']; ?>
                                                         </strong>
@@ -187,8 +187,8 @@
                                                         <div id="collapseOutrosEnderecos" class="accordion-collapse collapse m-3" data-bs-parent="#accordionEnderecosOpcoes">
                                                             <?php while($linha = mysql_fetch_assoc($sql_enderecos)) { ?>
                                                                 <div class="form-check mb-3">
-                                                                    <input class="form-check-input" type="radio" name="opcao-entrega" id="chkEndereco_<?php echo $linha["id_endereco"]; ?>">
-                                                                    <label class="form-check-label" for="chkEndereco_<?php echo $linha["id_endereco"]; ?>">
+                                                                    <input class="form-check-input" type="radio" name="opcao-entrega" id="rdbEndereco_<?php echo $linha["id_endereco"]; ?>" value="endereco_<?php echo $linha['id_endereco']; ?>">
+                                                                    <label class="form-check-label" for="rdbEndereco_<?php echo $linha["id_endereco"]; ?>">
                                                                         <strong>
                                                                             <?php echo $linha['nome_endereco']; ?>
                                                                         </strong>
@@ -324,14 +324,19 @@
                                 </div>
                                 <div id="entrega_retirar" class="container-accordion" style="display: none;">
                                     <div class="conteudo-accordion">
-                                        <div class="form-check">
-                                            <input id="rdbLojaAlphaville" class="form-check-input" type="radio" name="opcao-entrega">
-                                            <label class="form-check-label" for="rdbLojaAlphaville">Loja Alphaville - Av. Yojiro Takaoka, 2001</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input id="rdbLojaSaoCaetano" class="form-check-input" type="radio" name="opcao-entrega">
-                                            <label class="form-check-label" for="rdbLojaSaoCaetano">Loja São Caetano - ParkShopping São Caetano - Loja 3, 3º Andar</label>
-                                        </div>
+                                        <?php while($linha = mysql_fetch_assoc($sql_lojas)) { ?>
+                                            <div class="form-check mb-3">
+                                                <input id="rdbLoja_<?php echo $linha['id_loja']; ?>" class="form-check-input" type="radio" name="opcao-entrega" value="loja_<?php echo $linha['id_loja']; ?>">
+                                                <label class="form-check-label" for="rdbLoja_<?php echo $linha['id_loja']; ?>">
+                                                    <strong>
+                                                        <?php echo $linha['nome']; ?>
+                                                    </strong>
+                                                    <p>
+                                                        <?php echo $linha['endereco_completo']; ?>
+                                                    </p>
+                                                </label>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                 </div>                    
                             </section>
@@ -345,7 +350,7 @@
                     <section class="border-bottom w-100">
                         <div onclick="document.getElementById('forma-pagamento_pix').click();" class="btn-accordion">
                             <div>
-                                <input onclick="exibirAccordion('pix_info', 'secao-formas_pagamento');" id="forma-pagamento_pix" type="radio" name="forma-pagamento"/>
+                                <input onclick="exibirAccordion('pix_info', 'secao-formas_pagamento');" id="forma-pagamento_pix" type="radio" name="forma-pagamento" value="pix"/>
                                 <i class="fa-brands fa-pix"></i>Pix 
                             </div>
                             <small>aprovação imediata!</small>
@@ -370,10 +375,6 @@
                                     </ul>
                                     <h5 class="mt-3">Pronto! Viu só como é <strong style="color: #32BCAD;">fácil</strong>?</h5>
                                 </div>
-                                <div class="div-finalizar">
-                                    <img src="recursos/imagens/logos/bandeiras_pagamento/pix.svg" width="175px">
-                                    <button type="button" onclick="finalizarPedidoPIX();" class="btn btn-lg btn-finalizar btn-pix"><i class="fa-brands fa-pix"></i>Finalizar pedido com Pix</button>
-                                </div>
                             </div>
                         </div>                    
                     </section>
@@ -392,7 +393,7 @@
                                 <?php if ($temCartoesPagamentoCadastrados) {
                                     while($linha = mysql_fetch_assoc($sql_cartoes_pagamento_principal)) { ?>
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="forma-pagamento" id="chkPagamento_principal">
+                                            <input class="form-check-input" type="radio" name="forma-pagamento" id="chkPagamento_principal" value="<?php echo $linha['id_cartao_pagamento']; ?>">
                                             <label class="form-check-label" for="chkPagamento_principal">
                                                 <strong>
                                                     Cartão Principal - <?php echo $linha['apelido']; ?>
@@ -429,7 +430,7 @@
                                                 <div id="collapseOutrosPagamentos" class="accordion-collapse collapse m-3" data-bs-parent="#accordionCartoesPagamentoOpcoes">
                                                     <?php while($linha = mysql_fetch_assoc($sql_cartoes_pagamento)) { ?>
                                                         <div class="form-check mb-3">
-                                                            <input class="form-check-input" type="radio" name="forma-pagamento" id="chkPagamento_<?php echo $linha["id_cartao_pagamento"]; ?>">
+                                                            <input class="form-check-input" type="radio" name="forma-pagamento" id="chkPagamento_<?php echo $linha["id_cartao_pagamento"]; ?>" value="<?php echo $linha['id_cartao_pagamento']; ?>">
                                                             <label class="form-check-label" for="chkPagamento_<?php echo $linha["id_cartao_pagamento"]; ?>">
                                                                 <strong>
                                                                     <?php echo $linha['apelido']; ?>
@@ -561,7 +562,7 @@
                                         <div class="d-flex justify-content-between align-items-center"> 
                                             <!-- Quantidade de parcelas -->
                                             <div class="form-floating">
-                                                <select id="cboParcelas" class="form-select">
+                                                <select id="cboParcelas" name="cboParcelas" class="form-select">
                                                 </select>
                                                 <label for="cboParcelas">Quantidade de parcelas</label>
                                             </div>
@@ -569,19 +570,15 @@
                                             <!-- Crédito ou Débito -->
                                             <div class="mx-3">
                                                 <div class="form-check d-flex align-items-center">
-                                                    <input id="rdbCredito" class="form-check-input" type="radio" value="credito" name="rdbCreditoDebito">
+                                                    <input id="rdbCredito" class="form-check-input" type="radio" name="credito_debito" value="credito">
                                                     <label class="form-check-label mx-2" for="rdbCredito">Crédito</label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center">
-                                                    <input id="rdbDebito" class="form-check-input" type="radio" value="debito" name="rdbCreditoDebito" checked>
+                                                    <input id="rdbDebito" class="form-check-input" type="radio" name="credito_debito" value="debito">
                                                     <label class="form-check-label mx-2" for="rdbDebito">Débito</label>
                                                 </div>
                                             </div>                                           
                                         </div>
-
-                                        <button type="submit" class="btn btn-lg btn-finalizar btn-cartao m-0">
-                                            <i class="fa-solid fa-credit-card"></i>Finalizar Pedido
-                                        </button>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -590,7 +587,16 @@
                 </div>
             </div>
             <div class="coluna-2">
-                <div class="info-container">
+                <form name="frmFinalizarPedido" id="frmFinalizarPedido" method="post" onsubmit="finalizarPedido(event);" class="info-container">      
+                    <input type="hidden" id="txtValorSubTotalPedido" name="txtValorSubTotalPedido" value="">
+                    <input type="hidden" id="txtValorFrete" name="txtValorFrete" value="">
+                    <input type="hidden" id="txtValorDesconto" name="txtValorDesconto" value="">
+                    <input type="hidden" id="txtValorTotalPedido" name="txtValorTotalPedido" value="">
+                    <input type="hidden" id="txtCreditoDebito" name="txtCreditoDebito" value="">
+                    <input type="hidden" id="txtFormaPagamento" name="txtFormaPagamento" value="">
+                    <input type="hidden" id="txtParcelas" name="txtParcelas" value="">
+                    <input type="hidden" id="txtOpcaoEntrega" name="txtOpcaoEntrega" value="">
+
                     <h5 class="div-valor_titulo"><i class="fa-solid fa-bag-shopping"></i> Resumo do Pedido</h5>
                     <div class="div-valor_info resumo-pedido">
                         <p>Subtotal:</p>
@@ -606,14 +612,16 @@
                     </div>
                     <div class="div-valor_info resumo-pedido">
                         <h4>Total a pagar:</h4>
-                        <h4 class="text-success">R$ <span name="lblValorTotalPedido"></span></h4>
+                        <h4 class="text-success">R$ <span id="lblValorTotalPedido" name="lblValorTotalPedido"></span></h4>
                     </div>
-                    <a href="listagem-geral-produtos.php" class="btn btn-escolherMaisProdutos">Escolher mais produtos</a> 
-                </div>
-
-                <div class="info-container p-3">
-                    <?php if ($id_produto !== 0) {
-                        while($linha = mysql_fetch_assoc($sql_produto)) { ?>
+                    <div class="d-flex"> 
+                        <a href="listagem-geral-produtos.php" class="btn btn-resumoPedido btn-escolherMaisProdutos">Escolher mais produtos</a>                         
+                        <button type="submit" class="btn btn-resumoPedido btn-finalizar">Finalizar Pedido</button> 
+                    </div>
+                </form>
+                <?php if ($id_produto !== 0) {
+                    while($linha = mysql_fetch_assoc($sql_produto)) { ?>
+                        <div class="info-container p-3">
                             <div class="div-produto_info">
                                 <a href="detalhes-produto.php" class="div-produto_info_img"><img src="<?php echo $linha['caminho_imagem']; ?>" /></a>
                                 <div class="mb-2">
@@ -637,11 +645,36 @@
                             <div class="div-produto_opcoes">
                                 <span class="text-muted mt-2"><span name="lblQtdProduto">1</span> item(ns)</span>
                             </div>
-                        <?php } ?>
-                    <?php } else { // Os produtos do carrinho deverão ser renderizados aqui. ?>
-                        
-                    <?php }?>
-                </div>
+                        </div>
+                    <?php } ?>
+                <?php } else {
+                    foreach ($itens_carrinho as $item): ?>
+                        <div class="info-container p-3">
+                            <div class="div-produto_info">
+                                <a href="detalhes-produto.php" class="div-produto_info_img"><img src="<?php echo $item['caminho_imagem']; ?>" /></a>
+                                <div class="mb-2">
+                                    <h5 class="mb-1"><?php echo $item['nome']; ?></h5>
+                                    <!-- <div class="avaliacao-estrelas mb-2">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <b>(4.9)</b>
+                                    </div> -->
+                                    <p>
+                                        <s class="text-muted">De: R$ <?php echo number_format($item['preco_anterior'], 2, ',', '.'); ?></s><br>
+                                        <b>Por: R$ <span name="lblValorProduto"><?php echo number_format($item['preco_atual'], 2, ',', '.'); ?></span></b>
+                                    </p>
+                                    <p><b>à vista com pix, ou em 1x no Cartão de Crédito</b></p>
+                                    <p>ou em até 10x de <?php echo number_format($item['preco_atual'] / 10, 2, ',', '.'); ?> s/ juros</p>
+                                </div>
+                            </div>
+                            <div class="div-produto_opcoes">
+                                <span class="text-muted mt-2"><span name="lblQtdProduto">1</span> item(ns)</span>
+                            </div>
+                        </div>
+                <?php endforeach; }?>
             </div>
         </main>
     </body>
