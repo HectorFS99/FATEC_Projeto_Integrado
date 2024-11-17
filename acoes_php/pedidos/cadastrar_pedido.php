@@ -10,45 +10,19 @@
     $frete = $_POST["txtValorFrete"];
     $descontos = $_POST["txtValorDesconto"];
     $total = $_POST["txtValorTotalPedido"];
-    $id_forma_pagamento = null;
-    $id_cartao_pagamento = null;
-    $parcelas = null;
-    $id_loja = null;
-    $id_endereco = null;  
 
-    /* * * * * * FORMA DE PAGAMENTO * * * * * */
-    if ($_POST["txtCreditoDebito"] === 'credito') {
-        $id_forma_pagamento = 2;
-    } else if ($_POST["txtCreditoDebito"] === 'debito') {
-        $id_forma_pagamento = 3;
-    } else if ($_POST["txtFormaPagamento"] === 'pix') {
-        $id_forma_pagamento = 1;
+    /* * * * * * OPÇÃO DE ENTREGA (ENTREGA OU RETIRADA NA LOJA). * * * * * */ 
+    $id_loja = "null";
+    $id_endereco = "null";  
+
+    $opcaoEntrega = $_POST["txtOpcaoEntrega"];
+    if (strpos($opcaoEntrega, 'loja') !== false) {
+        $id_loja = str_replace("loja_", "", $opcaoEntrega);        
+    } else {
+        $id_endereco = str_replace("endereco_", "", $opcaoEntrega);
     }
 
-    /* * * * * * FORMA DE PAGAMENTO (CASO SEJA CRÉDITO OU DÉBITO) * * * * * */  
-    if ($id_forma_pagamento === 2 || $id_forma_pagamento === 3) {
-        $id_cartao_pagamento = $_POST["txtFormaPagamento"];
-        $parcelas =  $_POST["txtParcelas"];        
-    }
-
-    /* * * * * * OPÇÃO DE ENTREGA (ENTREGA OU RETIRADA NA LOJA) * * * * * */  
-    if (strpos($_POST["txtOpcaoEntrega"], 'loja')) {
-        $id_loja = str_replace("loja_", "", $_POST["txtOpcaoEntrega"]);
-    } else if (strpos($_POST["txtOpcaoEntrega"], 'endereco')) {
-        $id_endereco = str_replace("endereco_", "", $_POST["txtOpcaoEntrega"]);
-    }
-
-    echo "<script>alert('subtotal: $subtotal');</script>";
-    echo "<script>alert('frete: $frete');</script>";
-    echo "<script>alert('descontos: $descontos');</script>";
-    echo "<script>alert('total: $total');</script>";
-    echo "<script>alert('id_forma_pagamento: $id_forma_pagamento');</script>";
-    echo "<script>alert('id_cartao_pagamento: $id_cartao_pagamento');</script>";
-    echo "<script>alert('parcelas: $parcelas');</script>";
-    echo "<script>alert('id_loja: $id_loja');</script>";
-    echo "<script>alert('id_endereco: $id_endereco');</script>";
-    echo "<script>alert('id_usuario: $id_usuario');</script>";
-
+    /* * * * * * INSERE O PEDIDO NA TABELA. * * * * * */  
     $sql = mysql_query(
         "INSERT INTO `pedidos`(
             `subtotal`
@@ -75,34 +49,61 @@
         )"
     );
 
+    /* * * * * * APÓS A INSERÇÃO DO PEDIDO... * * * * * */  
     if ($sql == 1) {
         $sql_id_pedido = mysql_query("SELECT `id_pedido` FROM `pedidos` WHERE `id_usuario` = $id_usuario ORDER BY `id_pedido` DESC LIMIT 1");
         $id_pedido_result = mysql_fetch_assoc($sql_id_pedido);
         $id_pedido = $id_pedido_result['id_pedido'];
 
+        /* * * * * * FORMA DE PAGAMENTO. * * * * * */
+        $id_forma_pagamento = "null";
+        $id_cartao_pagamento = "null";
+        $parcelas = "null";
+
+        $formaPagamento = $_POST["txtCreditoDebito"];
+        if ($formaPagamento === 'credito') {
+            $id_forma_pagamento = 2;
+        } else if ($formaPagamento === 'debito') {
+            $id_forma_pagamento = 3;
+        } else {
+            $formaPagamento = $_POST["txtFormaPagamento"];
+
+            if ($formaPagamento === 'pix') {
+                $id_forma_pagamento = 1;
+            }
+        }        
+
+        /* * * * * * CARTÃO PARA PAGAMENTO E PARCELAS (CASO FORMA DE PAGAMENTO SEJA CRÉDITO OU DÉBITO). * * * * * */  
+        if ($id_forma_pagamento === 2 || $id_forma_pagamento === 3) {
+            $id_cartao_pagamento = $_POST["txtFormaPagamento"];
+            $parcelas =  $_POST["txtParcelas"];        
+        }
+
+        /* * * * * * INSERE O PAGAMENTO DO PEDIDO NA TABELA DE PAGAMENTOS. * * * * * */
         $sql_insert_pagamento = mysql_query(
             "INSERT INTO pagamentos (
-                `id_pedido`, 
-                `id_forma_pagamento`, 
-                `id_cartao_pagamento`, 
-                `parcelas`
+                `id_forma_pagamento` 
+                , `id_cartao_pagamento` 
+                , `parcelas`
             ) VALUES (
-                $id_pedido,
-                $id_forma_pagamento,
-                $id_cartao_pagamento,
-                $parcelas
+                $id_forma_pagamento
+                , $id_cartao_pagamento
+                , $parcelas
             )
         ");
-
+        
+        /* * * * * * APÓS A INSERÇÃO DO PAGAMENTO... * * * * * */  
         if ($sql_insert_pagamento == 1) {
-            $sql_id_pagamento = mysql_query("SELECT `id_pagamento` FROM `pagamentos` WHERE `id_pedido` = $id_pedido ORDER BY `id_pagamento` DESC LIMIT 1");
+            $sql_id_pagamento = mysql_query("SELECT `id_pagamento` FROM `pagamentos` ORDER BY `id_pagamento` DESC LIMIT 1");
             $id_pagamento_result = mysql_fetch_assoc($sql_id_pagamento);
             $id_pagamento = $id_pagamento_result['id_pagamento'];
     
-            $sql_update_pedido = "UPDATE pedidos set id_pagamento = $id_pagamento WHERE id_pedido = $id_pedido";
+            /* * * * * * ATUALIZA O ID DO PAGAMENTO, NO REGISTRO DO PEDIDO REALIZADO E INSERIDO LÁ EM CIMA. * * * * * */  
+            $sql_update_pedido = mysql_query("UPDATE pedidos set id_pagamento = $id_pagamento WHERE id_pedido = $id_pedido");
 
             include '../carrinho/selecionar_produtos.php';
-            
+
+            /* * * * * * INSERE OS PRODUTOS DO PEDIDO, NA TABELA DE "PEDIDOS_PRODUTOS". * * * * * */
             foreach ($itens_carrinho as $item) {
                 $id_produto_pedido = $item['id_produto'];
                 $quantidade = $item['total_quantidade'];
@@ -119,17 +120,16 @@
                     )
                 ");
 
-                if (!$sql_insert_pedidos_produtos) {
+                /* * * * * * REMOVE DO CARRINHO OS PRODUTOS QUE FORAM PEDIDOS. * * * * * */  
+                if ($sql_insert_pedidos_produtos == 1) {
+                    $sql_delete_produto_carrinho = mysql_query("DELETE FROM carrinho WHERE id_produto = $id_produto_pedido AND id_usuario = $id_usuario");
+                } else {                    
                     echo "<script>alert('Erro ao registrar os produtos do pedido.');</script>";
                     break;
-                } else {
-                    $sql_delete_produto_carrinho = mysql_query("DELETE FROM carrinho WHERE id_produto = $id_produto AND id_usuario = $id_usuario");
                 }
-            }            
+            }
         } else {
-            echo 
-                "<script>alert('Erro ao registrar pagamento do pedido.');</script>"; 
-                
+            echo "<script>alert('Erro ao registrar pagamento do pedido.');</script>";                 
             return;
         }
 

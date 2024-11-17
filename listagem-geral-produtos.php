@@ -190,14 +190,14 @@
                             <p>Por: R$ <?php echo number_format($linha['preco_atual'], 2, ',', '.'); ?></p>
                             <small>ou em até 10x de R$ <?php echo number_format($linha['preco_atual'] / 10, 2, ',', '.'); ?> s/ juros</small>
                             <?php if (isset($_SESSION['autenticado']) && $_SESSION['id_usuario'] > 0) { ?>
-                                <a href="pagamento.php?id_produto=<?php echo $linha['id_produto']; ?>" class="btn btn-laranja mt-2">Comprar</a>
+                                <a href="./acoes_php/carrinho/adicionar_produto.php?id_produto=<?php echo $linha['id_produto']; ?>&comprarAgora=true" class="btn btn-laranja mt-2">Comprar</a>
                                 <a href="acoes_php/favorito/favoritar.php?id_produto=<?php echo $linha['id_produto']; ?>" class="btn btn-danger mt-2 d-flex align-items-center" style="margin-left: 10px">
                                     <i class="fa-regular fa-heart"></i>
                                 </a>
                             <?php } else { ?>
                                 <a href="login.php" class="btn btn-laranja mt-2">Comprar</a>                                
                             <?php } ?>
-                        </div>			
+                        </div>
 					<?php } ?>
                 </div>            
             </div>

@@ -85,6 +85,8 @@ function finalizarPedido(e) {
         if (formaPagamento.value !== 'pix' && !creditoDebito) {
             notificar(false, 'Escolha uma opção de pagamento para o cartão selecionado (crédito ou débito).', '', 'error', '');
             return;           
+        } else if (formaPagamento.value !== 'pix') {
+            document.getElementById('txtCreditoDebito').value = creditoDebito.value;
         }
         
         var subTotal = formatarParaDecimal(document.getElementById('lblValorSubTotalPedido').innerText);
@@ -92,13 +94,12 @@ function finalizarPedido(e) {
         var desconto = formatarParaDecimal(document.getElementById('lblValorDesconto').innerText);
         var total = formatarParaDecimal(document.getElementById('lblValorTotalPedido').innerText);
         var parcelas = document.getElementById('cboParcelas').value;
-
+        
+        document.getElementById('txtFormaPagamento').value = formaPagamento.value;
         document.getElementById('txtValorSubTotalPedido').value = subTotal;
         document.getElementById('txtValorFrete').value = frete;
         document.getElementById('txtValorDesconto').value = desconto;
         document.getElementById('txtValorTotalPedido').value = total;
-        document.getElementById('txtCreditoDebito').value = creditoDebito.value;
-        document.getElementById('txtFormaPagamento').value = formaPagamento.value;
         document.getElementById('txtParcelas').value = parcelas;
         document.getElementById('txtOpcaoEntrega').value = opcaoEntrega.value;
 
