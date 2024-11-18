@@ -2,9 +2,6 @@
 	header('Content-Type: text/html; charset=utf-8');
 	include 'conexao.php';
 
-
-
-    
 	// Consulta para categorias
 	$sql_categorias = mysql_query(
 		"SELECT
@@ -38,7 +35,7 @@
             `oferta_relampago`,
             `id_categoria`,
             `caminho_imagem`,
-            `ativo`
+            `ativo`        
         FROM 
             `produtos`";
 
