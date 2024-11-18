@@ -610,7 +610,7 @@
                     <?php foreach ($itens_carrinho as $item): ?>
                         <div class="info-container p-3">
                             <div class="div-produto_info">
-                                <a href="detalhes-produto.php" class="div-produto_info_img"><img src="<?php echo $item['caminho_imagem']; ?>" /></a>
+                                <a href="detalhes-produto.php?id_produto=<?php echo $item['id_produto']; ?>" class="div-produto_info_img"><img src="<?php echo $item['caminho_imagem']; ?>" /></a>
                                 <div class="mb-2">
                                     <h5 class="mb-1"><?php echo $item['nome']; ?></h5>
                                     <!-- <div class="avaliacao-estrelas mb-2">

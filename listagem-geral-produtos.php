@@ -189,11 +189,19 @@
                             <small><s>De: R$ <?php echo number_format($linha['preco_anterior'], 2, ',', '.'); ?></s></small>
                             <p>Por: R$ <?php echo number_format($linha['preco_atual'], 2, ',', '.'); ?></p>
                             <small>ou em até 10x de R$ <?php echo number_format($linha['preco_atual'] / 10, 2, ',', '.'); ?> s/ juros</small>
+                            
                             <?php if (isset($_SESSION['autenticado']) && $_SESSION['id_usuario'] > 0) { ?>
-                                <a href="./acoes_php/carrinho/adicionar_produto.php?id_produto=<?php echo $linha['id_produto']; ?>&comprarAgora=true" class="btn btn-laranja mt-2">Comprar</a>
-                                <a href="acoes_php/favorito/favoritar.php?id_produto=<?php echo $linha['id_produto']; ?>" class="btn btn-danger mt-2 d-flex align-items-center" style="margin-left: 10px">
-                                    <i class="fa-regular fa-heart"></i>
-                                </a>
+                                <div class="d-flex">
+                                    <a href="./acoes_php/carrinho/adicionar_produto.php?id_produto=<?php echo $linha['id_produto']; ?>&comprarAgora=true" class="btn btn-laranja mt-2 w-100">
+                                        <strong>Comprar</strong>
+                                    </a>
+                                    <a href="acoes_php/favorito/favoritar.php?id_produto=<?php echo $linha['id_produto']; ?>" class="btn btn-danger mt-2 d-flex align-items-center" style="margin-left: 10px">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </a>                                    
+                                </div>                                
+                                <a href="./acoes_php/carrinho/adicionar_produto.php?id_produto=<?php echo $linha['id_produto']; ?>&listagem=true" class="btn btn-light mt-2 w-100">
+                                    <strong>Adicionar ao Carrinho</strong>
+                                </a>                                
                             <?php } else { ?>
                                 <a href="login.php" class="btn btn-laranja mt-2">Comprar</a>                                
                             <?php } ?>

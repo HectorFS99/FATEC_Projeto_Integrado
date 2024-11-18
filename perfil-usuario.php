@@ -30,7 +30,53 @@
 </head>
 
 <body>
-	<?php include 'header.php'; ?>
+	<?php 
+		date_default_timezone_set('America/Sao_Paulo'); // Define o fuso horário para o Brasil
+
+		include 'header.php';
+		
+		$id_usuario = $_SESSION['id_usuario'];
+
+		/* * * * * * * * * * * * * * * * * * * * * * CONSULTA PARA OS PEDIDOS DO USUÁRIO * * * * * * * * * * * * * * * * * * * * * */
+		$sql_pedidos = mysql_query(
+			"SELECT 
+				P.id_pedido
+				, P.dt_pedido
+				, P.subtotal
+				, P.frete
+				, P.descontos
+				, P.total
+				, P.id_status
+				, STT.nome AS nome_status
+				, END.id_endereco
+				, END.nome_endereco
+				, END.logradouro
+				, END.numero
+				, END.complemento
+				, END.bairro
+				, END.cep
+				, END.cidade
+				, END.uf
+				, L.id_loja
+				, L.nome AS nome_loja
+				, L.endereco_completo AS endereco_loja
+			FROM 
+				pedidos AS P
+				INNER JOIN status AS STT ON STT.id_status = P.id_status
+				LEFT JOIN enderecos AS END ON END.id_endereco = P.id_endereco
+				LEFT JOIN lojas AS L ON L.id_loja = P.id_loja
+			WHERE
+				P.id_usuario = $id_usuario
+			ORDER BY
+				P.id_pedido DESC"
+		);
+
+		$temPedidos = true;
+		if (mysql_num_rows($sql_pedidos) == 0) {
+			$temPedidos = false;
+		}		
+	?>
+
 	<main class="main-usuario">
 		<div class="menu-lateral rounded-bottom">
 			<button id="btnPedidos" onclick="exibirTela('section-meus-pedidos', this.id);" class="btn menu-lateral_opcao mt-3 btn-opcaoMenu_selecionado">
@@ -49,124 +95,132 @@
 				<i class="fa-solid fa-person-walking-arrow-loop-left"></i>
 				<p>Sair</p>
 			</a>
-
 		</div>
 		<section class="section-tela" id="section-meus-pedidos">
-			<div class="container-pedidos">
-				<div class="container-ped">
-					<div class="container-ped_conteudo">
-						<div>
-							<a href="detalhes-produto.php" class="container-ped_info_img">
-								<img src="recursos/imagens/produtos/sala-conjunto_poltrona_egg.jpg">
-							</a>
-							<h6></h6>
+			<?php if (mysql_num_rows($sql_pedidos) > 0) {
+			 	while($pedido = mysql_fetch_assoc($sql_pedidos)) { ?>
+					<div class="container-pedidos">
+						<div class="container-pedidos_componentes container-pedidos_cabecalho">
+							<!-- Endereço de entrega ou retirada-->
+							<div class="container-pedidos_cabecalho-info">
+								<?php if ($pedido['id_endereco'] !== null) { ?>
+									<strong>Enviar para <?php echo $pedido['nome_endereco']; ?></strong>
+									<p><?php echo $pedido['logradouro']; ?>, <?php echo $pedido['numero']; ?> - <?php echo $pedido['complemento']; ?></p> 
+									<p><?php echo $pedido['cep']; ?> - <?php echo $pedido['bairro']; ?>, <?php echo $pedido['cidade']; ?> - <?php echo $pedido['uf']; ?></p> 
+								<?php } else { ?>									
+									<p class="titulo-informacao"></p>
+									<strong>Retirar em <?php echo $pedido['nome_loja']; ?></strong>
+									<p><?php echo $pedido['endereco_loja']; ?></p> 
+								<?php } ?>
+							</div>
+
+							<!-- Data do Pedido -->					
+							<div class="container-pedidos_cabecalho-info">
+								<p class="titulo-informacao">REALIZADO EM</p>
+								<p><?php echo date('d/m/Y H:i:s', strtotime($pedido['dt_pedido'])); ?></p>
+							</div>
+							
+							<!-- Total do Pedido-->
+							<div class="container-pedidos_cabecalho-info">
+								<p class="titulo-informacao">TOTAL</p>
+								<p>R$ <?php echo $pedido['total']; ?></p>
+							</div>
+
+							<!-- Número do pedido -->
+							<div class="container-pedidos_cabecalho-info">
+								<p class="titulo-informacao">NÚM. DO PEDIDO</p>
+								<?php echo $pedido['id_pedido']; ?>
+							</div>									
 						</div>
-						<small>Quantidade: <b>1</b></small>
-						<small>Valor: <b>R$ 3.299,00</b></small>
-					</div>
-					<div class="container-ped_conteudo align-items-center flex-fill">
-						<ul class="d-flex">
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-receipt"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-file-invoice-dollar"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-dolly"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-truck-fast"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-house-circle-check"></i></li>
-						</ul>
-						<small>Status: <b class="text-success">Pedido entregue - 13/06/2023 15:19</b></small>
-					</div>
-					<div class="container-ped_conteudo border-0 justify-content-between">
-						<h5>Resumo da compra</h5>
-						<small>Pedido: <b>123456789</b></small>
-						<small>Data do pedido <b>08/06/2023</b></small>
-						<small>Valor total: <b>R$ 3.299,00</b></small>
-						<div class="w-100">
-							<a href="#" class="btn btn-detalhes_ped">Ver detalhes</a>
-							<button type="button" id="btnAvaliar" onclick="avaliar();" class="btn btn-avaliar_ped"><i class="fa-solid fa-star"></i> Avaliar</a>
+						<div class="container-pedidos_corpo">
+							<?php 
+								$select_produtos_pedidos = 
+									"SELECT 
+										PRD.id_produto
+										, PRD.caminho_imagem
+										, PRD.nome
+										, PRD.preco_atual
+										, PRD.preco_anterior
+									FROM 
+										pedidos_produtos AS PP
+										INNER JOIN produtos AS PRD ON PRD.id_produto = PP.id_produto
+									WHERE
+										PP.id_pedido = "
+									;
+
+								$sql_produtos_pedidos = mysql_query($select_produtos_pedidos . $pedido['id_pedido']);
+
+								while ($produto = mysql_fetch_assoc($sql_produtos_pedidos)) { ?>
+									<a href="detalhes-produto.php?id_produto=<?php echo $produto['id_produto']; ?>" class="div-produto_info card-container">
+										<div class="div-produto_info_img mb-0">
+											<img src="<?php echo $produto['caminho_imagem']; ?>" />
+										</div>
+										<div class="mb-2">
+											<h5 class="mb-1"><?php echo $produto['nome']; ?></h5>
+											<div class="avaliacao-estrelas mb-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<b>(4.9)</b>
+											</div>
+											<p>
+												<s class="titulo-informacao">De: R$ <?php echo number_format($produto['preco_anterior'], 2, ',', '.'); ?></s><br>
+												<b>Por: R$ <span name="lblValorProduto"><?php echo number_format($produto['preco_atual'], 2, ',', '.'); ?></span></b>
+											</p>
+										</div>
+									</a>
+							<?php } ?>
+						</div>
+						<div class="container-pedidos_componentes container-pedidos_rodape">
+							<!-- Status -->
+							<div class="container-pedidos_cabecalho-info">
+								<p class="titulo-informacao">STATUS</p>
+								<p><?php echo $pedido['nome_status']; ?></p>									
+							</div>
+
+							<!-- Ações -->
+							<div class="container-pedidos-acoes">
+
+								<!-- Em separação ou Enviado -->
+								<?php if ($pedido['id_status'] == 4 || $pedido['id_status'] == 5) { ?>
+									<button type="button" id="btn" onclick="acompanharEntrega();" class="btn-acao_pedido btn-acompanhar">
+										Acompanhar
+									</button>									
+								<?php } ?>
+
+								<!-- Entregue -->
+								<?php if ($pedido['id_status'] == 6) { ?>
+									<button type="button" class="btn-acao_pedido btn-devolver">
+										Devolver
+									</button>
+									<button type="button" id="btnAvaliar" onclick="avaliar();" class="btn-acao_pedido btn-avaliar_ped">
+										Avaliar
+									</button>
+								<?php } ?>
+								
+								<!-- Para poder cancelar, o pedido deve ser diferente de "Entregue" (6), "Cancelado" (7) e "Devolvido" (8) -->
+								<?php if ($pedido['id_status'] != 6 && $pedido['id_status'] != 7 && $pedido['id_status'] != 8) { ?>
+									<button type="button" class="btn-acao_pedido btn-devolver">
+										Cancelar
+									</button>								
+								<?php } ?>
+
+								<button type="button" class="btn-acao_pedido btn-detalhes_ped">
+									Detalhes
+								</button>
+							</div>							
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="container-pedidos">
-				<div class="container-ped">
-					<div class="container-ped_conteudo">
-						<div>
-							<a href="detalhes-produto.php" class="container-ped_info_img">
-								<img src="recursos/imagens/produtos/sala-sofa_branco2.jpg">
-							</a>
-							<h6></h6>
-						</div>
-						<small>Quantidade: <b>1</b></small>
-						<small>Valor: <b>R$ 5.299,00</b></small>
-					</div>
-					<div class="container-ped_conteudo align-items-center flex-fill">
-						<ul class="d-flex">
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-receipt"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-file-invoice-dollar"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-dolly"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-truck-fast"></i></li>
-							<li class="ped-status_linha"></li>
-							<li class="ped-status_etapa"><i class="fa-solid fa-house-circle-check"></i></li>
-						</ul>
-						<small>Status: <b>Pagamento Confirmado - 08/06/2024 13:49</b></small>
-					</div>
-					<div class="container-ped_conteudo border-0 justify-content-between">
-						<h6>Resumo da compra</h6>
-						<small>Pedido: <b>010062024</b></small>
-						<small>Data do pedido <b>08/06/2024</b></small>
-						<small>Valor total: <b>R$ 5.299,00</b></small>
-						<div class="w-100">
-							<a href="#" class="btn btn-detalhes_ped mt-2">Ver detalhes</a>
-							<button type="button" id="btnAvaliar" onclick="acompanharEntrega();" class="btn btn-acompanhar"><i class="fa-solid fa-location-dot"></i>Acompanhar Entrega</a>
-								<button type="button" id="btnAvaliar" class="btn btn-devolver mt-1"><i class="fa-solid fa-xmark"></i>Cancelar Pedido</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="container-pedidos">
-				<div class="container-ped">
-					<div class="container-ped_conteudo">
-						<div>
-							<a href="detalhes-produto.php" class="container-ped_info_img">
-								<img src="recursos/imagens/produtos/quarto-sofa_infantil.jpg">
-							</a>
-							<h6></h6>
-						</div>
-						<small>Quantidade: <b>1</b></small>
-						<small>Valor: <b>R$ 2.299,00</b></small>
-					</div>
-					<div class="container-ped_conteudo align-items-center flex-fill">
-						<ul class="d-flex">
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-receipt"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-file-invoice-dollar"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-dolly"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-truck-fast"></i></li>
-							<li class="ped-status_linha ped_st_sucesso_linha"></li>
-							<li class="ped-status_etapa ped_st_sucesso_etapa"><i class="fa-solid fa-house-circle-check"></i></li>
-						</ul>
-						<small>Status: <b class="text-success">Pedido entregue - 13/11/2023 13:49</b></small>
-					</div>
-					<div class="container-ped_conteudo border-0 justify-content-between">
-						<h5>Resumo da compra</h5>
-						<small>Pedido: <b>987654321</b></small>
-						<small>Data do pedido <b>11/11/2023</b></small>
-						<small>Valor total: <b>R$ 2.299,00</b></small>
-						<div class="w-100">
-							<a href="#" class="btn btn-detalhes_ped">Ver detalhes</a>
-							<a href="#" class="btn btn-devolver"><i class="fa-solid fa-box"></i>Devolver</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<?php } } else { ?>
+				<div class="aviso-ausencia-produtos">
+                    <i class="fa-solid fa-cart-plus" style="font-size: 4rem;"></i>
+                    <h3>Poxa, você ainda não tem nenhum pedido!</h3>
+                    <h5>Que tal dar uma olhadinha em alguns de nossos produtos?</h5>
+                    <a href="listagem-geral-produtos.php" class="btn btn-gradiente mt-2">Ver produtos</a>
+                </div>
+			<?php } ?>
 		</section>
 		<section class="section-tela" id="section-seus-dados" style="display: none;">
 			<h4 class="mt-3"><i class="fa-solid fa-code mx-3"></i> Desculpe, essa tela está em fase de desenvolvimento.</h4>

@@ -44,67 +44,85 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
 }
 
 .container-pedidos {
-    background: white;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background: #FFFFFF;
     border-radius: .5rem;
-    /* padding: 1rem; */
-    margin: .5rem 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 1rem 0;
+    border-left: 1px solid rgba(211, 211, 211, 0.58);
+    border-right: 1px solid rgba(211, 211, 211, 0.58);
 }
 
-.container-ped {
-    display: flex;
-    border: 1px solid rgba(211, 211, 211, 0.5);
-    border-radius: .5rem;
+.titulo-informacao {
+    font-size: 1rem;
+    font-weight: 700;
 }
 
-.container-ped_conteudo {
-    border-right: 1px solid rgba(211, 211, 211, 0.495);
-    padding: 1rem;
+.container-pedidos_componentes {
+    text-shadow: .1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.20);
+    font-size: 1rem;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: start;
 }
 
-.container-ped_info_img > img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: .5rem;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.container-pedidos_cabecalho {
+    border-bottom: 1px solid rgba(211, 211, 211, 0.58);
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    background: #ff4400;
+    color: #FFFFFF !important;
+    padding: 1rem;    
 }
 
-.ped_st_sucesso_etapa i {
-    border: 2px solid #10BA78 !important;
-    color:#10BA78 !important;
-}
-
-.ped_st_sucesso_linha {
-    border-top: 3px solid #10BA78 !important;
-}
-
-.ped-status_etapa > i {
+.container-pedidos_corpo {
+    background: #F0F2F2;
+    padding: 1rem;
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 100%;     
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-    border: 1px solid #b8b8b8;
-    color:#b8b8b8;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.ped-status_linha {
-    border-top: 3px dashed #b8b8b8;
-    margin-top: 27px;
-    width: 60px;
+.card-container {
+    border: 1px solid rgba(211, 211, 211, 0.58);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #FFFFFF;
+    text-decoration: none;
+    transition: all .25s;
 }
 
-.btn-detalhes_ped, .btn-avaliar_ped, .btn-devolver {
+.card-container:hover {
+    background-color: #F0F2F2;
+    border: 1px solid #F0F2F2;
+}
+
+.card-container:active {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(211, 211, 211, 0.58);
+    transform: scale(0.99);
+}
+
+.container-pedidos-acoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.container-pedidos_rodape {
+    border-top: 1px solid rgba(211, 211, 211, 0.58);
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    background: #FFFFFF;
+    padding: .5rem 1rem;
+    color: #212529 !important;
+    align-items: center;
+}
+
+.btn-acao_pedido {
     text-align: center;
-    width: 100%;
-    height: auto;
     border-radius: .5rem;
     font-size: 1rem;
     font-weight: 600;
@@ -113,12 +131,11 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     transition: all .25s;
     border: none;
-    text-align: center;
+    padding: .5rem 1rem;
 }
 
 .btn-detalhes_ped {
     background: #ff4400;
-    margin-bottom: .25rem;
 }
     .btn-detalhes_ped:hover {
         background: #db3a00;
@@ -127,7 +144,6 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     .btn-detalhes_ped:active {
         background: #ce3700 !important;
         color: white !important;
-        border: none;
     }
 
 .btn-avaliar_ped {
@@ -140,7 +156,6 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     .btn-avaliar_ped:active {
         background: #d79a00 !important;
         color: white !important;
-        border: none;
     }
 
     .btn-avaliar_ped.disabled {
@@ -150,26 +165,17 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     }
 
 .btn-acompanhar {
-    width: 100%;
-    background: rgba(128, 128, 128, 0.25);
-    font-weight: 600;
-    border: 0;
-    transition: all .25s;
+    background: rgb(107, 107, 107);
 }
     .btn-acompanhar:hover {
-        background: rgba(128, 128, 128, 0.35);
+        background: rgb(128, 128, 128);
     }
     .btn-acompanhar:active {
-        background: rgba(128, 128, 128, 0.45) !important;        
+        background: rgb(95, 95, 95) !important;        
     }
-
-.btn-acompanhar > i {
-    margin-right: .5rem;
-}
 
 .btn-devolver {
     background: #ce4444;
-    margin-bottom: .25rem;
 }
     .btn-devolver:hover {
         background: #c32d2d;
@@ -178,12 +184,7 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     .btn-devolver:active {
         background: #a02222 !important;
         color: white !important;
-        border: none;
     }
-
-.btn-devolver > i {
-    margin-right: .5rem;
-}
 
 .btn-opcaoMenu_selecionado {
     background: transparent !important;
