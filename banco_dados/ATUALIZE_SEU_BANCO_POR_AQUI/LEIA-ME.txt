@@ -1,5 +1,0 @@
-Copie a pasta "mysql" para o seu diretório do phpMyAdmin (php_mySql > usbwebserver). Basta substituir a pasta "mysql" de lá, pela pasta que estiver aqui nesse diretório e seu banco estará atualizado. Caso você mude alguma coisa no seu banco, faça inserções de registros etc., SEMPRE copie a sua pasta "mysql", do seu diretório do phpMyAdmin, pra esse diretório aqui. Dessa forma, todos que forem mexer no projeto, poderão atualizar o banco de onde parou.
-
-Grato.
-
-22/09/2024 - Inclusão coluna "dt_cadastro" na tabela "Produtos"

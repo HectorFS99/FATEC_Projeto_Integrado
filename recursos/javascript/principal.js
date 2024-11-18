@@ -74,152 +74,6 @@ function notificar(popup, titulo, mensagem, icone, caminho) {
 }
 /*****/
 
-/***** Máscaras para campos (pode ser usada em outras telas) *****/
-function aplicarMascaraCPF(campo) {
-    campo.value = campo.value.replace(/[^0-9.-]/g, ''); // Remove letras e mantém apenas números, ponto (.) e hífen (-).
-    $(`#${campo.id}`).mask("000.000.000-00");
-}
-
-function aplicarMascaraTelefone(campo) {
-    $(`#${campo.id}`).mask("(00) 00000-0000");
-}
-/*****/
-
-/***** Validações *****/
-
-/* Validação geral */
-function validarCampo(id_campo, id_feedback) {
-    var campo = document.getElementById(id_campo);
-    var div_feedback = document.getElementById(id_feedback);
-
-    if (campo.value.length > 0) {
-        switch (id_campo) {
-            case 'txtNome':
-            case 'txtNomeTitularCartao':
-                if (campo.value.length < 2) {
-                    exibirFeedback(campo, div_feedback, 'Nome inválido. Informe-o corretamente.')
-                } else if (validarCaracteresEspeciais(campo.value)) {
-                    exibirFeedback(campo, div_feedback, 'Não são permitidos caracteres especiais. Informe um nome válido.');
-                    campo.value = '';
-                } else {
-                    limparFeedback(div_feedback);
-                }
-
-                break;
-            case 'dtNasc':
-                var dtNasc = new Date(campo.value)
-                    , mesNasc = dtNasc.getMonth() + 1 // Dado que os meses aqui são índices, começando por 0, acrescentei +1
-                    , dtAtual = new Date()
-                    , mesAtual = dtAtual.getMonth() + 1
-                    , idade = dtAtual.getFullYear() - dtNasc.getFullYear();
-                
-                if (mesAtual < mesNasc || (mesAtual === mesNasc && dtAtual.getDate() < dtNasc.getDate())) { idade--; }
-                idade < 18 ? exibirFeedback(campo, div_feedback, 'É necessário ser maior de idade para realizar o cadastro.') : limparFeedback(div_feedback);
-
-                break;
-            case 'txtCPF':
-                !validarCPF(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um CPF válido.') : limparFeedback(div_feedback);
-                break;
-            case 'txtRG':
-                !validarRG(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um RG válido.') : limparFeedback(div_feedback);
-                break;
-            case 'txtEmail':
-                !validarEmail(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um e-mail válido.') : limparFeedback(div_feedback);
-                break;
-            case 'txtConfirmarEmail':
-                document.getElementById(id_campo).value !== document.getElementById('txtEmail').value ? exibirFeedback(campo, div_feedback, 'Este e-mail não coincide com o informado.') : limparFeedback(div_feedback);
-                break;
-            case 'txtSenha':
-                !/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{10,}$/.test(campo.value) ? exibirFeedback(campo, div_feedback, 'Esta senha não atende aos critérios de segurança.') : limparFeedback(div_feedback);
-                break;
-            case 'txtConfirmarSenha':
-                document.getElementById(id_campo).value !== document.getElementById('txtSenha').value ? exibirFeedback(campo, div_feedback, 'Esta senha não coincide com a informada.') : limparFeedback(div_feedback);
-                break;
-            case 'txtValidadeCartao':
-                var posBarra = campo.value.indexOf('/');
-                var mes = parseInt(campo.value.substring(0, posBarra));
-                var ano = parseInt(campo.value.substring(posBarra + 1));
-                
-                if (mes > 12 || (ano > 2043 || ano < new Date().getFullYear())) {
-                    exibirFeedback(campo, div_feedback, 'Data inválida. Informe a validade corretamente.')
-                } else {
-                    limparFeedback(div_feedback);
-                }
-
-                break;
-            // ToDo: Acrescentar validação para cartão de crédito/débito...
-        }
-    }
-
-    return;
-}
-
-function validarCaracteresEspeciais(texto) {
-    return /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(texto);
-}
-
-function validarCPF(cpf) {
-    cpf = cpf.replace(/[.-]/g, ''); // Remove os pontos (.) e o hífen (-), mantendo apenas números para realizar as operações de validação.
-
-    if (cpf == "00000000000") {
-        return false;
-    }
-
-    if (cpf.length !== 11 || /^(.)\1+$/.test(cpf)) { // Verifica se o CPF tem 11 dígitos e se não é uma sequência repetida qualquer.
-        return false; 
-    }
-    
-    var soma;
-    var resto;
-    soma = 0;
-
-    for (i = 1; i <= 9; i++) {
-        soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i); 
-    }
-
-    resto = (soma * 10) % 11;
-    if ((resto == 10) || (resto == 11)) { 
-        resto = 0; 
-    }
-    if (resto != parseInt(cpf.substring(9, 10))) {
-        return false;
-    }
-
-    soma = 0;
-    for (i = 1; i <= 10; i++) { 
-        soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i); 
-    }
-
-    resto = (soma * 10) % 11;
-    if ((resto == 10) || (resto == 11)) {
-        resto = 0;        
-    }
-    if (resto != parseInt(cpf.substring(10, 11) )) {
-        return false;
-    }
-
-    return true;
-}
-
-function validarEmail(email) {
-    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/.test(email);
-}
-/*****/
-
-/***** Feedback *****/
-function exibirFeedback(campo, div_feedback, mensagem) {
-    div_feedback.style.display = 'block';
-    div_feedback.innerHTML = `<strong>${mensagem}</strong>`;
-
-    //campo.focus();
-}
-
-function limparFeedback(div_feedback) {
-    div_feedback.innerHTML = '';
-    div_feedback.style.display = 'none';
-}
-/*****/
-
 function visualizarSenha(id_campo) {
     var campo_senha = document.getElementById(id_campo);
     var botao_visualizar = document.querySelector('.olho-senha');
@@ -238,6 +92,165 @@ function impedirColagem(e) { // Impede que o usuário cole conteúdos em um dete
     var clipboardData = e.clipboardData || window.clipboardData;
     clipboardData.setData('text', '');
 }
+
+/***** Máscaras para campos (pode ser usada em outras telas) *****/
+function aplicarMascaraCPF(campo) {
+    campo.value = campo.value.replace(/[^0-9.-]/g, ''); // Remove letras e mantém apenas números, ponto (.) e hífen (-).
+    $(`#${campo.id}`).mask("000.000.000-00");
+}
+
+function aplicarMascaraTelefone(campo) {
+    $(`#${campo.id}`).mask("(00) 00000-0000");
+}
+/*****/
+
+/***** Validações *****/
+function validarCaracteresEspeciais(texto) {
+    return /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(texto);
+}
+
+function validarComparacaoCampos(id_campo, id_campo_confirmacao, id_feedback, mensagem) {
+    var campo = document.getElementById(id_campo);
+    var campo_confirmacao = document.getElementById(id_campo_confirmacao);
+
+    var div_feedback = document.getElementById(id_feedback);
+
+    campo.value !== campo_confirmacao.value ? exibirFeedback(campo, div_feedback, mensagem) : limparFeedback(div_feedback);
+}
+
+function validarCriteriosSenha(id_campo, id_feedback) {
+    var campo = document.getElementById(id_campo);
+    var div_feedback = document.getElementById(id_feedback);
+
+    !/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{10,}$/.test(campo.value) ? exibirFeedback(campo, div_feedback, 'Esta senha não atende aos critérios de segurança.') : limparFeedback(div_feedback);
+}
+
+function validarNome(id_campo, id_feedback) {
+    var campo = document.getElementById(id_campo);
+    var div_feedback = document.getElementById(id_feedback);
+
+    if (campo.value.length < 2) {
+        exibirFeedback(campo, div_feedback, 'Nome inválido. Informe-o corretamente.')
+    } else if (validarCaracteresEspeciais(campo.value)) {
+        exibirFeedback(campo, div_feedback, 'Não são permitidos caracteres especiais. Informe um nome válido.');
+        campo.value = '';
+    } else {
+        limparFeedback(div_feedback);
+    }    
+}
+
+function validarDataNascimento(id_campo, id_feedback) {
+    var campo = document.getElementById(id_campo);
+    var div_feedback = document.getElementById(id_feedback);
+
+    var dtNasc = new Date(campo.value)
+        , mesNasc = dtNasc.getMonth() + 1 // Dado que os meses aqui são índices, começando por 0, acrescentei +1
+        , dtAtual = new Date()
+        , mesAtual = dtAtual.getMonth() + 1
+        , idade = dtAtual.getFullYear() - dtNasc.getFullYear();
+    
+    if (mesAtual < mesNasc || (mesAtual === mesNasc && dtAtual.getDate() < dtNasc.getDate())) { idade--; }
+
+    idade < 18 ? exibirFeedback(campo, div_feedback, 'É necessário ser maior de idade para realizar o cadastro.') : limparFeedback(div_feedback);    
+}
+
+function validarCPF(id_campo, id_feedback) {
+    var campo = document.getElementById(id_campo);
+    var div_feedback = document.getElementById(id_feedback);
+
+    var cpf = campo.value.replace(/[.-]/g, ''); // Remove os pontos (.) e o hífen (-), mantendo apenas números para realizar as operações de validação.
+
+    if (cpf == "00000000000") {
+        exibirFeedback(campo, div_feedback, 'Informe um CPF válido.');
+        return;
+    }
+
+    if (cpf.length !== 11 || /^(.)\1+$/.test(cpf)) { // Verifica se o CPF tem 11 dígitos e se não é uma sequência repetida qualquer.
+        exibirFeedback(campo, div_feedback, 'Informe um CPF válido.');
+        return; 
+    }
+    
+    var soma;
+    var resto;
+    soma = 0;
+
+    for (i = 1; i <= 9; i++) {
+        soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i); 
+    }
+
+    resto = (soma * 10) % 11;
+    if ((resto == 10) || (resto == 11)) { 
+        resto = 0; 
+    }
+    if (resto != parseInt(cpf.substring(9, 10))) {
+        exibirFeedback(campo, div_feedback, 'Informe um CPF válido.');
+        return;
+    }
+
+    soma = 0;
+    for (i = 1; i <= 10; i++) { 
+        soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i); 
+    }
+
+    resto = (soma * 10) % 11;
+    if ((resto == 10) || (resto == 11)) {
+        resto = 0;        
+    }
+    if (resto != parseInt(cpf.substring(10, 11) )) {
+        exibirFeedback(campo, div_feedback, 'Informe um CPF válido.');
+        return;
+    }
+
+    limparFeedback(div_feedback);
+}
+
+function validarEmail(id_campo, id_feedback) {
+    var campo = document.getElementById(id_campo);
+    var div_feedback = document.getElementById(id_feedback);
+
+    !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/.test(campo.value) ? exibirFeedback(campo, div_feedback, 'Informe um e-mail válido.') : limparFeedback(div_feedback);
+}
+/*****/
+
+/***** Feedback *****/
+function exibirFeedback(campo, div_feedback, mensagem) {
+    div_feedback.style.display = 'block';
+    div_feedback.innerHTML = `<strong>${mensagem}</strong>`;
+
+    //campo.focus();
+}
+
+function limparFeedback(div_feedback) {
+    div_feedback.innerHTML = '';
+    div_feedback.style.display = 'none';
+}
+
+function verificarFeedbackInvalido(id_form) {
+    var formulario = document.getElementById(id_form);
+    var feedbacks = formulario.querySelectorAll(".invalid-feedback");
+    
+    for (let i = 0; i < feedbacks.length; i++) {
+        if (feedbacks[i].textContent.trim() !== "") {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+function confirmarFormulario(event, id_form, caminho_action) {
+    event.preventDefault();
+
+    if (verificarFeedbackInvalido(id_form)) {
+        notificar(false, "Verifique as suas informações", "Um ou mais dados informados não são válidos.", "error", "");
+        return;
+    } else {
+        var formulario = document.getElementById(id_form);
+        formulario.action = caminho_action;
+        formulario.submit();    
+    }
+}
+/*****/
 
 /***** Carrossel *****/
 let indice_atual = 0;
@@ -315,7 +328,7 @@ function pesquisaCep(id_componente_cep) {
         if(validacep.test(cep)) {
             var script = document.createElement('script');
             script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=dados_cep';
-
+            
             document.body.appendChild(script);
         } else {
             componente_cep.value = '';
@@ -325,6 +338,9 @@ function pesquisaCep(id_componente_cep) {
 }
 
 function dados_cep(conteudo) {
+    var campo = document.getElementById('txtCep');
+    var feedback = document.getElementById('txtCepErro');
+
     if (!("erro" in conteudo)) {
         var container = document.getElementById('resultado-frete');
 
@@ -339,8 +355,12 @@ function dados_cep(conteudo) {
         uf.innerHTML = uf.value = conteudo.uf;  
 
         if (container) { container.style.display = 'block'; }
+
+        limparFeedback(feedback);
     } else {
-        componente_cep.value = '';
+        campo.value = '';
+        exibirFeedback(campo, feedback, 'Informe um CEP válido.');
+
         notificar(false, 'CEP não encontrado', '', 'error', '');
     }
 }
