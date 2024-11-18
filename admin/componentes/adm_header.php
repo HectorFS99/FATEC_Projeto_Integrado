@@ -44,6 +44,10 @@
         </button>
         <ul class="dropdown-menu">
             <li>
+                <div class="info-usuario">
+                    <span><?php echo $usuario['email']; ?></span>
+                    <span><?php echo $usuario['telefone_celular']; ?></span>
+                </div>
                 <a class="dropdown-item" href="../pagina-inicial.php">
                     <i class="fa-solid fa-person-walking-arrow-right"></i>Sair
                 </a>

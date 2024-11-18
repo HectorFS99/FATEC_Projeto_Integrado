@@ -291,3 +291,14 @@ textarea {
 ::-webkit-scrollbar-thumb:hover {
     background:  rgba(47, 47, 47, 1); 
 }
+
+.info-usuario {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    padding: .5rem 1rem;
+    gap: .5rem;
+    margin-bottom: .5rem;
+}
