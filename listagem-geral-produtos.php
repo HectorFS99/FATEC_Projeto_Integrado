@@ -90,7 +90,6 @@
     <head>
         <?php include 'head.php'; ?>
         <link rel="stylesheet" href="recursos/css/listagem-geral-produtos.css" />
-        <script src="recursos/javascript/listagem-geral-produtos.js"></script>
         <title>Future Mob</title>
     </head>
     <body>
@@ -214,5 +213,12 @@
             </div>
         </main>
         <footer id="footer"></footer>
+        <script>
+            function exibirFiltroAcc(id_componente) {
+                var accordion = document.getElementById(id_componente);
+                accordion.style.display === "block" ? accordion.style.display = "none" : accordion.style.display = "block";
+                accordion.classList.toggle("acc-aberto");
+            }
+        </script>
     </body>
 </html>

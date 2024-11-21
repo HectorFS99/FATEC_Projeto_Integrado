@@ -25,6 +25,48 @@ body {
     }
 }
 
+
+/******** Sweet Alert 2 (Popups) ********/
+.custom-popup {
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+}
+
+.custom-error-popup {
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    width: 50vw;
+}
+
+.custom-button-popup {
+    width: 10rem;
+    margin: 0.5rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+}
+
+body.swal2-shown>[aria-hidden="true"] {
+    filter: blur(25px);
+    transition: 0.5s all;
+}
+
+.colored-toast {
+    color: white;
+    border-radius: 0.5rem;
+}
+
+.colored-toast.swal2-icon-success {
+    background-color: #198754 !important;
+}
+
+.colored-toast.swal2-icon-error {
+    background-color: #DC3545 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+    background-color: #f77e1b !important;
+}
+
 .conteudo-principal {
     margin: 2rem 3rem !important;
 }
@@ -51,6 +93,10 @@ body {
 
 .divisor {
     margin: 0 3rem;
+}
+
+.swal2-actions {
+    margin: 0;
 }
 
 /********** Botões **********/
@@ -97,6 +143,9 @@ body {
     }
 
 .btn-tabela {
+    background: transparent;
+    border: 0;
+    outline: none;
     font-size: 1.5rem;
     margin: 0 .5rem;
 }
@@ -107,6 +156,11 @@ body {
 
 .btn-editar {
     color: #0053a6;
+}
+
+.btn-informacoes {
+    color: rgb(220, 220, 220);
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 .btn-cancelar {
@@ -301,4 +355,28 @@ textarea {
     padding: .5rem 1rem;
     gap: .5rem;
     margin-bottom: .5rem;
+}
+
+.container-detalhes_ped {
+    text-shadow: none !important;
+    text-align: left;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.detalhes_ped-coluna {
+    flex: 1; 
+    padding-top: 1rem;
+    padding-bottom: 0 !important;    
+}
+
+.detalhes_ped-titulo_info {
+    margin-bottom: .25rem;
+    font-weight: 600;
+}
+
+.detalhes_ped-titulo_info i {
+    margin-right: .25rem;
 }
