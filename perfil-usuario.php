@@ -32,6 +32,14 @@
 
 			include 'header.php';
 			
+			if (!isset($_SESSION['id_usuario'])) {
+				echo 
+					"<script>
+						alert('Usuário não autenticado. Você será redirecionado para a página inicial.')
+						window.location.href = '../pagina-inicial.php';
+					</script>";        
+			}
+		
 			$id_usuario = $_SESSION['id_usuario'];
 
 			/* * * * * * * * * * * * * * * * * * * * * * CONSULTA PARA OS PEDIDOS DO USUÁRIO * * * * * * * * * * * * * * * * * * * * * */
@@ -71,7 +79,20 @@
 			$temPedidos = true;
 			if (mysql_num_rows($sql_pedidos) == 0) {
 				$temPedidos = false;
-			}		
+			}
+			
+			$sql_usuario = mysql_query(
+				"SELECT 
+					nome_completo
+					, telefone_celular
+					, email
+					, caminho_img_perfil
+				FROM
+					usuarios
+				WHERE 
+					id_usuario = $id_usuario");
+
+			$usuario = mysql_fetch_assoc($sql_usuario);
 		?>
 		<main class="main-usuario">
 			<div class="menu-lateral rounded-bottom">
@@ -219,8 +240,12 @@
 				<?php } ?>
 			</section>
 			<section class="section-tela" id="section-seus-dados" style="display: none;">
-				<h4 class="mt-3"><i class="fa-solid fa-code mx-3"></i> Desculpe, essa tela está em fase de desenvolvimento.</h4>
-				<p class="mx-3 mt-3">A FutureMob agradece a compreensão.</p>
+				<div class="div-dados_usuario">
+					<h4 class="titulo-usuario">
+						<img src="<?php echo $usuario['caminho_img_perfil']; ?>">
+						<?php echo $usuario['nome_completo']; ?>
+					</h4>					
+				</div>
 			</section>
 			<section class="section-tela" id="section-enderecos" style="display: none;">
 				<h4 class="mt-3"><i class="fa-solid fa-code mx-3"></i> Desculpe, essa tela está em fase de desenvolvimento.</h4>

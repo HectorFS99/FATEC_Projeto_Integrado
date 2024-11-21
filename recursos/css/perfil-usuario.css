@@ -11,7 +11,7 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
 
 .section-tela {
     width: 100%;
-    margin: .5rem;
+    margin: 1rem;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
@@ -22,6 +22,7 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     max-width: 100px;
     height: auto;
     width: 100%;
+    gap: 1rem;
 }
 
 .menu-lateral_opcao {
@@ -29,7 +30,6 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     border-radius: .5rem;
     background-color: white;
     padding: 1rem 0;
-    margin: .25rem 0;
     border: 1px solid rgba(211, 211, 211, 0.58);
     transition: all .25s;
 }
@@ -47,9 +47,9 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     background: #FFFFFF;
     border-radius: .5rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    margin: 1rem 0;
     border-left: 1px solid rgba(211, 211, 211, 0.58);
     border-right: 1px solid rgba(211, 211, 211, 0.58);
+    margin-bottom: 1rem;
 }
 
 .titulo-informacao {
@@ -193,3 +193,17 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     font-weight: 600;
     text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.10);
 }
+
+/* .div-dados_usuario {
+    margin: ;
+}
+
+.titulo-usuario {
+
+} */
+
+    .titulo-usuario img {
+        width: 100px;
+        border-radius: 100%;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
