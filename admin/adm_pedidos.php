@@ -79,10 +79,15 @@
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
                                         <button class="btn-tabela btn-informacoes" 
-                                            onclick="exibirDetalhesPedido('detalhesPedido_<?php echo $linha['id_pedido']; ?>', <?php echo $linha['id_pedido']; ?>)">
+                                            onclick="exibirInformacoesPedido('detalhesPedido_<?php echo $linha['id_pedido']; ?>', 'Detalhes do pedido <?php echo $linha['id_pedido']; ?>', '800px')">
                                             <i class="fa-solid fa-circle-info"></i>
                                         </button>
                                         
+                                        <button class="btn-tabela btn-produtos" 
+                                            onclick="exibirInformacoesPedido('produtosPedido_<?php echo $linha['id_pedido']; ?>', 'Produtos do pedido <?php echo $linha['id_pedido']; ?>', '1300px')">
+                                            <i class="fa-solid fa-cubes"></i>
+                                        </button>
+
                                         <!-- Conteúdo que será renderizado na modal de detalhes do pedido -->
                                         <div id="detalhesPedido_<?php echo $linha['id_pedido']; ?>" style="display: none;">
                                             <div class="container-detalhes_ped">
@@ -149,7 +154,83 @@
                                                 </div>                                               
                                             </div>
                                         </div>
+                                        
+                                        <!-- Produtos do pedido -->
+                                        <div id="produtosPedido_<?php echo $linha['id_pedido']; ?>" style="display: none;">
+                                            <table id="tabela-produtos_<?php echo $linha['id_pedido']; ?>" class="table table-striped text-center align-middle ">
+                                                <!-- Cabeçalho da tabela -->
+                                                <thead>
+                                                    <tr class="tabela-linha">
+                                                        <th width="5%">ID</th>
+                                                        <th width="10%">Imagem</th>
+                                                        <th>Nome</th>
+                                                        <th>Pre. anterior</th>
+                                                        <th>Preço atual</th>
+                                                        <th>Destaque?</th>
+                                                        <th width="10%">Oferta?</th>
+                                                        <th>Categoria</th>
+                                                        <th width="10%">Ações</th>
+                                                    </tr>
+                                                </thead>
+                                                <!-- Corpo da tabela -->
+                                                <tbody>
+                                                    <?php 
+                                                        $select_produtos_pedidos = 
+                                                            "SELECT 
+                                                                PRD.id_produto
+                                                                , PRD.caminho_imagem
+                                                                , PRD.nome
+                                                                , PRD.preco_atual
+                                                                , PRD.preco_anterior
+                                                                , PRD.destaque
+                                                                , PRD.oferta_relampago
+                                                                , CAT.nome AS categoria
+                                                            FROM 
+                                                                pedidos_produtos AS PP
+                                                                INNER JOIN produtos AS PRD ON PRD.id_produto = PP.id_produto
+                                                                INNER JOIN categorias AS CAT ON CAT.id_categoria = PRD.id_categoria
+                                                            WHERE
+                                                                PP.id_pedido = "
+                                                            ;
 
+                                                        $sql_produtos_pedidos = mysql_query($select_produtos_pedidos . $linha['id_pedido']);
+
+                                                        while ($produto = mysql_fetch_assoc($sql_produtos_pedidos)) { ?>     
+                                                            <tr class="tabela-linha">
+                                                                <td><?php echo $produto['id_produto']; ?></td>
+                                                                <td>
+                                                                    <img width="100px" src="../<?php echo $produto['caminho_imagem']; ?>" />
+                                                                </td>
+                                                                <td>
+                                                                    <?php
+                                                                        // Limita o nome para 30 caracteres e adiciona "..." se for maior.
+                                                                        $nome = $produto['nome'];
+                                                                        echo 
+                                                                            mb_strlen($nome) > 30 ? mb_substr($nome, 0, 30) . "..." : $nome;
+                                                                    ?>
+                                                                </td>
+                                                                <td>R$ <?php echo $produto['preco_anterior']; ?></td>
+                                                                <td>R$ <?php echo $produto['preco_atual']; ?></td>
+                                                                <td><?php echo $produto['destaque'] ? 'Sim' : 'Não'; ?></td>                                                            
+                                                                <td><?php echo $produto['oferta_relampago'] ? 'Sim' : 'Não'; ?></td>
+                                                                <td><?php echo $produto['categoria']; ?></td>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center justify-content-center">
+                                                                        <a class="btn-tabela btn-editar" href="../detalhes-produto.php?id_produto=<?php echo $produto['id_produto']; ?>">
+                                                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr> 
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', function() {
+                                                    transformarTabela('#tabela-produtos_<?php echo $linha['id_pedido']; ?>');
+                                                });
+                                            </script>
+                                        </div>
                                     </div>
                                 </td>
                             </tr> 
@@ -161,16 +242,16 @@
     </body>
 
     <script>
-        function exibirDetalhesPedido(idConteudo, numero_ped) {
+        function exibirInformacoesPedido(idConteudo, titulo, larguraModal) {
             var htmlConteudo = document.getElementById(idConteudo);
 
             popupSwal.fire({ 
-                title: `<span style="text-shadow: none !important;">Detalhes do Pedido ${numero_ped}<span>`
+                title: `<span style="text-shadow: none !important;">${titulo}<span>`
                 , html: htmlConteudo.innerHTML
                 , showConfirmButton: false
                 , showCancelButton: true
                 , cancelButtonText: "Fechar"
-                , width: '800px'
+                , width: larguraModal
             });
         }
 
