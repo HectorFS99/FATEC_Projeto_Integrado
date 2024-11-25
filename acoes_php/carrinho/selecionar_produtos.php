@@ -1,23 +1,17 @@
 <?php
     $result = mysql_query( 
         "SELECT 
-            c.id_produto
-            , p.nome
-            , p.caminho_imagem
-            , p.preco_atual
-            , p.preco_anterior
-            , SUM(c.quantidade) AS total_quantidade
+            c.id_produto,
+            p.nome,
+            p.caminho_imagem,
+            p.preco_atual,
+            p.preco_anterior,
+            c.quantidade AS total_quantidade
         FROM 
             carrinho AS c
             INNER JOIN produtos AS p ON c.id_produto = p.id_produto
         WHERE 
-            c.id_usuario = $id_usuario
-        GROUP BY 
-            c.id_produto
-            , p.nome
-            , p.caminho_imagem
-            , p.preco_atual
-            , p.preco_anterior"
+            c.id_usuario = $id_usuario"
     );    
 
     // Array para armazenar os itens do carrinho
