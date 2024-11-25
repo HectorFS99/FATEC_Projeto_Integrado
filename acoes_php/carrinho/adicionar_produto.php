@@ -30,18 +30,37 @@
 
 		exit();
 	}
+	// Verifica se o produto já existe no carrinho para este usuário
+	$sql_check = mysql_query(
+		"SELECT quantidade 
+		FROM carrinho 
+		WHERE id_produto = $id_produto AND id_usuario = $id_usuario"
+	);
+	if (mysql_num_rows($sql_check) > 0) {
+		// Produto já existe no carrinho, atualiza a quantidade
+		$row = mysql_fetch_assoc($sql_check);
+		$nova_quantidade = $row['quantidade'] + $quantidade;
 
-	$sql = mysql_query(
-		"INSERT INTO carrinho (
-			id_produto
-			, id_usuario
-			, quantidade) 
-		VALUES (
-			$id_produto
-			, $id_usuario
-			, $quantidade)
-		");
-
+		$sql_update = mysql_query(
+			"UPDATE carrinho 
+			SET quantidade = $nova_quantidade 
+			WHERE id_produto = $id_produto AND id_usuario = $id_usuario"
+		);
+	} else {
+		// Produto não existe no carrinho, insere um novo registro
+		$sql_insert = mysql_query(
+			"INSERT INTO carrinho (
+				id_produto,
+				id_usuario,
+				quantidade
+			) 
+			VALUES (
+				$id_produto,
+				$id_usuario,
+				$quantidade
+			)"
+		);
+	}
 	if ($comprarAgora) {
 		header("Location: ../../pagamento.php");
 	} else if ($listagem) {
