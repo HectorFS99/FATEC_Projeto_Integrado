@@ -3,15 +3,23 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     padding: 0;
 }
 
+/* * * * * * * * * * * Menu Lateral e Container principal * * * * * * * * * * */
 .main-usuario {
     max-width: 1200px;
     display: flex;
     margin: auto;
 }
 
+.img-perfil {
+    width: 100px;
+    margin-right: .5rem;
+    border-radius: 100%;
+}
+
 .section-tela {
     width: 100%;
     margin: 1rem;
+    margin-bottom: 0;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
@@ -43,7 +51,8 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     margin: .5rem;
 }
 
-.container-pedidos {
+/* * * * * * * * * * * Container das informações que são exibidas nas sections * * * * * * * * * * */
+.container-informacoes {
     background: #FFFFFF;
     border-radius: .5rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -53,11 +62,11 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
 }
 
 .titulo-informacao {
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: 700;
 }
 
-.container-pedidos_componentes {
+.container-informacoes_componentes {
     text-shadow: .1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.20);
     font-size: 1rem;
     display: flex;
@@ -65,7 +74,7 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     align-items: start;
 }
 
-.container-pedidos_cabecalho {
+.container-informacoes_cabecalho {
     border-bottom: 1px solid rgba(211, 211, 211, 0.58);
     border-top-left-radius: .5rem;
     border-top-right-radius: .5rem;
@@ -74,13 +83,27 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     padding: 1rem;    
 }
 
-.container-pedidos_corpo {
+.container-informacoes_corpo {
+    display: flex;
     background: #F0F2F2;
     padding: 1rem;
-    display: flex;
+    flex-wrap: wrap;
+}
+
+.container-informacoes_rodape {
+    border-top: 1px solid rgba(211, 211, 211, 0.58);
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    background: #FFFFFF;
+    padding: .5rem 1rem !important;
+    color: #212529 !important;
+    align-items: center;
+}
+
+/* * * * * * * * * * * Pedidos * * * * * * * * * * */
+.container-pedidos_corpo {
     align-items: center;
     justify-content: start;
-    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -109,16 +132,6 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-}
-
-.container-pedidos_rodape {
-    border-top: 1px solid rgba(211, 211, 211, 0.58);
-    border-bottom-left-radius: .5rem;
-    border-bottom-right-radius: .5rem;
-    background: #FFFFFF;
-    padding: .5rem 1rem;
-    color: #212529 !important;
-    align-items: center;
 }
 
 .btn-acao_pedido {
@@ -157,7 +170,6 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
         background: #d79a00 !important;
         color: white !important;
     }
-
     .btn-avaliar_ped.disabled {
         opacity: 0.5 !important;
         color: white !important;
@@ -194,16 +206,38 @@ p, span, small, h1, h2, h3, h4, h5, ul, li, div {
     text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.10);
 }
 
-/* .div-dados_usuario {
-    margin: ;
+/* * * * * * * * * * * Dados de Usuário * * * * * * * * * * */
+.div-dados_usuario {
+    border-radius: .5rem;
+    background-color: white;
+    border: 1px solid rgba(211, 211, 211, 0.58);
+    transition: all .25s;
+    color: #303030 !important;
 }
 
-.titulo-usuario {
-
-} */
+.container-dados_corpo {
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+}
 
     .titulo-usuario img {
         width: 100px;
         border-radius: 100%;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        margin-right: .5rem;
     }
+
+.grupo-info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.grupo-info p {
+    font-size: 1.25rem;
+}
+
+.titulo-info_dados {
+    font-weight: 700;
+}

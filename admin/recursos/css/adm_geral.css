@@ -234,7 +234,7 @@ th,
 td {
     font-size: 1rem;
     background: transparent;
-    border: 2px solid transparent !important;
+    border: 3px solid transparent !important;
 }
 
 .tabela-linha>th,

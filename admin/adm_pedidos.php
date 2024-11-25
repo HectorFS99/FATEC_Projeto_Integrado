@@ -1,7 +1,7 @@
 <?php
     include '../conexao.php';
 
-    $sql_produtos = mysql_query(
+    $sql_pedidos = mysql_query(
         "SELECT 
             ped.`id_pedido`
             , ped.`dt_pedido`
@@ -63,7 +63,7 @@
                     </thead>
                     <!-- Corpo da tabela -->
                     <tbody>
-                        <?php while ($linha = mysql_fetch_assoc($sql_produtos)) { ?> 
+                        <?php while ($linha = mysql_fetch_assoc($sql_pedidos)) { ?> 
                             <tr class="tabela-linha">
                                 <td><?php echo $linha['id_pedido']; ?></td>
                                 <td><?php echo date('d/m/Y H:i:s', strtotime($linha['dt_pedido'])); ?></td>
@@ -75,9 +75,6 @@
                                 <td><?php echo $linha['nome_completo']; ?></td>
                                 <td>
                                     <div class="d-flex align-items-center justify-content-around">
-                                        <a class="btn-tabela btn-editar" href="editar-pedido.php?editar=<?php echo $linha['id_pedido']; ?>">
-                                            <i class="fa-solid fa-pen"></i>
-                                        </a>
                                         <button class="btn-tabela btn-informacoes" 
                                             onclick="exibirInformacoesPedido('detalhesPedido_<?php echo $linha['id_pedido']; ?>', 'Detalhes do pedido <?php echo $linha['id_pedido']; ?>', '800px')">
                                             <i class="fa-solid fa-circle-info"></i>
@@ -226,9 +223,7 @@
                                                 </tbody>
                                             </table>
                                             <script>
-                                                document.addEventListener('DOMContentLoaded', function() {
-                                                    transformarTabela('#tabela-produtos_<?php echo $linha['id_pedido']; ?>');
-                                                });
+                                                transformarTabela('#tabela-produtos_<?php echo $linha['id_pedido']; ?>');
                                             </script>
                                         </div>
                                     </div>

@@ -84,9 +84,14 @@
 			$sql_usuario = mysql_query(
 				"SELECT 
 					nome_completo
-					, telefone_celular
-					, email
+					, cpf
+					, rg
+					, dt_nascimento
+					, sexo	
+					, telefone_celular	
+					, email	
 					, caminho_img_perfil
+					, admin
 				FROM
 					usuarios
 				WHERE 
@@ -116,10 +121,10 @@
 			<section class="section-tela" id="section-meus-pedidos">
 				<?php if (mysql_num_rows($sql_pedidos) > 0) {
 					while($pedido = mysql_fetch_assoc($sql_pedidos)) { ?>
-						<div class="container-pedidos">
-							<div class="container-pedidos_componentes container-pedidos_cabecalho">
+						<div class="container-informacoes">
+							<div class="container-informacoes_componentes container-informacoes_cabecalho">
 								<!-- Endereço de entrega ou retirada-->
-								<div class="container-pedidos_cabecalho-info">
+								<div class="container-informacoes_cabecalho-info">
 									<?php if ($pedido['id_endereco'] !== null) { ?>
 										<strong>Enviar para <?php echo $pedido['nome_endereco']; ?></strong>
 										<p><?php echo $pedido['logradouro']; ?>, <?php echo $pedido['numero']; ?> - <?php echo $pedido['complemento']; ?></p> 
@@ -132,24 +137,24 @@
 								</div>
 
 								<!-- Data do Pedido -->					
-								<div class="container-pedidos_cabecalho-info">
+								<div class="container-informacoes_cabecalho-info">
 									<p class="titulo-informacao">REALIZADO EM</p>
 									<p><?php echo date('d/m/Y H:i:s', strtotime($pedido['dt_pedido'])); ?></p>
 								</div>
 								
 								<!-- Total do Pedido-->
-								<div class="container-pedidos_cabecalho-info">
+								<div class="container-informacoes_cabecalho-info">
 									<p class="titulo-informacao">TOTAL</p>
 									<p>R$ <?php echo $pedido['total']; ?></p>
 								</div>
 
 								<!-- Número do pedido -->
-								<div class="container-pedidos_cabecalho-info">
+								<div class="container-informacoes_cabecalho-info">
 									<p class="titulo-informacao">NÚM. DO PEDIDO</p>
 									<?php echo $pedido['id_pedido']; ?>
 								</div>									
 							</div>
-							<div class="container-pedidos_corpo">
+							<div class="container-informacoes_corpo container-pedidos_corpo">
 								<?php 
 									$select_produtos_pedidos = 
 										"SELECT 
@@ -190,9 +195,9 @@
 										</a>
 								<?php } ?>
 							</div>
-							<div class="container-pedidos_componentes container-pedidos_rodape">
+							<div class="container-informacoes_componentes container-informacoes_rodape">
 								<!-- Status -->
-								<div class="container-pedidos_cabecalho-info">
+								<div>
 									<p class="titulo-informacao">STATUS</p>
 									<p><?php echo $pedido['nome_status']; ?></p>									
 								</div>
@@ -240,11 +245,57 @@
 				<?php } ?>
 			</section>
 			<section class="section-tela" id="section-seus-dados" style="display: none;">
-				<div class="div-dados_usuario">
-					<h4 class="titulo-usuario">
-						<img src="<?php echo $usuario['caminho_img_perfil']; ?>">
+				<div class="container-informacoes">
+					<h2 class="container-informacoes_cabecalho">
+						<img class="img-perfil" src="<?php echo $usuario['caminho_img_perfil']; ?>">
 						<?php echo $usuario['nome_completo']; ?>
-					</h4>					
+					</h2>
+					<div class="container-informacoes_corpo container-dados_corpo">
+						<div class="grupo-info">
+							<div>
+								<p class="titulo-informacao">CPF</p>
+								<p><?php echo $usuario['cpf']; ?></p>
+							</div>
+							<div>
+								<p class="titulo-informacao">RG</p>
+								<p><?php echo $usuario['rg']; ?></p>
+							</div>
+						</div>
+						<div class="grupo-info">
+							<div>
+								<p class="titulo-informacao">Data de Nascimento</p>
+								<p><?php echo date('d/m/Y', strtotime($usuario['dt_nascimento'])); ?></p>
+							</div>
+							<div>
+								<p class="titulo-informacao">Sexo</p>
+								<p><?php if ($usuario['sexo'] == 'M') { echo 'Masculino'; } else { echo 'Feminino'; } ?></p>
+							</div>
+						</div>										
+						<div class="grupo-info">
+							<div>
+								<p class="titulo-informacao">Telefone Celular</p>
+								<p><?php echo $usuario['telefone_celular']; ?></p>
+							</div>
+							<div>
+								<p class="titulo-informacao">E-mail</p>
+								<p><?php echo $usuario['email']; ?></p>
+							</div>
+						</div>						
+					</div>
+					<div class="container-informacoes_componentes container-informacoes_rodape">
+						<!-- Perfil -->
+						<div>
+							<p class="titulo-informacao">PERFIL</p>
+							<p><?php if ($usuario['admin'] == 1) { echo 'Administrador'; } else { echo 'Cliente'; } ?></p>
+							</div>
+
+						<!-- Ações -->
+						<div class="container-pedidos-acoes">
+							<button type="button" class="btn-acao_pedido btn-detalhes_ped my-1">
+								<i class="fa-solid fa-pen-to-square"></i> Alterar dados
+							</button>
+						</div>	
+					</div>
 				</div>
 			</section>
 			<section class="section-tela" id="section-enderecos" style="display: none;">

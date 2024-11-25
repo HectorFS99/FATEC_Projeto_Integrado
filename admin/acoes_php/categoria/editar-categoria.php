@@ -1,5 +1,5 @@
 <?php
-    include '/acoes_php/conectar_banco_dados.php';
+    include '../conectar_banco_dados.php';
 
     if (isset($_POST['salvar'])) {
         // Pega os valores do formulário
