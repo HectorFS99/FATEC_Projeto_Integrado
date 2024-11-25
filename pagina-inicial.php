@@ -41,7 +41,6 @@
 <html lang="pt-br">
 	<head>
 		<?php include 'head.php'; ?>
-		<script src="recursos/javascript/pagina-inicial.js"></script>
 		<title>Future Mob</title>
 	</head>
 	<body>
@@ -122,5 +121,11 @@
 			</section>
 		</main>
 		<footer id="footer"></footer>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				mostrarSlide(indice_atual, '#carrossel-pagina_inicial');
+				mostrarSlide(indice_atual, '#carrossel-ofertas_relampago');
+			});
+		</script>
 	</body>
 </html>

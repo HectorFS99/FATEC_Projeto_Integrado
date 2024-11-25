@@ -16,7 +16,10 @@
 	$id_produto = isset($_GET['id_produto']) ? intval($_GET['id_produto']) : 0;
 	$id_usuario = $_SESSION['id_usuario'];  // ID do usuário da sessão
 	$quantidade = isset($_GET['quantidade']) ? intval($_GET['quantidade']) : 1;
+
+	// Modos de visualização e retorno.
 	$comprarAgora = isset($_GET['comprarAgora']) ? $_GET['comprarAgora'] : false;
+	$listagem = isset($_GET['listagem']) ? $_GET['listagem'] : false;
 
 	if ($id_produto <= 0 || $quantidade <= 0) {
 		echo 
@@ -60,6 +63,8 @@
 	}
 	if ($comprarAgora) {
 		header("Location: ../../pagamento.php");
+	} else if ($listagem) {
+		header("Location: ../../listagem-geral-produtos.php");
 	} else {
 		header("Location: ../../detalhes-produto.php?id_produto=$id_produto");
 	}

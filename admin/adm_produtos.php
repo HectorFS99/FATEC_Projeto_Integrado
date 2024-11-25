@@ -78,7 +78,7 @@
                                         <a class="btn-tabela btn-excluir" href="acoes_php/produto/excluir-produto.php?apagar=<?php echo $linha['id_produto']; ?>">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </a>
-                                        <a class="btn-tabela btn-editar" href="acoes_php/produto/editar-produto.php?editar=<?php echo $linha['id_produto']; ?>">
+                                        <a class="btn-tabela btn-editar" href="edicao-produto.php?id_produto=<?php echo $linha['id_produto']; ?>">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
                                     </div>

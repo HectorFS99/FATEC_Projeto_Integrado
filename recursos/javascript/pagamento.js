@@ -87,20 +87,21 @@ function finalizarPedido(e) {
             return;           
         } else if (formaPagamento.value !== 'pix') {
             document.getElementById('txtCreditoDebito').value = creditoDebito.value;
+            
+            var parcelas = document.getElementById('cboParcelas').value;
+            document.getElementById('txtParcelas').value = parcelas;
         }
         
         var subTotal = formatarParaDecimal(document.getElementById('lblValorSubTotalPedido').innerText);
         var frete = formatarParaDecimal(document.getElementById('lblValorFrete').innerText);
         var desconto = formatarParaDecimal(document.getElementById('lblValorDesconto').innerText);
         var total = formatarParaDecimal(document.getElementById('lblValorTotalPedido').innerText);
-        var parcelas = document.getElementById('cboParcelas').value;
         
         document.getElementById('txtFormaPagamento').value = formaPagamento.value;
         document.getElementById('txtValorSubTotalPedido').value = subTotal;
         document.getElementById('txtValorFrete').value = frete;
         document.getElementById('txtValorDesconto').value = desconto;
         document.getElementById('txtValorTotalPedido').value = total;
-        document.getElementById('txtParcelas').value = parcelas;
         document.getElementById('txtOpcaoEntrega').value = opcaoEntrega.value;
 
         var formulario = document.getElementById('frmFinalizarPedido');

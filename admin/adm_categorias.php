@@ -22,7 +22,7 @@
             <div class="titulo-opcoes">
                 <h3 class="titulo">
                     <a href="adm_index.php" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i></a>
-                    Categoria
+                    Categorias
                 </h3>
                 <button onclick="window.location.href= 'cadastro-categoria.php'" class="botao btn-adicionar">
                     <i class="fa-solid fa-square-plus"></i> Adicionar
@@ -60,7 +60,7 @@
                                         <a class="btn-tabela btn-excluir" href="acoes_php/categoria/excluir-categoria.php?apagar=<?php echo $linha['id_categoria']; ?>">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </a>
-                                        <a class="btn-tabela btn-editar" href="editar-categoria.php?editar=<?php echo $linha['id_categoria']; ?>">
+                                        <a class="btn-tabela btn-editar" href="edicao-categoria.php?editar=<?php echo $linha['id_categoria']; ?>">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
                                     </div>

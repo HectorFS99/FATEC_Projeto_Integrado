@@ -10,9 +10,6 @@ function enviarCodigoRecuperacao(e) {
         case 'diogo.martins5@fatec.sp.gov.br':
             notificar(true, 'Enviamos o link para o e-mail informado!', 'Ao acessar o link, você será redirecionado para uma página onde poderá redefinir a sua senha.', 'success', 'login.html');
             break;
-        case 'eduardo.urbano@fatec.sp.gov.br':
-            notificar(true, 'Enviamos o link para o e-mail informado!', 'Ao acessar o link, você será redirecionado para uma página onde poderá redefinir a sua senha.', 'success', 'login.html');
-            break;
         case 'ellen.oliveira12@fatec.sp.gov.br':
             notificar(true, 'Enviamos o link para o e-mail informado!', 'Ao acessar o link, você será redirecionado para uma página onde poderá redefinir a sua senha.', 'success', 'login.html');
             break;
@@ -20,6 +17,9 @@ function enviarCodigoRecuperacao(e) {
             notificar(true, 'Enviamos o link para o e-mail informado!', 'Ao acessar o link, você será redirecionado para uma página onde poderá redefinir a sua senha.', 'success', 'login.html');
             break;
         case 'joao.garcia27@fatec.sp.gov.br':
+            notificar(true, 'Enviamos o link para o e-mail informado!', 'Ao acessar o link, você será redirecionado para uma página onde poderá redefinir a sua senha.', 'success', 'login.html');
+            break;
+        case 'henrique.cordeiro2@fatec.sp.gov.br':
             notificar(true, 'Enviamos o link para o e-mail informado!', 'Ao acessar o link, você será redirecionado para uma página onde poderá redefinir a sua senha.', 'success', 'login.html');
             break;
         // Professores
