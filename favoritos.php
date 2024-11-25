@@ -43,9 +43,7 @@
                     <s class="text-muted">De: R$ 2.599,00</s><br>
                     <b>Por: <span style="font-size: 1.5rem;" class="text-success">R$ 2.199,00</span></b>
                 </p>
-                <div>
                     <a href="carrinho.php" class="btn btn-laranja"><i class="fa-solid fa-cart-plus"></i><b> Adicionar ao Carrinho</b></a>
-                </div>
             </div>
             <div class="card-favorito">
                 <a class="card-link_detalhes" href="detalhes-produto.php"><img class="img-favorito" src="recursos/imagens/produtos/sala-conjunto_poltrona_egg.jpg"></a>
@@ -113,7 +111,7 @@
                     </div>
                 </div>
                 <div class="item-favorito_opcoes">
-                    <small class="text-center">Produto adicionado em 05/06/2024</small>
+                    <small class="text-center">Produto adicionado em 25/10/2024</small>
                     <div>
                         <a href="carrinho.php" class="btn btn-laranja"><i class="fa-solid fa-cart-plus"></i><b> Adicionar ao Carrinho</b></a>
                         <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
