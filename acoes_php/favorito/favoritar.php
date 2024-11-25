@@ -29,4 +29,27 @@
                 alert(mysql_error());
             </script>";
     }
+
+    $result = mysql_query( 
+        "SELECT 
+            f.id_produto
+            , p.nome
+            , p.caminho_imagem
+            , p.preco_atual
+            , p.preco_anterior
+        FROM 
+            favoritos AS f
+            INNER JOIN produtos AS p ON f.id_produto = p.id_produto
+        WHERE 
+            f.id_usuario = $id_usuario"
+    );    
+
+    // Array para armazenar os itens favoritos
+    $itens_favoritos = [];
+    if (mysql_num_rows($result) > 0) {
+        while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+            $itens_favoritos[] = $row;
+        }
+    }
+
 ?>

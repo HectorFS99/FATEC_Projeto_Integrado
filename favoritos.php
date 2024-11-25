@@ -1,3 +1,4 @@
+
 <html lang="pt-br">
 
 <head>
@@ -38,12 +39,13 @@
         </div>
         <div id="visualizacaoCards">
             <div class="card-favorito">
+                
                 <a class="card-link_detalhes" href="detalhes-produto.php"><img class="img-favorito" src="recursos/imagens/produtos/escritorio-luminaria_rosa.jpg"></a>
                 <p class="my-1">
                     <s class="text-muted">De: R$ 2.599,00</s><br>
                     <b>Por: <span style="font-size: 1.5rem;" class="text-success">R$ 2.199,00</span></b>
                 </p>
-                <a href="#" class="btn btn-laranja"><i class="fa-solid fa-cart-plus"></i><b> Adicionar ao Carrinho</b></a>
+                <a href="./acoes_php/carrinho/adicionar_produto.php?id_produto=<?php echo $linha['id_produto']; ?>&listagem=true" class="btn btn-laranja"><i class="fa-solid fa-cart-plus"></i><b> Adicionar ao Carrinho</b></a>
             </div>
             <div class="card-favorito">
                 <a class="card-link_detalhes" href="detalhes-produto.php"><img class="img-favorito" src="recursos/imagens/produtos/sala-conjunto_poltrona_egg.jpg"></a>
