@@ -246,7 +246,7 @@
                     </div>
                             <!--  VERIFICA SE HÁ AVALIAÇÕES -->
                     <?php
-                    if ($avaliacao = mysql_fetch_assoc($resultado2)) {
+                    if ($avaliacao == true) {
                     ?> <div class="avaliacao-usuario">
                         <div class="avaliacao-usuario_cabecalho">
                             <div class="avaliacao-usuario_info">
