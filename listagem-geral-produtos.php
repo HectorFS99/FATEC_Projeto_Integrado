@@ -200,7 +200,7 @@
                                     <a href="acoes_php/favorito/favoritar.php?id_produto=<?php echo $linha['id_produto']; ?>" class="btn btn-danger mt-2 d-flex align-items-center" style="margin-left: 10px">
                                         <i class="fa-regular fa-heart"></i>
                                     </a>                                    
-                                </div>                                
+                                </div>
                                 <a href="./acoes_php/carrinho/adicionar_produto.php?id_produto=<?php echo $linha['id_produto']; ?>&listagem=true" class="btn btn-light mt-2 w-100">
                                     <strong>Adicionar ao Carrinho</strong>
                                 </a>                                
