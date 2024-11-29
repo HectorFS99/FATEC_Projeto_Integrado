@@ -20,7 +20,6 @@
 	// Modos de visualização e retorno.
 	$comprarAgora = isset($_GET['comprarAgora']) ? $_GET['comprarAgora'] : false;
 	$listagem = isset($_GET['listagem']) ? $_GET['listagem'] : false;
-	$favoritos = isset($_GET['favoritos']) ? $_GET['favoritos'] : false;
 
 	if ($id_produto <= 0 || $quantidade <= 0) {
 		echo 
@@ -66,8 +65,6 @@
 		header("Location: ../../pagamento.php");
 	} else if ($listagem) {
 		header("Location: ../../listagem-geral-produtos.php");
-	} else if ($favoritos) {
-		header("Location: ../../favoritos.php");
 	} else {
 		header("Location: ../../detalhes-produto.php?id_produto=$id_produto");
 	}
