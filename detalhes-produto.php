@@ -290,7 +290,7 @@
                         <div class="avaliacao-usuario_corpo">
                             <p><b><?php echo $avaliacao["titulo"]; ?></b></p>
                             <p> <?php echo $avaliacao["descricao"]; ?> </p>
-                            <img src="<?php echo $produto["caminho_imagem"]; ?>" class="produto_img" />
+                            <img src="<?php echo $produto["caminho_imagem"]; ?>" class="avaliacao-usuario_corpo_imagem" />
                         </div>
                         <div class="avaliacao-usuario_rodape">
                             <small> Essa avaliação foi útil? <i class="fa-regular fa-thumbs-up"></i>68 <i class="fa-regular fa-thumbs-down"></i>12 </small>
