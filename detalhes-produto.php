@@ -225,8 +225,7 @@
                         <label for="descricao"><b>Descrição:</b></label>
                         <textarea id="descricao" name="descricao" maxlength="1000" required class="form-control mb-2"><?php echo isset($descricao) ? $descricao : ''; ?></textarea>
 
-                        <label for="imagem"><b>Imagem (opcional):</b></label>
-                        <input type="file" id="imagem" name="imagem" accept="image/*" class="form-control mb-2">
+                       
 
                         <button type="submit" class="btn btn-lg btn-success mt-3">Enviar Avaliação</button>
                     </form>
