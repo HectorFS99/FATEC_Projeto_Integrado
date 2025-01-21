@@ -68,9 +68,8 @@
             
 
             if ($avaliacao = mysql_fetch_assoc($resultado2)) {
-
-            } else {
-                echo "Ainda não há avaliações, seja o primeiro a avaliar!";
+            } 
+            else {
             }
         } else {
             
@@ -279,9 +278,7 @@
                                 ?>
                             </div>
                                 <small class="text-end">
-                                <?php
-                                    date_default_timezone_set('America/Sao_Paulo'); 
-                                    echo date('d/m/Y', strtotime($avaliacao["dt_avaliacao"])); ?>
+                                
                                 </small>
 
                             </div>
