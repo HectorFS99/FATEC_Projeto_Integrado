@@ -291,7 +291,7 @@
                         <div class="avaliacao-usuario_rodape">
                             <small> Essa avaliação foi útil? <i class="fa-regular fa-thumbs-up"></i>68 <i class="fa-regular fa-thumbs-down"></i>12 </small>
                         </div>
-                    </div>'
+                    </div>
                 
             <?php
             } else {
